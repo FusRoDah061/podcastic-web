@@ -15,18 +15,13 @@ export default createGlobalStyle`
 
   html, body, #root {
     height: 100vh;
+    overflow: hidden;
   }
 
   body {
-    background: linear-gradient(180deg, ${colors.greenDark} 25.31%, ${colors.greenLight} 100%);
+    background: linear-gradient(180deg, ${colors.greenDark} 15%, ${colors.greenLight} 100%);
     color: ${colors.textLight};
     -webkit-font-smoothing: antialiased;
-  }
-
-  #root {
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   body,
@@ -35,6 +30,10 @@ export default createGlobalStyle`
   textarea {
     font: 400 1.6rem Roboto;
     color: ${colors.textLight};
+  }
+
+  input::placeholder {
+    color: ${colors.textPlaceholder};
   }
 
   h1, h2, h3, h4, h5, h6, strong {
@@ -49,5 +48,24 @@ export default createGlobalStyle`
     :root {
       font-size: 62.5%;
     }
+  }
+
+  /* Browser scrollbar styling */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: ${colors.textDark} ${colors.textPlaceholder};
+  }
+
+  /* Chrome/Edge/Safari */
+  *::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  *::-webkit-scrollbar-track {
+    background: ${colors.textLight};
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: ${colors.textPlaceholder};
   }
 `;

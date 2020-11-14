@@ -5,4 +5,5 @@ export const colors = {
   greenDark: '#25D06A',
   greenLight: '#2CE560',
   white: '#FFFFFF',
+  black: '#000000',
 };
