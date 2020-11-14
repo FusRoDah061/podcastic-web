@@ -7,3 +7,8 @@ export const colors = {
   white: '#FFFFFF',
   black: '#000000',
 };
+
+export const dims = {
+  mobileBreak: '500px',
+  tabletBreak: '770px',
+};

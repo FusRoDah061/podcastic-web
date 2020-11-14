@@ -18,8 +18,12 @@ import {
 } from './styles';
 
 import logoImg from '../../assets/podcastic-white-logo.svg';
-import addIcon from '../../assets/add-green-icon.svg';
+import addIconDesktop from '../../assets/add-green-icon.svg';
+import addIconMobile from '../../assets/add-white-icon.svg';
 import searchIcon from '../../assets/arrow-right-white-icon.svg';
+import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
+import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
+import { dims } from '../../styles/variables';
 
 const Home: React.FC = () => {
   const [showAddPodcastPopup, setShowAddPodcastPopup] = useState(false);
@@ -48,7 +52,13 @@ const Home: React.FC = () => {
           </div>
 
           <AddPodcastButton type="button" onClick={toggleAddPoscastPopup}>
-            <img src={addIcon} alt="Add podcast" />
+            <picture>
+              <source
+                media={`(min-width: ${dims.tabletBreak})`}
+                srcSet={addIconDesktop}
+              />
+              <img src={addIconMobile} alt="Add podcast" />
+            </picture>
             Add podcast
           </AddPodcastButton>
 
@@ -225,6 +235,10 @@ const Home: React.FC = () => {
               </li>
             </ul>
           </PodcastListContainer>
+
+          <button type="button">
+            <img src={chevronRightBlackIcon} alt="View all recent" />
+          </button>
         </RecentlyAddedPodcastsContainer>
 
         <AllPodcastsContainer>
@@ -592,6 +606,10 @@ const Home: React.FC = () => {
                   </a>
                 </PodcastCard>
               </li>
+              <button type="button">
+                View all
+                <img src={chevronRightWhiteIcon} alt="View all recent" />
+              </button>
             </ul>
           </PodcastGridContainer>
         </AllPodcastsContainer>
