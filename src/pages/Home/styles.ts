@@ -1,6 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import { colors } from '../../styles/variables';
+
+interface AddPodcastPopupProps {
+  isOpen: boolean;
+}
 
 export const Container = styled.main`
   display: flex;
@@ -35,34 +40,35 @@ export const HeaderTop = styled.div`
       }
     }
   }
+`;
 
-  button {
-    display: flex;
-    background: ${colors.white};
-    color: ${colors.textDark};
-    font-family: Nunito;
-    font-weight: bold;
-    font-size: 1.6rem;
-    padding: 0.9rem 2rem;
-    border-radius: 1rem;
-    border: 0.2rem solid ${colors.greenDark};
-    align-items: center;
-    transition: background 0.2s;
+export const AddPodcastButton = styled.button`
+  display: flex;
+  background: ${colors.white};
+  color: ${colors.textDark};
+  font-family: Nunito;
+  font-weight: bold;
+  font-size: 1.6rem;
+  padding: 0.9rem;
+  padding-right: 2rem;
+  border-radius: 1rem;
+  border: 0.2rem solid ${colors.greenDark};
+  align-items: center;
+  transition: background 0.2s;
 
-    &:hover {
-      background: ${darken(0.05, colors.white)};
-    }
+  &:hover {
+    background: ${darken(0.05, colors.white)};
+  }
 
-    img {
-      display: inline-block;
-      width: 1.7rem;
-      height: 1.7rem;
-      margin-right: 2rem;
-    }
+  img {
+    display: inline-block;
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-right: 2rem;
   }
 `;
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled(motion.div)`
   display: flex;
   flex-direction: row;
   width: 60rem;
@@ -226,7 +232,7 @@ export const PodcastCard = styled.div`
   }
 `;
 
-export const AddPodcastPopup = styled.div`
+export const AddPodcastPopup = styled(motion.div)<AddPodcastPopupProps>`
   position: absolute;
   right: 0;
   top: 6rem;
@@ -235,7 +241,15 @@ export const AddPodcastPopup = styled.div`
   border-radius: 1.5rem;
   color: ${colors.textDark};
   flex-direction: column;
-  box-shadow: 0px 4px 20px -2px rgba(0, 0, 0, 0.25);
+
+  ${props =>
+    props.isOpen &&
+    css`
+      box-shadow: 0px 4px 20px -2px rgba(0, 0, 0, 0.25);
+    `}
+
+  &[data-isOpen='true'] {
+  }
 
   p,
   label {
@@ -261,17 +275,14 @@ export const AddPodcastPopup = styled.div`
       border-radius: 1rem;
       padding: 1.4rem 1.8rem;
       font-size: 1.6rem;
+      color: ${colors.textDark};
     }
   }
 
-  button {
+  div {
+    display: flex;
+    flex-direction: row;
     align-self: flex-end;
-    color: ${colors.textLight};
-    background: ${colors.greenLight};
-
-    &:hover {
-      background: ${darken(0.05, colors.greenLight)};
-    }
   }
 
   &::before {
@@ -284,5 +295,42 @@ export const AddPodcastPopup = styled.div`
     border-left: 1rem solid transparent;
     border-right: 1rem solid transparent;
     border-bottom: 1.5rem solid ${colors.white};
+  }
+`;
+
+export const AddPodcastCloseButton = styled.button`
+  display: flex;
+  background: ${colors.white};
+  color: ${colors.textDark};
+  font-family: Nunito;
+  font-weight: bold;
+  font-size: 1.6rem;
+  padding: 0.9rem 2rem;
+  border-radius: 1rem;
+  border: 0.2rem solid ${colors.greenDark};
+  align-items: center;
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${darken(0.05, colors.white)};
+  }
+`;
+
+export const AddPodcastConfirmButton = styled.button`
+  display: flex;
+  color: ${colors.textLight};
+  background: ${colors.greenLight};
+  font-family: Nunito;
+  font-weight: bold;
+  font-size: 1.6rem;
+  padding: 0.9rem 2rem;
+  border-radius: 1rem;
+  border: 0.2rem solid ${colors.greenDark};
+  align-items: center;
+  transition: background 0.2s;
+  margin-left: 1.6rem;
+
+  &:hover {
+    background: ${darken(0.05, colors.greenLight)};
   }
 `;
