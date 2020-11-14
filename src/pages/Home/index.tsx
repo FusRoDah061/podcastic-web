@@ -15,6 +15,8 @@ import {
   AddPodcastButton,
   AddPodcastCloseButton,
   AddPodcastConfirmButton,
+  AddPodcastPopupButtons,
+  AddPodcastPopupHeader,
 } from './styles';
 
 import logoImg from '../../assets/podcastic-white-logo.svg';
@@ -23,6 +25,7 @@ import addIconMobile from '../../assets/add-white-icon.svg';
 import searchIcon from '../../assets/arrow-right-white-icon.svg';
 import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
 import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
+import chevronUpBlackIcon from '../../assets/chevron-up-black-icon.svg';
 import { dims } from '../../styles/variables';
 
 const Home: React.FC = () => {
@@ -35,7 +38,7 @@ const Home: React.FC = () => {
     if (!showAddPodcastPopup) {
       addPodcastPopupControl.start({ opacity: 1, y: 0 });
     } else {
-      addPodcastPopupControl.start({ opacity: 0, y: -400 });
+      addPodcastPopupControl.start({ opacity: 0, y: '-150%' });
     }
   }, [showAddPodcastPopup, addPodcastPopupControl]);
 
@@ -64,10 +67,17 @@ const Home: React.FC = () => {
 
           <AddPodcastPopup
             isOpen={showAddPodcastPopup}
-            initial={{ opacity: 0, y: -400 }}
+            initial={{ opacity: 0, y: '-150%' }}
             animate={addPodcastPopupControl}
+            exit={{ opacity: 0 }}
           >
-            <p>New podcast feed</p>
+            <AddPodcastPopupHeader>
+              <button type="button" onClick={toggleAddPoscastPopup}>
+                <img src={chevronUpBlackIcon} alt="Go back" />
+              </button>
+
+              <p>New podcast feed</p>
+            </AddPodcastPopupHeader>
 
             <label htmlFor="js-rss-feed-address">
               RSS feed address:
@@ -78,7 +88,7 @@ const Home: React.FC = () => {
               />
             </label>
 
-            <div>
+            <AddPodcastPopupButtons>
               <AddPodcastCloseButton
                 type="button"
                 onClick={toggleAddPoscastPopup}
@@ -88,7 +98,7 @@ const Home: React.FC = () => {
               <AddPodcastConfirmButton type="button">
                 Add
               </AddPodcastConfirmButton>
-            </div>
+            </AddPodcastPopupButtons>
           </AddPodcastPopup>
         </HeaderTop>
 

@@ -27,6 +27,7 @@ export const Header = styled.header`
   right: 1.7rem;
   display: flex;
   flex-direction: column;
+  z-index: 2;
 
   @media (min-width: ${dims.tabletBreak}) {
     position: relative;
@@ -43,7 +44,7 @@ export const HeaderTop = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  div:first-child {
+  & > div:first-child {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -119,17 +120,47 @@ export const AddPodcastButton = styled.button`
 `;
 
 export const AddPodcastPopup = styled(motion.div)<AddPodcastPopupProps>`
-  position: absolute;
+  position: fixed;
+  display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background: ${colors.white};
   padding: 1.8rem 2rem;
   color: ${colors.textDark};
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+
+  label {
+    text-align: start;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+
+    input {
+      display: block;
+      width: 100%;
+      margin-top: 1.2rem;
+      border: 2px solid ${colors.greenDark};
+      border-radius: 1rem;
+      padding: 1.4rem 1.8rem;
+      font-size: 1.6rem;
+      color: ${colors.textDark};
+    }
+  }
 
   @media (min-width: ${dims.tabletBreak}) {
+    position: absolute;
     right: 0;
     top: 6rem;
+    left: unset;
+    bottom: unset;
     border-radius: 1.5rem;
-    z-index: 3;
+    width: auto;
+    height: auto;
 
     ${props =>
       props.isOpen &&
@@ -137,39 +168,13 @@ export const AddPodcastPopup = styled(motion.div)<AddPodcastPopupProps>`
         box-shadow: 0px 4px 20px -2px rgba(0, 0, 0, 0.25);
       `}
 
-    p,
     label {
       width: 100%;
-      text-align: start;
-      font-size: 1.8rem;
-    }
-
-    p {
-      font-family: Nunito;
-      font-weight: bold;
-      margin-bottom: 1.2rem;
-    }
-
-    label {
-      margin-bottom: 1.5rem;
 
       input {
-        display: block;
+        border-width: 0.2rem;
         width: 40rem;
-        margin-top: 1.2rem;
-        border: 0.2rem solid ${colors.greenDark};
-        border-radius: 1rem;
-        padding: 1.4rem 1.8rem;
-        font-size: 1.6rem;
-        color: ${colors.textDark};
       }
-    }
-
-    div {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      margin-top: 1.5rem;
     }
 
     &::before {
@@ -186,26 +191,84 @@ export const AddPodcastPopup = styled(motion.div)<AddPodcastPopupProps>`
   }
 `;
 
-export const AddPodcastCloseButton = styled.button`
+export const AddPodcastPopupHeader = styled.div`
   display: flex;
-  background: ${colors.white};
-  color: ${colors.textDark};
-  font-family: Nunito;
-  font-weight: bold;
-  font-size: 1.6rem;
-  padding: 0.9rem 2rem;
-  border-radius: 1rem;
-  border: 0.2rem solid ${colors.greenDark};
+  flex-direction: row;
   align-items: center;
-  transition: background 0.2s;
 
-  &:hover {
-    background: ${darken(0.05, colors.white)};
+  button {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+    background: none;
+    border: none;
+
+    img {
+      max-height: 1.3rem;
+    }
+  }
+
+  p {
+    font-size: 1.8rem;
+    font-family: Nunito;
+    font-weight: bold;
+    text-align: start;
+    flex: 1;
+  }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    button {
+      display: none;
+    }
+
+    p {
+      margin-bottom: 1.2rem;
+    }
+  }
+`;
+
+export const AddPodcastPopupButtons = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  & > button:first-child {
+    display: none;
+  }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+
+    & > button:first-child {
+      display: block;
+    }
+  }
+`;
+
+export const AddPodcastCloseButton = styled.button`
+  display: none;
+
+  @media (min-width: ${dims.tabletBreak}) {
+    display: block;
+    background: ${colors.white};
+    color: ${colors.textDark};
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 1.6rem;
+    padding: 0.9rem 2rem;
+    border-radius: 1rem;
+    border: 0.2rem solid ${colors.greenDark};
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.05, colors.white)};
+    }
   }
 `;
 
 export const AddPodcastConfirmButton = styled.button`
-  display: flex;
+  display: block;
   color: ${colors.textLight};
   background: ${colors.greenLight};
   font-family: Nunito;
@@ -213,13 +276,16 @@ export const AddPodcastConfirmButton = styled.button`
   font-size: 1.6rem;
   padding: 0.9rem 2rem;
   border-radius: 1rem;
-  border: 0.2rem solid ${colors.greenDark};
-  align-items: center;
-  transition: background 0.2s;
-  margin-left: 1.6rem;
+  border: 2px solid ${colors.greenDark};
 
-  &:hover {
-    background: ${darken(0.05, colors.greenLight)};
+  @media (min-width: ${dims.tabletBreak}) {
+    transition: background 0.2s;
+    margin-left: 1.6rem;
+    border-width: 0.2rem;
+
+    &:hover {
+      background: ${darken(0.05, colors.greenLight)};
+    }
   }
 `;
 
@@ -316,7 +382,7 @@ export const RecentlyAddedPodcastsContainer = styled.aside`
     background: ${colors.white};
     border-radius: 50%;
     border: none;
-    z-index: 2;
+    z-index: 1;
 
     img {
       margin-right: -0.3rem;
@@ -332,6 +398,10 @@ export const RecentlyAddedPodcastsContainer = styled.aside`
     padding: 1.5rem;
     box-shadow: 0px 3px 20px -2px rgba(0, 0, 0, 0.25);
     color: ${colors.black};
+
+    &::after {
+      content: none;
+    }
 
     h2 {
       margin-bottom: 2.4rem;
