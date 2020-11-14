@@ -1,5 +1,4 @@
-import React, { useCallback, useState } from 'react';
-import { useAnimation } from 'framer-motion';
+import React from 'react';
 import {
   Container,
   Header,
@@ -11,12 +10,7 @@ import {
   PodcastListContainer,
   PodcastGridContainer,
   PodcastCard,
-  AddPodcastPopup,
   AddPodcastButton,
-  AddPodcastCloseButton,
-  AddPodcastConfirmButton,
-  AddPodcastPopupButtons,
-  AddPodcastPopupHeader,
 } from './styles';
 
 import logoImg from '../../assets/podcastic-white-logo.svg';
@@ -25,23 +19,9 @@ import addIconMobile from '../../assets/add-white-icon.svg';
 import searchIcon from '../../assets/arrow-right-white-icon.svg';
 import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
 import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
-import chevronUpBlackIcon from '../../assets/chevron-up-black-icon.svg';
 import { dims } from '../../styles/variables';
 
 const Home: React.FC = () => {
-  const [showAddPodcastPopup, setShowAddPodcastPopup] = useState(false);
-  const addPodcastPopupControl = useAnimation();
-
-  const toggleAddPoscastPopup = useCallback(() => {
-    setShowAddPodcastPopup(!showAddPodcastPopup);
-
-    if (!showAddPodcastPopup) {
-      addPodcastPopupControl.start({ opacity: 1, y: 0 });
-    } else {
-      addPodcastPopupControl.start({ opacity: 0, y: '-150%' });
-    }
-  }, [showAddPodcastPopup, addPodcastPopupControl]);
-
   return (
     <Container>
       <Header>
@@ -54,7 +34,7 @@ const Home: React.FC = () => {
             </h1>
           </div>
 
-          <AddPodcastButton type="button" onClick={toggleAddPoscastPopup}>
+          <AddPodcastButton to="/new">
             <picture>
               <source
                 media={`(min-width: ${dims.tabletBreak})`}
@@ -64,42 +44,6 @@ const Home: React.FC = () => {
             </picture>
             Add podcast
           </AddPodcastButton>
-
-          <AddPodcastPopup
-            isOpen={showAddPodcastPopup}
-            initial={{ opacity: 0, y: '-150%' }}
-            animate={addPodcastPopupControl}
-            exit={{ opacity: 0 }}
-          >
-            <AddPodcastPopupHeader>
-              <button type="button" onClick={toggleAddPoscastPopup}>
-                <img src={chevronUpBlackIcon} alt="Go back" />
-              </button>
-
-              <p>New podcast feed</p>
-            </AddPodcastPopupHeader>
-
-            <label htmlFor="js-rss-feed-address">
-              RSS feed address:
-              <input
-                id="js-rss-feed-address"
-                type="text"
-                placeholder="https://cool-podcast.com/feed/rss"
-              />
-            </label>
-
-            <AddPodcastPopupButtons>
-              <AddPodcastCloseButton
-                type="button"
-                onClick={toggleAddPoscastPopup}
-              >
-                Close
-              </AddPodcastCloseButton>
-              <AddPodcastConfirmButton type="button">
-                Add
-              </AddPodcastConfirmButton>
-            </AddPodcastPopupButtons>
-          </AddPodcastPopup>
         </HeaderTop>
 
         <SearchContainer initial={{ x: -200 }} animate={{ x: 0 }}>

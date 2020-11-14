@@ -19,7 +19,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background: linear-gradient(180deg, ${colors.greenDark} 15%, ${colors.greenLight} 100%);
+    background: ${colors.white};
     color: ${colors.textLight};
     -webkit-font-smoothing: antialiased;
   }

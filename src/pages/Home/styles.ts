@@ -1,11 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
+import { Link } from 'react-router-dom';
 import { colors, dims } from '../../styles/variables';
-
-interface AddPodcastPopupProps {
-  isOpen: boolean;
-}
 
 export const Container = styled.main`
   display: flex;
@@ -14,6 +11,11 @@ export const Container = styled.main`
   flex-direction: column;
   padding: 2rem 1.7rem;
   padding-top: 21rem;
+  background: linear-gradient(
+    180deg,
+    ${colors.greenDark} 15%,
+    ${colors.greenLight} 100%
+  );
 
   @media (min-width: ${dims.tabletBreak}) {
     padding: 2.5rem 3rem;
@@ -75,13 +77,14 @@ export const HeaderTop = styled.div`
   }
 `;
 
-export const AddPodcastButton = styled.button`
+export const AddPodcastButton = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
   background: none;
   font-size: 0;
   border: none;
+  text-decoration: none;
 
   picture {
     display: inline-block;
@@ -115,176 +118,6 @@ export const AddPodcastButton = styled.button`
     picture {
       width: 1.7rem;
       height: 1.7rem;
-    }
-  }
-`;
-
-export const AddPodcastPopup = styled(motion.div)<AddPodcastPopupProps>`
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: ${colors.white};
-  padding: 1.8rem 2rem;
-  color: ${colors.textDark};
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 3;
-
-  label {
-    text-align: start;
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-
-    input {
-      display: block;
-      width: 100%;
-      margin-top: 1.2rem;
-      border: 2px solid ${colors.greenDark};
-      border-radius: 1rem;
-      padding: 1.4rem 1.8rem;
-      font-size: 1.6rem;
-      color: ${colors.textDark};
-    }
-  }
-
-  @media (min-width: ${dims.tabletBreak}) {
-    position: absolute;
-    right: 0;
-    top: 6rem;
-    left: unset;
-    bottom: unset;
-    border-radius: 1.5rem;
-    width: auto;
-    height: auto;
-
-    ${props =>
-      props.isOpen &&
-      css`
-        box-shadow: 0px 4px 20px -2px rgba(0, 0, 0, 0.25);
-      `}
-
-    label {
-      width: 100%;
-
-      input {
-        border-width: 0.2rem;
-        width: 40rem;
-      }
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: -1.5rem;
-      right: 2rem;
-      width: 0;
-      height: 0;
-      border-left: 1rem solid transparent;
-      border-right: 1rem solid transparent;
-      border-bottom: 1.5rem solid ${colors.white};
-    }
-  }
-`;
-
-export const AddPodcastPopupHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  button {
-    display: flex;
-    align-items: center;
-    margin-right: 2rem;
-    background: none;
-    border: none;
-
-    img {
-      max-height: 1.3rem;
-    }
-  }
-
-  p {
-    font-size: 1.8rem;
-    font-family: Nunito;
-    font-weight: bold;
-    text-align: start;
-    flex: 1;
-  }
-
-  @media (min-width: ${dims.tabletBreak}) {
-    button {
-      display: none;
-    }
-
-    p {
-      margin-bottom: 1.2rem;
-    }
-  }
-`;
-
-export const AddPodcastPopupButtons = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  & > button:first-child {
-    display: none;
-  }
-
-  @media (min-width: ${dims.tabletBreak}) {
-    justify-content: flex-end;
-    margin-top: 1.5rem;
-
-    & > button:first-child {
-      display: block;
-    }
-  }
-`;
-
-export const AddPodcastCloseButton = styled.button`
-  display: none;
-
-  @media (min-width: ${dims.tabletBreak}) {
-    display: block;
-    background: ${colors.white};
-    color: ${colors.textDark};
-    font-family: Nunito;
-    font-weight: bold;
-    font-size: 1.6rem;
-    padding: 0.9rem 2rem;
-    border-radius: 1rem;
-    border: 0.2rem solid ${colors.greenDark};
-    transition: background 0.2s;
-
-    &:hover {
-      background: ${darken(0.05, colors.white)};
-    }
-  }
-`;
-
-export const AddPodcastConfirmButton = styled.button`
-  display: block;
-  color: ${colors.textLight};
-  background: ${colors.greenLight};
-  font-family: Nunito;
-  font-weight: bold;
-  font-size: 1.6rem;
-  padding: 0.9rem 2rem;
-  border-radius: 1rem;
-  border: 2px solid ${colors.greenDark};
-
-  @media (min-width: ${dims.tabletBreak}) {
-    transition: background 0.2s;
-    margin-left: 1.6rem;
-    border-width: 0.2rem;
-
-    &:hover {
-      background: ${darken(0.05, colors.greenLight)};
     }
   }
 `;
