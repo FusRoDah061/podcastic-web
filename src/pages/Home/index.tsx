@@ -1,5 +1,5 @@
-import React from 'react';
-import { Variants } from 'framer-motion';
+import React, { useCallback, useState } from 'react';
+import { useAnimation, Variants } from 'framer-motion';
 import {
   Container,
   Header,
@@ -12,15 +12,18 @@ import {
   PodcastGridContainer,
   PodcastCard,
   AddPodcastButton,
+  AllRecentPodcastsContainer,
+  AllRecentListContainer,
 } from './styles';
 
+import { dims } from '../../styles/variables';
 import logoImg from '../../assets/podcastic-white-logo.svg';
 import addIconDesktop from '../../assets/add-green-icon.svg';
 import addIconMobile from '../../assets/add-white-icon.svg';
 import searchIcon from '../../assets/arrow-right-white-icon.svg';
 import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
 import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
-import { dims } from '../../styles/variables';
+import arrowDownGrey from '../../assets/arrow-down-grey.svg';
 
 const containerVariants: Variants = {
   initial: {
@@ -42,7 +45,37 @@ const containerVariants: Variants = {
   },
 };
 
+const recentPodcastsVariants: Variants = {
+  hide: {
+    y: '100vh',
+    transition: {
+      duration: 0.2,
+      ease: 'easeIn',
+    },
+  },
+  show: {
+    y: '0vh',
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut',
+    },
+  },
+};
+
 const Home: React.FC = () => {
+  const animationControls = useAnimation();
+  const [showRecentPodcasts, setShowRecentPodcasts] = useState(false);
+
+  const toggleAllRecentePodcasts = useCallback(async () => {
+    setShowRecentPodcasts(!showRecentPodcasts);
+
+    if (!showRecentPodcasts) {
+      await animationControls.start('show');
+    } else {
+      await animationControls.start('hide');
+    }
+  }, [showRecentPodcasts, animationControls]);
+
   return (
     <Container
       variants={containerVariants}
@@ -216,7 +249,7 @@ const Home: React.FC = () => {
             </ul>
           </PodcastListContainer>
 
-          <button type="button">
+          <button type="button" onClick={toggleAllRecentePodcasts}>
             <img src={chevronRightBlackIcon} alt="View all recent" />
           </button>
         </RecentlyAddedPodcastsContainer>
@@ -594,6 +627,149 @@ const Home: React.FC = () => {
           </PodcastGridContainer>
         </AllPodcastsContainer>
       </PodcastsContainer>
+
+      <AllRecentPodcastsContainer
+        variants={recentPodcastsVariants}
+        initial="hide"
+        animate={animationControls}
+      >
+        <button type="button" onClick={toggleAllRecentePodcasts}>
+          <img src={arrowDownGrey} alt="Dismiss" />
+        </button>
+
+        <h2>Recently added podcasts</h2>
+
+        <AllRecentListContainer>
+          <ul>
+            <li>
+              <PodcastCard>
+                <a href="/">
+                  <img
+                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
+                    alt="Flow Podcast"
+                  />
+                  <div>
+                    <h3>Flow Podcast</h3>
+                    <p>
+                      Flow Podcast acontece todo dia de segunda à sexta,
+                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
+                      Twitch e Facebook!
+                    </p>
+                  </div>
+                </a>
+              </PodcastCard>
+            </li>
+            <li>
+              <PodcastCard>
+                <a href="/">
+                  <img
+                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
+                    alt="Flow Podcast"
+                  />
+                  <div>
+                    <h3>Flow Podcast</h3>
+                    <p>
+                      Flow Podcast acontece todo dia de segunda à sexta,
+                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
+                      Twitch e Facebook!
+                    </p>
+                  </div>
+                </a>
+              </PodcastCard>
+            </li>
+            <li>
+              <PodcastCard>
+                <a href="/">
+                  <img
+                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
+                    alt="Flow Podcast"
+                  />
+                  <div>
+                    <h3>Flow Podcast</h3>
+                    <p>
+                      Flow Podcast acontece todo dia de segunda à sexta,
+                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
+                      Twitch e Facebook!
+                    </p>
+                  </div>
+                </a>
+              </PodcastCard>
+            </li>
+            <li>
+              <PodcastCard>
+                <a href="/">
+                  <img
+                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
+                    alt="Flow Podcast"
+                  />
+                  <div>
+                    <h3>Flow Podcast</h3>
+                    <p>
+                      Flow Podcast acontece todo dia de segunda à sexta,
+                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
+                      Twitch e Facebook!
+                    </p>
+                  </div>
+                </a>
+              </PodcastCard>
+            </li>
+            <li>
+              <PodcastCard>
+                <a href="/">
+                  <img
+                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
+                    alt="Flow Podcast"
+                  />
+                  <div>
+                    <h3>Flow Podcast</h3>
+                    <p>
+                      Flow Podcast acontece todo dia de segunda à sexta,
+                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
+                      Twitch e Facebook!
+                    </p>
+                  </div>
+                </a>
+              </PodcastCard>
+            </li>
+            <li>
+              <PodcastCard>
+                <a href="/">
+                  <img
+                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
+                    alt="Flow Podcast"
+                  />
+                  <div>
+                    <h3>Flow Podcast</h3>
+                    <p>
+                      Flow Podcast acontece todo dia de segunda à sexta,
+                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
+                      Twitch e Facebook!
+                    </p>
+                  </div>
+                </a>
+              </PodcastCard>
+            </li>
+            <li>
+              <PodcastCard>
+                <a href="/">
+                  <img
+                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
+                    alt="Flow Podcast"
+                  />
+                  <div>
+                    <h3>Flow Podcast</h3>
+                    <p>
+                      Flow Podcast acontece todo dia de segunda à sexta,
+                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
+                      Twitch e Facebook!
+                    </p>
+                  </div>
+                </a>
+              </PodcastCard>
+            </li>
+          </ul>
+        </AllRecentListContainer>
+      </AllRecentPodcastsContainer>
     </Container>
   );
 };

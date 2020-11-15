@@ -510,3 +510,73 @@ export const PodcastGridContainer = styled.div`
     }
   }
 `;
+
+export const AllRecentPodcastsContainer = styled(motion.div)`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  height: calc(100% - 11rem);
+  width: 100%;
+  flex-direction: column;
+  background: ${colors.white};
+  padding: 0.6rem 1.6rem 0;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  z-index: 2;
+
+  & > button {
+    background: ${colors.white};
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    border: none;
+
+    img {
+      max-width: 5rem;
+    }
+  }
+
+  h2 {
+    margin-bottom: 2rem;
+    color: ${colors.textDark};
+    font-size: 1.8rem;
+  }
+`;
+
+export const AllRecentListContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: auto;
+  padding: 0.8rem 0;
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(3, 9rem);
+    grid-column-gap: 3rem;
+
+    li {
+      margin-bottom: 2.4rem;
+      list-style: none;
+    }
+  }
+
+  @media (min-width: 450px) {
+    ul {
+      grid-template-columns: repeat(4, 9rem);
+    }
+  }
+
+  @media (min-width: 600px) {
+    ul {
+      grid-template-columns: repeat(5, 9rem);
+    }
+  }
+
+  @media (min-width: 700px) {
+    ul {
+      grid-template-columns: repeat(6, 9rem);
+    }
+  }
+`;
