@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { colors, dims } from '../../styles/variables';
 
-export const Container = styled.div`
+export const Container = styled(motion.div)`
   display: flex;
   width: 100%;
   height: 100%;

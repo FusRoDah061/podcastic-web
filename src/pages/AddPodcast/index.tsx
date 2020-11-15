@@ -1,4 +1,5 @@
 import React from 'react';
+import { Variants } from 'framer-motion';
 import {
   Container,
   AddPodcastPopupHeader,
@@ -9,8 +10,31 @@ import {
 
 import chevronLeftBlackIcon from '../../assets/chevron-left-black-icon.svg';
 
+const containerVariants: Variants = {
+  initial: {
+    x: '100vw',
+  },
+  animate: {
+    x: 0,
+    transition: {
+      duration: 0.2,
+    },
+  },
+  exit: {
+    x: '100vw',
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
+
 const AddPodcast: React.FC = () => (
-  <Container>
+  <Container
+    variants={containerVariants}
+    initial="initial"
+    animate="animate"
+    exit="exit"
+  >
     <AddPodcastPopupHeader>
       <GoBackLink to="/">
         <img src={chevronLeftBlackIcon} alt="Go back" />

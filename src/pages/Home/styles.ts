@@ -4,7 +4,7 @@ import { darken } from 'polished';
 import { Link } from 'react-router-dom';
 import { colors, dims } from '../../styles/variables';
 
-export const Container = styled.main`
+export const Container = styled(motion.main)`
   display: flex;
   position: relative;
   height: 100%;
@@ -197,7 +197,7 @@ export const RecentlyAddedPodcastsContainer = styled.aside`
     content: '';
     position: absolute;
     top: 0;
-    left: calc(100vw - 8.3rem);
+    right: -1.7rem;
     height: 100%;
     width: 9rem;
     background: linear-gradient(90deg, transparent, ${colors.greenDark} 70%);
@@ -206,7 +206,7 @@ export const RecentlyAddedPodcastsContainer = styled.aside`
   button {
     position: absolute;
     top: calc(50% - 1.3rem);
-    left: calc(100vw - 8.3rem);
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;

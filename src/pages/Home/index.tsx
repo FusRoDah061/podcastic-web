@@ -1,4 +1,5 @@
 import React from 'react';
+import { Variants } from 'framer-motion';
 import {
   Container,
   Header,
@@ -21,9 +22,34 @@ import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
 import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
 import { dims } from '../../styles/variables';
 
+const containerVariants: Variants = {
+  initial: {
+    x: '-100vw',
+  },
+  animate: {
+    x: 0,
+    transition: {
+      duration: 0.2,
+      ease: 'easeOut',
+    },
+  },
+  exit: {
+    x: '-100vw',
+    transition: {
+      duration: 0.2,
+      ease: 'easeInOut',
+    },
+  },
+};
+
 const Home: React.FC = () => {
   return (
-    <Container>
+    <Container
+      variants={containerVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <Header>
         <HeaderTop>
           <div>
