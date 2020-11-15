@@ -10,10 +10,10 @@ import {
   AllPodcastsContainer,
   PodcastListContainer,
   PodcastGridContainer,
-  PodcastCard,
   AddPodcastButton,
   AllRecentPodcastsContainer,
   AllRecentListContainer,
+  ViewAllPodcastsLink,
 } from './styles';
 
 import { dims } from '../../styles/variables';
@@ -24,6 +24,7 @@ import searchIcon from '../../assets/arrow-right-white-icon.svg';
 import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
 import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
 import arrowDownGrey from '../../assets/arrow-down-grey.svg';
+import PodcastItem from '../../components/PodcastItem';
 
 const containerVariants: Variants = {
   initial: {
@@ -105,7 +106,7 @@ const Home: React.FC = () => {
           </AddPodcastButton>
         </HeaderTop>
 
-        <SearchContainer initial={{ x: -200 }} animate={{ x: 0 }}>
+        <SearchContainer>
           <input type="text" placeholder="Search for a podcast" />
 
           <button type="button">
@@ -121,130 +122,76 @@ const Home: React.FC = () => {
           <PodcastListContainer>
             <ul>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
-              </li>
-              <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
             </ul>
           </PodcastListContainer>
@@ -260,369 +207,142 @@ const Home: React.FC = () => {
           <PodcastGridContainer>
             <ul>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
               <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
+                <PodcastItem
+                  podcast={{
+                    id: '1',
+                    name: 'Flow Podcast',
+                    description:
+                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                    image_url:
+                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                  }}
+                />
               </li>
-              <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
-              </li>
-              <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
-              </li>
-              <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
-              </li>
-              <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
-              </li>
-              <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
-              </li>
-              <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
-              </li>
-              <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
-              </li>
-              <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
-              </li>
-              <li>
-                <PodcastCard>
-                  <a href="/">
-                    <img
-                      src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                      alt="Flow Podcast"
-                    />
-                    <div>
-                      <h3>Flow Podcast</h3>
-                      <p>
-                        Flow Podcast acontece todo dia de segunda à sexta,
-                        normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                        Twitch e Facebook!
-                      </p>
-                    </div>
-                  </a>
-                </PodcastCard>
-              </li>
-              <button type="button">
+
+              <ViewAllPodcastsLink to="/all">
                 View all
                 <img src={chevronRightWhiteIcon} alt="View all recent" />
-              </button>
+              </ViewAllPodcastsLink>
             </ul>
           </PodcastGridContainer>
         </AllPodcastsContainer>
@@ -642,130 +362,100 @@ const Home: React.FC = () => {
         <AllRecentListContainer>
           <ul>
             <li>
-              <PodcastCard>
-                <a href="/">
-                  <img
-                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                    alt="Flow Podcast"
-                  />
-                  <div>
-                    <h3>Flow Podcast</h3>
-                    <p>
-                      Flow Podcast acontece todo dia de segunda à sexta,
-                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                      Twitch e Facebook!
-                    </p>
-                  </div>
-                </a>
-              </PodcastCard>
+              <PodcastItem
+                podcast={{
+                  id: '1',
+                  name: 'Flow Podcast',
+                  description:
+                    'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                  image_url:
+                    'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                }}
+              />
             </li>
             <li>
-              <PodcastCard>
-                <a href="/">
-                  <img
-                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                    alt="Flow Podcast"
-                  />
-                  <div>
-                    <h3>Flow Podcast</h3>
-                    <p>
-                      Flow Podcast acontece todo dia de segunda à sexta,
-                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                      Twitch e Facebook!
-                    </p>
-                  </div>
-                </a>
-              </PodcastCard>
+              <PodcastItem
+                podcast={{
+                  id: '1',
+                  name: 'Flow Podcast',
+                  description:
+                    'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                  image_url:
+                    'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                }}
+              />
             </li>
             <li>
-              <PodcastCard>
-                <a href="/">
-                  <img
-                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                    alt="Flow Podcast"
-                  />
-                  <div>
-                    <h3>Flow Podcast</h3>
-                    <p>
-                      Flow Podcast acontece todo dia de segunda à sexta,
-                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                      Twitch e Facebook!
-                    </p>
-                  </div>
-                </a>
-              </PodcastCard>
+              <PodcastItem
+                podcast={{
+                  id: '1',
+                  name: 'Flow Podcast',
+                  description:
+                    'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                  image_url:
+                    'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                }}
+              />
             </li>
             <li>
-              <PodcastCard>
-                <a href="/">
-                  <img
-                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                    alt="Flow Podcast"
-                  />
-                  <div>
-                    <h3>Flow Podcast</h3>
-                    <p>
-                      Flow Podcast acontece todo dia de segunda à sexta,
-                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                      Twitch e Facebook!
-                    </p>
-                  </div>
-                </a>
-              </PodcastCard>
+              <PodcastItem
+                podcast={{
+                  id: '1',
+                  name: 'Flow Podcast',
+                  description:
+                    'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                  image_url:
+                    'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                }}
+              />
             </li>
             <li>
-              <PodcastCard>
-                <a href="/">
-                  <img
-                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                    alt="Flow Podcast"
-                  />
-                  <div>
-                    <h3>Flow Podcast</h3>
-                    <p>
-                      Flow Podcast acontece todo dia de segunda à sexta,
-                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                      Twitch e Facebook!
-                    </p>
-                  </div>
-                </a>
-              </PodcastCard>
+              <PodcastItem
+                podcast={{
+                  id: '1',
+                  name: 'Flow Podcast',
+                  description:
+                    'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                  image_url:
+                    'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                }}
+              />
             </li>
             <li>
-              <PodcastCard>
-                <a href="/">
-                  <img
-                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                    alt="Flow Podcast"
-                  />
-                  <div>
-                    <h3>Flow Podcast</h3>
-                    <p>
-                      Flow Podcast acontece todo dia de segunda à sexta,
-                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                      Twitch e Facebook!
-                    </p>
-                  </div>
-                </a>
-              </PodcastCard>
+              <PodcastItem
+                podcast={{
+                  id: '1',
+                  name: 'Flow Podcast',
+                  description:
+                    'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                  image_url:
+                    'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                }}
+              />
             </li>
             <li>
-              <PodcastCard>
-                <a href="/">
-                  <img
-                    src="https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg"
-                    alt="Flow Podcast"
-                  />
-                  <div>
-                    <h3>Flow Podcast</h3>
-                    <p>
-                      Flow Podcast acontece todo dia de segunda à sexta,
-                      normalmente às 20h, AO VIVO simultaneamente no YouTube,
-                      Twitch e Facebook!
-                    </p>
-                  </div>
-                </a>
-              </PodcastCard>
+              <PodcastItem
+                podcast={{
+                  id: '1',
+                  name: 'Flow Podcast',
+                  description:
+                    'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                  image_url:
+                    'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                }}
+              />
+            </li>
+            <li>
+              <PodcastItem
+                podcast={{
+                  id: '1',
+                  name: 'Flow Podcast',
+                  description:
+                    'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
+                  image_url:
+                    'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
+                }}
+              />
             </li>
           </ul>
         </AllRecentListContainer>

@@ -122,7 +122,7 @@ export const AddPodcastButton = styled(Link)`
   }
 `;
 
-export const SearchContainer = styled(motion.div)`
+export const SearchContainer = styled.div`
   display: flex;
   flex-direction: row;
   background: ${colors.white};
@@ -318,55 +318,13 @@ export const PodcastListContainer = styled.div`
       margin-left: 0;
     }
   }
-`;
 
-export const PodcastCard = styled.div`
-  a {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-decoration: none;
-  }
-
-  img {
-    width: 9rem;
-    height: 9rem;
-    border-radius: 1rem;
-  }
-
-  div {
-    display: none;
-  }
-
-  @media (min-width: ${dims.tabletBreak}) {
-    a {
-      color: ${colors.black};
-      padding-right: 0.5rem;
-    }
-
-    div {
-      display: block;
-      margin-left: 1.3rem;
-
-      p,
-      h3 {
-        margin: 0;
-      }
-
-      h3 {
-        font-family: Nunito;
-        font-weight: bold;
-        font-size: 1.6rem;
-        margin-bottom: 0.5rem;
-      }
-
-      p {
-        display: block;
-        position: relative;
-        font-size: 1.3rem;
-        line-height: 1.6rem;
-        height: 4.8rem;
-        overflow: hidden;
+  @media (max-width: ${dims.tabletBreak}) {
+    ul {
+      li {
+        a > div {
+          display: none;
+        }
       }
     }
   }
@@ -376,23 +334,6 @@ export const AllPodcastsContainer = styled.article`
   position: relative;
   margin-top: 4.2rem;
 
-  button {
-    display: flex;
-    width: 9rem;
-    height: 9rem;
-    border: none;
-    background: none;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    line-height: 1.6rem;
-
-    img {
-      max-height: 1.6rem;
-      margin-left: 0.9rem;
-    }
-  }
-
   @media (min-width: ${dims.tabletBreak}) {
     margin-left: 1.5rem;
     margin-top: 0;
@@ -401,10 +342,29 @@ export const AllPodcastsContainer = styled.article`
     h2 {
       margin-bottom: 2.4rem;
     }
+  }
+`;
 
-    button {
-      display: none;
-    }
+export const ViewAllPodcastsLink = styled(Link)`
+  display: flex;
+  width: 9rem;
+  height: 9rem;
+  border: none;
+  background: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  color: ${colors.textLight};
+  text-decoration: none;
+
+  img {
+    max-height: 1.6rem;
+    margin-left: 0.9rem;
+  }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    display: none;
   }
 `;
 
@@ -509,6 +469,16 @@ export const PodcastGridContainer = styled.div`
       }
     }
   }
+
+  @media (max-width: ${dims.tabletBreak}) {
+    ul {
+      li {
+        a > div {
+          display: none;
+        }
+      }
+    }
+  }
 `;
 
 export const AllRecentPodcastsContainer = styled(motion.div)`
@@ -559,6 +529,10 @@ export const AllRecentListContainer = styled.div`
     li {
       margin-bottom: 2.4rem;
       list-style: none;
+
+      a > div {
+        display: none;
+      }
     }
   }
 

@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import AddPodcast from '../pages/AddPodcast';
 import Home from '../pages/Home';
+import AllPodcasts from '../pages/AllPodcasts';
 
 const Routes: React.FC = () => {
   const location = useLocation();
@@ -11,6 +12,7 @@ const Routes: React.FC = () => {
     <AnimatePresence exitBeforeEnter>
       <Switch location={location} key={location.key}>
         <Route exact path="/new" component={AddPodcast} />
+        <Route exact path="/all" component={AllPodcasts} />
         <Route exact path="/" component={Home} />
       </Switch>
     </AnimatePresence>
