@@ -10,6 +10,7 @@ export const Container = styled(motion.main)`
   flex-direction: column;
   background: ${colors.white};
   padding: 1.8rem 2rem;
+  padding-bottom: 0;
   z-index: 3;
 
   @media (min-width: ${dims.tabletBreak}) {
@@ -51,6 +52,7 @@ export const PageContent = styled.div`
   flex: 1;
   color: ${colors.textDark};
   overflow: auto;
+  padding-bottom: 1.8rem;
 
   ul {
     width: 100%;
@@ -63,8 +65,5 @@ export const PageContent = styled.div`
     li + li {
       margin-top: 1.5rem;
     }
-  }
-
-  @media (min-width: ${dims.tabletBreak}) {
   }
 `;

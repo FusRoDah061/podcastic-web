@@ -139,26 +139,26 @@ export const SearchContainer = styled.div`
     flex: 1;
   }
 
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 4.2rem;
-    height: 4.2rem;
-    background: ${colors.greenLight};
-    border: 2px solid ${colors.greenDark};
-    border-radius: 1rem;
-    transition: background 0.2s;
-
-    &:hover {
-      background: ${darken(0.03, colors.greenLight)};
-    }
-  }
-
   @media (min-width: ${dims.tabletBreak}) {
     width: 60rem;
     padding: 1rem;
     margin: 4rem auto 0 auto;
+  }
+`;
+
+export const SearchButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.2rem;
+  height: 4.2rem;
+  background: ${colors.greenLight};
+  border: 2px solid ${colors.greenDark};
+  border-radius: 1rem;
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${darken(0.03, colors.greenLight)};
   }
 `;
 

@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useAnimation, Variants } from 'framer-motion';
+import { useHistory } from 'react-router-dom';
 import {
   Container,
   Header,
@@ -14,6 +15,7 @@ import {
   AllRecentPodcastsContainer,
   AllRecentListContainer,
   ViewAllPodcastsLink,
+  SearchButton,
 } from './styles';
 
 import { dims } from '../../styles/variables';
@@ -64,8 +66,23 @@ const recentPodcastsVariants: Variants = {
 };
 
 const Home: React.FC = () => {
+  const history = useHistory();
   const animationControls = useAnimation();
   const [showRecentPodcasts, setShowRecentPodcasts] = useState(false);
+  const [searchText, setSearchText] = useState('');
+
+  const handleSearchTextChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchText(e.target.value);
+    },
+    [],
+  );
+
+  const handleSearch = useCallback(() => {
+    if (searchText.length > 0) {
+      history.push(`/search?q=${encodeURIComponent(searchText)}`);
+    }
+  }, [history, searchText]);
 
   const toggleAllRecentePodcasts = useCallback(async () => {
     setShowRecentPodcasts(!showRecentPodcasts);
@@ -107,11 +124,20 @@ const Home: React.FC = () => {
         </HeaderTop>
 
         <SearchContainer>
-          <input type="text" placeholder="Search for a podcast" />
+          <input
+            type="text"
+            value={searchText}
+            placeholder="Search for a podcast"
+            onChange={handleSearchTextChange}
+          />
 
-          <button type="button">
+          <SearchButton
+            type="button"
+            disabled={searchText.length === 0}
+            onClick={handleSearch}
+          >
             <img src={searchIcon} alt="Search" />
-          </button>
+          </SearchButton>
         </SearchContainer>
       </Header>
 
