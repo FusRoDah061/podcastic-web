@@ -18,12 +18,14 @@ const containerVariants: Variants = {
     x: 0,
     transition: {
       duration: 0.2,
+      ease: 'easeOut',
     },
   },
   exit: {
     x: '100vw',
     transition: {
       duration: 0.2,
+      ease: 'easeIn',
     },
   },
 };
