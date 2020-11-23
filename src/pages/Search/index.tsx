@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Variants } from 'framer-motion';
 import PodcastItem from '../../components/PodcastItem';
 import useQuery from '../../hooks/useQuery';
@@ -14,6 +14,8 @@ import {
 
 import arrowLeftWhite from '../../assets/arrow-left-white-icon.svg';
 import searchIcon from '../../assets/search-white-icon.svg';
+import Podcast from '../../dtos/Podcast';
+import { api } from '../../services/api';
 
 const containerVariants: Variants = {
   initial: {
@@ -37,10 +39,34 @@ const containerVariants: Variants = {
 
 const Search: React.FC = () => {
   const query = useQuery();
-  const [searchText, setSearchText] = useState(() => {
+  const [podcasts, setPodcasts] = useState<Podcast[]>([]);
+  const [paramSearchText] = useState(() => {
     const text = query.get('q');
     return text || '';
   });
+  const [searchText, setSearchText] = useState(paramSearchText);
+
+  const searchPodcasts = useCallback(async nameToSearch => {
+    if (!nameToSearch) return;
+
+    const response = await api.get('/podcasts/search', {
+      params: {
+        q: nameToSearch,
+      },
+    });
+
+    if (response.status === 200) {
+      setPodcasts(response.data);
+    }
+  }, []);
+
+  const handleSearchPodcasts = useCallback(() => {
+    searchPodcasts(searchText);
+  }, [searchPodcasts, searchText]);
+
+  useEffect(() => {
+    searchPodcasts(paramSearchText);
+  }, [searchPodcasts, paramSearchText]);
 
   const handleSearchTextChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,7 +95,7 @@ const Search: React.FC = () => {
             onChange={handleSearchTextChange}
           />
 
-          <button type="button">
+          <button type="button" onClick={handleSearchPodcasts}>
             <img src={searchIcon} alt="Search" />
           </button>
         </HeaderContent>
@@ -81,18 +107,11 @@ const Search: React.FC = () => {
 
           <PodcastsList>
             <ul>
-              <li>
-                <PodcastItem
-                  podcast={{
-                    _id: '1',
-                    name: 'Flow Podcast',
-                    description:
-                      'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
-                    imageUrl:
-                      'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
-                  }}
-                />
-              </li>
+              {podcasts.map(podcast => (
+                <li key={podcast._id}>
+                  <PodcastItem podcast={podcast} />
+                </li>
+              ))}
             </ul>
           </PodcastsList>
         </PageContent>
