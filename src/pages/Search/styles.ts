@@ -111,6 +111,8 @@ export const PodcastsList = styled.div`
   padding-bottom: 1.6rem;
 
   ul {
+    width: 100%;
+
     li + li {
       margin-top: 1.5rem;
     }
