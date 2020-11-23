@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Variants } from 'framer-motion';
 import {
   Container,
@@ -9,6 +9,8 @@ import {
 
 import chevronLeftBlackIcon from '../../assets/chevron-left-black-icon.svg';
 import PodcastItem from '../../components/PodcastItem';
+import Podcast from '../../dtos/Podcast';
+import { api } from '../../services/api';
 
 const containerVariants: Variants = {
   initial: {
@@ -30,37 +32,46 @@ const containerVariants: Variants = {
   },
 };
 
-const AllPodcasts: React.FC = () => (
-  <Container
-    variants={containerVariants}
-    initial="initial"
-    animate="animate"
-    exit="exit"
-  >
-    <AllPodcastsHeader>
-      <GoBackLink to="/">
-        <img src={chevronLeftBlackIcon} alt="Go back" />
-        All podcasts
-      </GoBackLink>
-    </AllPodcastsHeader>
+const AllPodcasts: React.FC = () => {
+  const [podcasts, setPodcasts] = useState<Podcast[]>([]);
 
-    <PageContent>
-      <ul>
-        <li>
-          <PodcastItem
-            podcast={{
-              _id: '1',
-              name: 'Flow Podcast',
-              description:
-                'Flow Podcast acontece todo dia de segunda à sexta, normalmente às 20h, AO VIVO simultaneamente no YouTube, Twitch e Facebook!',
-              imageUrl:
-                'https://cdn.player.fm/images/24282125/series/MW5P2lMXyn0kza3p/256.jpg',
-            }}
-          />
-        </li>
-      </ul>
-    </PageContent>
-  </Container>
-);
+  useEffect(() => {
+    async function fetchPodcasts() {
+      const response = await api.get('/podcasts');
+
+      if (response.status === 200) {
+        setPodcasts(response.data);
+      }
+    }
+
+    fetchPodcasts();
+  }, []);
+
+  return (
+    <Container
+      variants={containerVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      <AllPodcastsHeader>
+        <GoBackLink to="/">
+          <img src={chevronLeftBlackIcon} alt="Go back" />
+          All podcasts
+        </GoBackLink>
+      </AllPodcastsHeader>
+
+      <PageContent>
+        <ul>
+          {podcasts.map(podcast => (
+            <li key={podcast._id}>
+              <PodcastItem podcast={podcast} />
+            </li>
+          ))}
+        </ul>
+      </PageContent>
+    </Container>
+  );
+};
 
 export default AllPodcasts;
