@@ -1,6 +1,6 @@
 export default interface Podcast {
-  id: string;
+  _id: string;
   name: string;
   description: string;
-  image_url: string;
+  imageUrl: string;
 }

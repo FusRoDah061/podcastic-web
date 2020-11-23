@@ -9,7 +9,7 @@ interface PodcastItemProps {
 const PodcastItem: React.FC<PodcastItemProps> = ({ podcast }) => (
   <Container>
     <a href="/">
-      <img src={podcast.image_url} alt={podcast.name} />
+      <img src={podcast.imageUrl} alt={podcast.name} />
       <div>
         <h3>{podcast.name}</h3>
         <p>{podcast.description}</p>
