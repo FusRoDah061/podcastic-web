@@ -21,49 +21,51 @@ export const HeaderContainer = styled.header`
 `;
 
 export const HeaderContent = styled.nav`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 1rem;
-
-  input {
-    flex: 1;
-    margin: 0 1.5rem;
-    text-align: center;
-    border: none;
-    background: transparent;
-    padding: 0.5rem;
-    border-bottom: 2px solid ${colors.greenDark};
-    transition: border 0.2s;
-
-    &:focus {
-      border-color: ${colors.greenLight};
-    }
-
-    &::placeholder {
-      color: ${transparentize(0.3, colors.textLight)};
-    }
-  }
-
-  button {
+  form {
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 4.2rem;
-    height: 4.2rem;
-    background: ${colors.greenLight};
-    border: 2px solid ${colors.greenDark};
-    border-radius: 1rem;
-    transition: background 0.2s;
+    align-items: center;
+    padding: 0 1rem;
 
-    &:hover {
-      background: ${darken(0.03, colors.greenLight)};
+    input {
+      flex: 1;
+      margin: 0 1.5rem;
+      text-align: center;
+      border: none;
+      background: transparent;
+      padding: 0.5rem;
+      border-bottom: 2px solid ${colors.greenDark};
+      transition: border 0.2s;
+
+      &:focus {
+        border-color: ${colors.greenLight};
+      }
+
+      &::placeholder {
+        color: ${transparentize(0.3, colors.textLight)};
+      }
     }
-  }
 
-  @media (min-width: ${dims.tabletBreak}) {
-    width: 900px;
-    margin: auto;
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4.2rem;
+      height: 4.2rem;
+      background: ${colors.greenLight};
+      border: 2px solid ${colors.greenDark};
+      border-radius: 1rem;
+      transition: background 0.2s;
+
+      &:hover {
+        background: ${darken(0.03, colors.greenLight)};
+      }
+    }
+
+    @media (min-width: ${dims.tabletBreak}) {
+      width: 900px;
+      margin: auto;
+    }
   }
 `;
 

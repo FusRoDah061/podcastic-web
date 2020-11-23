@@ -122,7 +122,7 @@ export const AddPodcastButton = styled(Link)`
   }
 `;
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.form`
   display: flex;
   flex-direction: row;
   background: ${colors.white};

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { useAnimation, Variants } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 import {
@@ -102,11 +102,16 @@ const Home: React.FC = () => {
     [],
   );
 
-  const handleSearch = useCallback(() => {
-    if (searchText.length > 0) {
-      history.push(`/search?q=${encodeURIComponent(searchText)}`);
-    }
-  }, [history, searchText]);
+  const handleSearch = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      if (searchText.length > 0) {
+        history.push(`/search?q=${encodeURIComponent(searchText)}`);
+      }
+    },
+    [history, searchText],
+  );
 
   const toggleAllRecentePodcasts = useCallback(async () => {
     setShowRecentPodcasts(!showRecentPodcasts);
@@ -147,7 +152,7 @@ const Home: React.FC = () => {
           </AddPodcastButton>
         </HeaderTop>
 
-        <SearchContainer>
+        <SearchContainer onSubmit={handleSearch}>
           <input
             type="text"
             value={searchText}
@@ -155,11 +160,7 @@ const Home: React.FC = () => {
             onChange={handleSearchTextChange}
           />
 
-          <SearchButton
-            type="button"
-            disabled={searchText.length === 0}
-            onClick={handleSearch}
-          >
+          <SearchButton type="submit" disabled={searchText.length === 0}>
             <img src={searchIcon} alt="Search" />
           </SearchButton>
         </SearchContainer>

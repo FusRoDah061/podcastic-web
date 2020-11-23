@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { Variants } from 'framer-motion';
 import PodcastItem from '../../components/PodcastItem';
 import useQuery from '../../hooks/useQuery';
@@ -60,9 +60,13 @@ const Search: React.FC = () => {
     }
   }, []);
 
-  const handleSearchPodcasts = useCallback(() => {
-    searchPodcasts(searchText);
-  }, [searchPodcasts, searchText]);
+  const handleSearchPodcasts = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      searchPodcasts(searchText);
+    },
+    [searchPodcasts, searchText],
+  );
 
   useEffect(() => {
     searchPodcasts(paramSearchText);
@@ -84,20 +88,22 @@ const Search: React.FC = () => {
     >
       <HeaderContainer>
         <HeaderContent>
-          <GoBackLink to="/">
-            <img src={arrowLeftWhite} alt="Go back to home" />
-          </GoBackLink>
+          <form onSubmit={handleSearchPodcasts}>
+            <GoBackLink to="/">
+              <img src={arrowLeftWhite} alt="Go back to home" />
+            </GoBackLink>
 
-          <input
-            type="text"
-            value={searchText}
-            placeholder="Search here for a podcast"
-            onChange={handleSearchTextChange}
-          />
+            <input
+              type="text"
+              value={searchText}
+              placeholder="Search here for a podcast"
+              onChange={handleSearchTextChange}
+            />
 
-          <button type="button" onClick={handleSearchPodcasts}>
-            <img src={searchIcon} alt="Search" />
-          </button>
+            <button type="submit">
+              <img src={searchIcon} alt="Search" />
+            </button>
+          </form>
         </HeaderContent>
       </HeaderContainer>
 
