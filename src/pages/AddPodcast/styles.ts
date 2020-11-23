@@ -50,38 +50,44 @@ export const PageContent = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  color: ${colors.textDark};
 
-  label {
+  form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    flex: 1;
-    text-align: start;
-    font-size: 1.8rem;
-    margin-bottom: 1.8rem;
+    align-items: center;
+    color: ${colors.textDark};
 
-    input {
-      display: block;
-      width: 100%;
-      margin-top: 1.2rem;
-      border: 2px solid ${colors.greenDark};
-      border-radius: 1rem;
-      padding: 1.4rem 1.8rem;
-      font-size: 1.6rem;
-      color: ${colors.textDark};
-    }
-  }
-
-  @media (min-width: ${dims.tabletBreak}) {
     label {
-      width: auto;
-      flex: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      flex: 1;
+      text-align: start;
+      font-size: 1.8rem;
+      margin-bottom: 1.8rem;
 
       input {
-        border-width: 0.2rem;
-        width: 40rem;
+        display: block;
+        width: 100%;
+        margin-top: 1.2rem;
+        border: 2px solid ${colors.greenDark};
+        border-radius: 1rem;
+        padding: 1.4rem 1.8rem;
+        font-size: 1.6rem;
+        color: ${colors.textDark};
+      }
+    }
+
+    @media (min-width: ${dims.tabletBreak}) {
+      label {
+        width: auto;
+        flex: 0;
+
+        input {
+          border-width: 0.2rem;
+          width: 40rem;
+        }
       }
     }
   }

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { FormEvent, useCallback, useState } from 'react';
 import { Variants } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 import {
@@ -35,15 +35,20 @@ const containerVariants: Variants = {
 const AddPodcast: React.FC = () => {
   const history = useHistory();
   const [feedUrl, setFeedUrl] = useState('');
-  const addPodcast = useCallback(async () => {
-    if (feedUrl) {
-      await api.post('/podcasts', {
-        feedUrl,
-      });
+  const handleAddPodcast = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-      history.goBack();
-    }
-  }, [feedUrl, history]);
+      if (feedUrl) {
+        await api.post('/podcasts', {
+          feedUrl,
+        });
+
+        history.goBack();
+      }
+    },
+    [feedUrl, history],
+  );
 
   return (
     <Container
@@ -60,21 +65,21 @@ const AddPodcast: React.FC = () => {
       </AddPodcastPopupHeader>
 
       <PageContent>
-        <label htmlFor="js-feed-address">
-          Feed address:
-          <input
-            id="js-feed-address"
-            type="text"
-            placeholder="https://cool-podcast.com/feed/"
-            onChange={e => {
-              setFeedUrl(e.target.value);
-            }}
-          />
-        </label>
+        <form onSubmit={handleAddPodcast}>
+          <label htmlFor="js-feed-address">
+            Feed address:
+            <input
+              id="js-feed-address"
+              type="text"
+              placeholder="https://cool-podcast.com/feed/"
+              onChange={e => {
+                setFeedUrl(e.target.value);
+              }}
+            />
+          </label>
 
-        <AddPodcastConfirmButton onClick={addPodcast} type="button">
-          Add
-        </AddPodcastConfirmButton>
+          <AddPodcastConfirmButton type="submit">Add</AddPodcastConfirmButton>
+        </form>
       </PageContent>
     </Container>
   );
