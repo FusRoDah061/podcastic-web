@@ -47,7 +47,7 @@ export const Container = styled.div`
   }
 `;
 
-export const PodcastImage = styled.div`
+export const PodcastImage = styled.span`
   display: block;
   width: 9rem;
   height: 9rem;

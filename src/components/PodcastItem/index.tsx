@@ -27,6 +27,7 @@ const PodcastItem: React.FC<PodcastItemProps> = ({ podcast }) => {
             />
           )}
         </PodcastImage>
+
         <div>
           <h3>{podcast.name}</h3>
           <p>{podcast.description}</p>
