@@ -9,7 +9,7 @@ import {
 
 import chevronLeftBlackIcon from '../../assets/chevron-left-black-icon.svg';
 import PodcastItem from '../../components/PodcastItem';
-import Podcast from '../../dtos/Podcast';
+import PodcastDTO from '../../dtos/PodcastDTO';
 import { api } from '../../services/api';
 
 const containerVariants: Variants = {
@@ -33,7 +33,7 @@ const containerVariants: Variants = {
 };
 
 const AllPodcasts: React.FC = () => {
-  const [podcasts, setPodcasts] = useState<Podcast[]>([]);
+  const [podcasts, setPodcasts] = useState<PodcastDTO[]>([]);
 
   useEffect(() => {
     async function fetchPodcasts() {

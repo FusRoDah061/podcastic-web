@@ -14,7 +14,7 @@ import {
 
 import arrowLeftWhite from '../../assets/arrow-left-white-icon.svg';
 import searchIcon from '../../assets/search-white-icon.svg';
-import Podcast from '../../dtos/Podcast';
+import PodcastDTO from '../../dtos/PodcastDTO';
 import { api } from '../../services/api';
 
 const containerVariants: Variants = {
@@ -39,7 +39,7 @@ const containerVariants: Variants = {
 
 const Search: React.FC = () => {
   const query = useQuery();
-  const [podcasts, setPodcasts] = useState<Podcast[]>([]);
+  const [podcasts, setPodcasts] = useState<PodcastDTO[]>([]);
   const [paramSearchText] = useState(() => {
     const text = query.get('q');
     return text || '';

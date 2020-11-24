@@ -1,4 +1,4 @@
-export default interface Podcast {
+export default interface PodcastDTO {
   _id: string;
   name: string;
   description: string;

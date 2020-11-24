@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react';
-import Podcast from '../../dtos/Podcast';
+import PodcastDTO from '../../dtos/PodcastDTO';
 import { Container, PodcastImage } from './styles';
 
 interface PodcastItemProps {
-  podcast: Podcast;
+  podcast: PodcastDTO;
 }
 
 const PodcastItem: React.FC<PodcastItemProps> = ({ podcast }) => {

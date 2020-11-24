@@ -27,7 +27,7 @@ import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
 import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
 import arrowDownGrey from '../../assets/arrow-down-grey.svg';
 import PodcastItem from '../../components/PodcastItem';
-import Podcast from '../../dtos/Podcast';
+import PodcastDTO from '../../dtos/PodcastDTO';
 import { api } from '../../services/api';
 
 const containerVariants: Variants = {
@@ -72,8 +72,8 @@ const Home: React.FC = () => {
   const animationControls = useAnimation();
   const [showRecentPodcasts, setShowRecentPodcasts] = useState(false);
   const [searchText, setSearchText] = useState('');
-  const [podcasts, setPodcasts] = useState<Podcast[]>([]);
-  const [recentPodcasts, setRecentPodcasts] = useState<Podcast[]>([]);
+  const [podcasts, setPodcasts] = useState<PodcastDTO[]>([]);
+  const [recentPodcasts, setRecentPodcasts] = useState<PodcastDTO[]>([]);
 
   useEffect(() => {
     async function fetchPodcasts() {
