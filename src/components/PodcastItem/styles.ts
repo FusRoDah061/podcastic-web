@@ -32,12 +32,6 @@ export const Container = styled.div`
     }
   }
 
-  img {
-    width: 9rem;
-    height: 9rem;
-    border-radius: 1rem;
-  }
-
   @media (min-width: ${dims.tabletBreak}) {
     a {
       color: ${colors.black};
@@ -50,5 +44,31 @@ export const Container = styled.div`
         }
       }
     }
+  }
+`;
+
+export const PodcastImage = styled.div`
+  display: block;
+  width: 9rem;
+  height: 9rem;
+
+  img {
+    width: 9rem;
+    height: 9rem;
+    border-radius: 1rem;
+  }
+
+  span {
+    display: block;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 1rem;
+    background: ${colors.greenDark};
+    color: ${colors.textLight};
+    text-align: center;
+    line-height: 9rem;
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: Nunito;
   }
 `;
