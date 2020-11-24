@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import PodcastDTO from '../../dtos/PodcastDTO';
-import { Container, PodcastImage } from './styles';
+import { PodcastImage, PodcastItemLink } from './styles';
 
 interface PodcastItemProps {
   podcast: PodcastDTO;
@@ -14,8 +14,8 @@ const PodcastItem: React.FC<PodcastItemProps> = ({ podcast }) => {
   }, [setUseAlternativeImage]);
 
   return (
-    <Container>
-      <a href="/">
+    <div>
+      <PodcastItemLink to={`/podcast/${podcast._id}`}>
         <PodcastImage>
           {useAlternativeImage ? (
             <span>{podcast.name.charAt(0).toLocaleUpperCase()}</span>
@@ -32,8 +32,8 @@ const PodcastItem: React.FC<PodcastItemProps> = ({ podcast }) => {
           <h3>{podcast.name}</h3>
           <p>{podcast.description}</p>
         </div>
-      </a>
-    </Container>
+      </PodcastItemLink>
+    </div>
   );
 };
 
