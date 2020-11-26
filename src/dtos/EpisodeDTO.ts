@@ -9,6 +9,5 @@ export default interface EpisodeDTO {
   formattedDateAsTimeAgo?: string;
   file: {
     url: string;
-    length: number;
   };
 }

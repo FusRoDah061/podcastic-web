@@ -19,11 +19,9 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode }) => {
       <EpisodeContent>
         <p>{episode.title}</p>
         <EpisodeInfo>
-          <p>{episode.duration || '2:21:00'}</p>
+          <p>{episode.duration}</p>
           <span />
-          <p title={episode.formattedDate}>
-            {episode.formattedDateAsTimeAgo || '6 weeks ago'}
-          </p>
+          <p title={episode.formattedDate}>{episode.formattedDateAsTimeAgo}</p>
         </EpisodeInfo>
       </EpisodeContent>
     </EpisodeItemStyled>

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Variants } from 'framer-motion';
+import { parseISO } from 'date-fns';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import { api } from '../../services/api';
 import {
@@ -25,6 +26,8 @@ import searchIconBlack from '../../assets/search-black-icon.svg';
 import logoImg from '../../assets/podcastic-green-logo.svg';
 import EpisodeItem from '../../components/EpisodeItem';
 import ImageOrLetter from '../../components/ImageOrLetter';
+import formatDate from '../../utils/formatDate';
+import formatDateAsTimeAgo from '../../utils/formatDateAsTimeAgo';
 
 interface RouteParams {
   podcastId: string;
@@ -57,9 +60,18 @@ const Podcast: React.FC = () => {
 
   useEffect(() => {
     async function fetchPodcast() {
-      const response = await api.get(`/podcasts/${podcastId}`);
+      const response = await api.get<PodcastDTO>(`/podcasts/${podcastId}`);
 
       if (response.status === 200) {
+        response.data.episodes.forEach((episode, index) => {
+          const parsedDate = parseISO(episode.date.toString());
+          response.data.episodes[index].formattedDate = formatDate(parsedDate);
+
+          response.data.episodes[
+            index
+          ].formattedDateAsTimeAgo = formatDateAsTimeAgo(parsedDate);
+        });
+
         setPodcast(response.data);
       }
     }
