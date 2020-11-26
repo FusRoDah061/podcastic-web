@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { colors, dims } from '../../styles/variables';
 import { ImageOrLetterStyled } from '../ImageOrLetter/styles';
 
+/* Exposes root container so other can easily override styles */
+export const PodcastItemStyled = styled.div``;
+
 export const PodcastItemLink = styled(Link)`
   display: flex;
   width: 100%;

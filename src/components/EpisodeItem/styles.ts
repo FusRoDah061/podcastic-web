@@ -2,7 +2,8 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { colors } from '../../styles/variables';
 
-export const Container = styled.div`
+/* Exposes root container so other can easily override styles */
+export const EpisodeItemStyled = styled.div`
   display: grid;
   grid-template-columns: 4.8rem auto;
   grid-column-gap: 1.5rem;

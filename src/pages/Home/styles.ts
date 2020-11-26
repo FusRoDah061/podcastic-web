@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import { Link } from 'react-router-dom';
 import { colors, dims } from '../../styles/variables';
+import { PodcastItemInfo } from '../../components/PodcastItem/styles';
 
 export const Container = styled(motion.main)`
   display: flex;
@@ -530,7 +531,7 @@ export const AllRecentListContainer = styled.div`
       margin-bottom: 2.4rem;
       list-style: none;
 
-      a > div {
+      ${PodcastItemInfo} {
         display: none;
       }
     }

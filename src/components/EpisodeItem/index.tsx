@@ -1,6 +1,6 @@
 import React from 'react';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
-import { Container, EpisodeContent, EpisodeInfo } from './styles';
+import { EpisodeItemStyled, EpisodeContent, EpisodeInfo } from './styles';
 
 import playIcon from '../../assets/play-green-icon.svg';
 
@@ -10,7 +10,7 @@ interface EpisodeItemProps {
 
 const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode }) => {
   return (
-    <Container>
+    <EpisodeItemStyled>
       <button type="button">
         <img src={playIcon} alt="Play episode" />
         Play episode
@@ -26,7 +26,7 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode }) => {
           </p>
         </EpisodeInfo>
       </EpisodeContent>
-    </Container>
+    </EpisodeItemStyled>
   );
 };
 
