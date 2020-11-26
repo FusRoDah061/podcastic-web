@@ -1,39 +1,28 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import PodcastDTO from '../../dtos/PodcastDTO';
-import { PodcastImage, PodcastItemLink } from './styles';
+import ImageOrLetter from '../ImageOrLetter';
+import { PodcastItemStyled, PodcastItemLink, PodcastItemInfo } from './styles';
 
 interface PodcastItemProps {
   podcast: PodcastDTO;
 }
 
 const PodcastItem: React.FC<PodcastItemProps> = ({ podcast }) => {
-  const [useAlternativeImage, setUseAlternativeImage] = useState(false);
-
-  const handleImageError = useCallback(() => {
-    setUseAlternativeImage(true);
-  }, [setUseAlternativeImage]);
-
   return (
-    <div>
+    <PodcastItemStyled>
       <PodcastItemLink to={`/podcast/${podcast._id}`}>
-        <PodcastImage>
-          {useAlternativeImage ? (
-            <span>{podcast.name.charAt(0).toLocaleUpperCase()}</span>
-          ) : (
-            <img
-              src={podcast.imageUrl}
-              alt={podcast.name}
-              onError={handleImageError}
-            />
-          )}
-        </PodcastImage>
+        <ImageOrLetter
+          src={podcast.imageUrl}
+          alt={podcast.name}
+          fallbackLetter={podcast.name.charAt(0).toLocaleUpperCase()}
+        />
 
-        <div>
+        <PodcastItemInfo>
           <h3>{podcast.name}</h3>
           <p>{podcast.description}</p>
-        </div>
+        </PodcastItemInfo>
       </PodcastItemLink>
-    </div>
+    </PodcastItemStyled>
   );
 };
 

@@ -11,6 +11,7 @@ import {
   HasPodcastPageContainer,
   PodcastInfo,
   PodcastInfoContent,
+  PodcastNameDescription,
   RandomEpisodeButton,
   EpisodesContainer,
   EpisodesContainerHeader,
@@ -23,6 +24,7 @@ import chevronLeftWhiteIcon from '../../assets/chevron-left-white-icon.svg';
 import searchIconBlack from '../../assets/search-black-icon.svg';
 import logoImg from '../../assets/podcastic-green-logo.svg';
 import EpisodeItem from '../../components/EpisodeItem';
+import ImageOrLetter from '../../components/ImageOrLetter';
 
 interface RouteParams {
   podcastId: string;
@@ -90,11 +92,16 @@ const Podcast: React.FC = () => {
           <HasPodcastPageContainer>
             <PodcastInfo>
               <PodcastInfoContent>
-                <img src={podcast.imageUrl} alt={podcast.name} />
-                <div>
+                <ImageOrLetter
+                  src={podcast.imageUrl}
+                  alt={podcast.name}
+                  fallbackLetter={podcast.name.charAt(0).toLocaleUpperCase()}
+                />
+
+                <PodcastNameDescription>
                   <h1>{podcast.name}</h1>
                   <p>{podcast.description}</p>
-                </div>
+                </PodcastNameDescription>
               </PodcastInfoContent>
 
               <RandomEpisodeButton type="button">

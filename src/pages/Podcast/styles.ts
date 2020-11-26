@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import styled from 'styled-components';
+import { ImageOrLetterStyled } from '../../components/ImageOrLetter/styles';
 import { colors } from '../../styles/variables';
 
 export const Container = styled(motion.main)`
@@ -54,28 +55,48 @@ export const PodcastInfoContent = styled.div`
   flex-direction: row;
   margin-bottom: 1.2rem;
 
-  img {
+  ${ImageOrLetterStyled} {
+    display: block;
     width: 9rem;
     height: 9rem;
-    border-radius: 1rem;
+
+    img {
+      width: 9rem;
+      height: 9rem;
+      border-radius: 1rem;
+    }
+
+    span {
+      display: block;
+      width: 9rem;
+      height: 9rem;
+      border-radius: 1rem;
+      background: ${colors.greenDark};
+      color: ${colors.textLight};
+      text-align: center;
+      line-height: 9rem;
+      font-size: 4rem;
+      font-weight: bold;
+      font-family: Nunito;
+    }
+  }
+`;
+
+export const PodcastNameDescription = styled.div`
+  h1 {
+    display: none;
   }
 
-  div {
-    h1 {
-      display: none;
-    }
-
-    p {
-      max-height: 7rem;
-      padding-top: 0.6rem;
-      color: ${colors.textLight};
-      margin-left: 1.4rem;
-      font-size: 1.3rem;
-      line-height: 1.6rem;
-      font-weight: normal;
-      font-family: Roboto;
-      overflow: hidden;
-    }
+  p {
+    max-height: 7rem;
+    padding-top: 0.6rem;
+    color: ${colors.textLight};
+    margin-left: 1.4rem;
+    font-size: 1.3rem;
+    line-height: 1.6rem;
+    font-weight: normal;
+    font-family: Roboto;
+    overflow: hidden;
   }
 `;
 

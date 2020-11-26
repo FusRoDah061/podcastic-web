@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors, dims } from '../../styles/variables';
+import { ImageOrLetterStyled } from '../ImageOrLetter/styles';
 
 export const PodcastItemLink = styled(Link)`
   display: flex;
@@ -10,62 +11,62 @@ export const PodcastItemLink = styled(Link)`
   text-decoration: none;
   color: ${colors.black};
 
-  div {
+  ${ImageOrLetterStyled} {
     display: block;
-    margin-left: 1.3rem;
+    width: 9rem;
+    height: 9rem;
 
-    h3 {
-      font-family: Nunito;
-      font-weight: bold;
-      font-size: 1.6rem;
-      margin-bottom: 0.5rem;
+    img {
+      width: 9rem;
+      height: 9rem;
+      border-radius: 1rem;
     }
 
-    p {
+    span {
       display: block;
-      position: relative;
-      font-size: 1.3rem;
-      line-height: 1.6rem;
-      height: 4.8rem;
-      overflow: hidden;
+      width: 9rem;
+      height: 9rem;
+      border-radius: 1rem;
+      background: ${colors.greenDark};
+      color: ${colors.textLight};
+      text-align: center;
+      line-height: 9rem;
+      font-size: 4rem;
+      font-weight: bold;
+      font-family: Nunito;
     }
   }
 
   @media (min-width: ${dims.tabletBreak}) {
     color: ${colors.black};
     padding-right: 0.5rem;
-
-    div {
-      p,
-      h3 {
-        margin: 0;
-      }
-    }
   }
 `;
 
-export const PodcastImage = styled.span`
+export const PodcastItemInfo = styled.div`
   display: block;
-  width: 9rem;
-  height: 9rem;
+  margin-left: 1.3rem;
 
-  img {
-    width: 9rem;
-    height: 9rem;
-    border-radius: 1rem;
+  h3 {
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
   }
 
-  span {
+  p {
     display: block;
-    width: 9rem;
-    height: 9rem;
-    border-radius: 1rem;
-    background: ${colors.greenDark};
-    color: ${colors.textLight};
-    text-align: center;
-    line-height: 9rem;
-    font-size: 4rem;
-    font-weight: bold;
-    font-family: Nunito;
+    position: relative;
+    font-size: 1.3rem;
+    line-height: 1.6rem;
+    height: 4.8rem;
+    overflow: hidden;
+  }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    p,
+    h3 {
+      margin: 0;
+    }
   }
 `;
