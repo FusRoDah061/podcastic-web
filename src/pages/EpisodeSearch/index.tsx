@@ -1,13 +1,13 @@
 import { Variants } from 'framer-motion';
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import EpisodeItem from '../../components/EpisodeItem';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import useQuery from '../../hooks/useQuery';
 import { api } from '../../services/api';
 import {
   Container,
-  GoBackLink,
+  GoBackButton,
   HeaderContainer,
   HeaderContent,
   PageContent,
@@ -43,6 +43,7 @@ const containerVariants: Variants = {
 };
 
 const EpisodeSearch: React.FC = () => {
+  const history = useHistory();
   const query = useQuery();
   const { podcastId } = useParams<RouteParams>();
   const [podcast, setPodcast] = useState<PodcastDTO>();
@@ -88,6 +89,10 @@ const EpisodeSearch: React.FC = () => {
     [],
   );
 
+  const handleGoBack = useCallback(() => {
+    history.goBack();
+  }, [history]);
+
   return (
     <Container
       variants={containerVariants}
@@ -98,9 +103,9 @@ const EpisodeSearch: React.FC = () => {
       <HeaderContainer>
         <HeaderContent>
           <form onSubmit={handleSearchEpisodes}>
-            <GoBackLink to={`/podcast/${podcastId}`}>
+            <GoBackButton onClick={handleGoBack}>
               <img src={closeIcon} alt="Go back" />
-            </GoBackLink>
+            </GoBackButton>
 
             <input
               type="text"

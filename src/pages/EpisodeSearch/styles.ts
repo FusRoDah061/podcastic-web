@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors, dims } from '../../styles/variables';
 
@@ -65,7 +64,7 @@ export const HeaderContent = styled.nav`
   }
 `;
 
-export const GoBackLink = styled(Link)`
+export const GoBackButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
