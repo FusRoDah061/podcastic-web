@@ -113,9 +113,113 @@ export const RandomEpisodeButton = styled.button`
   transition: background 0.2s;
   font-size: 1.5rem;
   font-family: Nunito;
+  font-weight: bold;
 
   &:hover {
     background: ${darken(0.03, colors.greenLight)};
+  }
+`;
+
+export const RandomEpisodePopupContainer = styled(motion.div)`
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+`;
+
+export const RandomEpisodePopup = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  max-width: 310px;
+  background: ${colors.white};
+  box-shadow: 0px 2px 40px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 2rem;
+  color: ${colors.textDark};
+  padding: 0rem 2.5rem;
+`;
+
+export const RandomEpisodePopupHeader = styled.div`
+  padding: 2.4rem 0rem;
+
+  p {
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+`;
+
+export const RandomEpisodePopupBody = styled.div`
+  padding: 0;
+
+  & > p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+`;
+
+export const RandomEpisodePopupEpisode = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 1.9rem;
+    text-align: center;
+    margin: 0;
+  }
+
+  button {
+    display: flex;
+    width: 10rem;
+    height: 10rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 0;
+    background: ${colors.white};
+    border-radius: 50%;
+    border: 2px solid ${colors.greenDark};
+    transition: background 0.2s;
+    margin: 1.9rem 0;
+
+    &:hover {
+      background: ${darken(0.05, colors.white)};
+    }
+
+    img {
+      width: 3rem;
+      height: 3rem;
+      margin-right: -0.6rem;
+    }
+  }
+`;
+
+export const RandomEpisodePopupFooter = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: 2rem;
+  padding: 2.4rem 0rem;
+
+  button {
+    padding: 1.1rem 2rem;
+    background: ${colors.white};
+    border: 2px solid ${colors.greenDark};
+    color: ${colors.textDark};
+    border-radius: 1rem;
+    transition: background 0.2s;
+    font-size: 1.5rem;
+
+    &:hover {
+      background: ${darken(0.05, colors.white)};
+    }
   }
 `;
 

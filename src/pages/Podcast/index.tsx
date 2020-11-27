@@ -14,6 +14,12 @@ import {
   PodcastInfoContent,
   PodcastNameDescription,
   RandomEpisodeButton,
+  RandomEpisodePopupContainer,
+  RandomEpisodePopup,
+  RandomEpisodePopupHeader,
+  RandomEpisodePopupBody,
+  RandomEpisodePopupEpisode,
+  RandomEpisodePopupFooter,
   EpisodesContainer,
   EpisodesContainerHeader,
   EpisodesFiltersForm,
@@ -22,15 +28,17 @@ import {
   MobileEpisodeSearchLink,
   EpisodesList,
 } from './styles';
+import EpisodeItem from '../../components/EpisodeItem';
+import ImageOrLetter from '../../components/ImageOrLetter';
+import formatDate from '../../utils/formatDate';
+import formatDateAsTimeAgo from '../../utils/formatDateAsTimeAgo';
 
 import chevronLeftWhiteIcon from '../../assets/chevron-left-white-icon.svg';
 import chevronDownGreenIcon from '../../assets/chevron-down-green-icon.svg';
 import searchIconBlack from '../../assets/search-black-icon.svg';
 import logoImg from '../../assets/podcastic-green-logo.svg';
-import EpisodeItem from '../../components/EpisodeItem';
-import ImageOrLetter from '../../components/ImageOrLetter';
-import formatDate from '../../utils/formatDate';
-import formatDateAsTimeAgo from '../../utils/formatDateAsTimeAgo';
+import playIcon from '../../assets/play-green-icon.svg';
+import EpisodeDTO from '../../dtos/EpisodeDTO';
 
 interface RouteParams {
   podcastId: string;
@@ -60,6 +68,8 @@ const Podcast: React.FC = () => {
   const history = useHistory();
   const { podcastId } = useParams<RouteParams>();
   const [podcast, setPodcast] = useState<PodcastDTO>();
+  const [showRandomEpisode, setShowRandomEpisode] = useState(false);
+  const [randomEpisode, setRandomEpisode] = useState<EpisodeDTO>();
   const [sort, setSort] = useState('newest');
 
   useEffect(() => {
@@ -90,6 +100,30 @@ const Podcast: React.FC = () => {
   const handleGoBack = useCallback(() => {
     history.goBack();
   }, [history]);
+
+  const getRandomEpisode = useCallback(async () => {
+    const response = await api.get<EpisodeDTO>(
+      `/podcasts/${podcastId}/episodes/random`,
+    );
+
+    if (response.status === 200) {
+      setRandomEpisode(response.data);
+    }
+  }, [podcastId]);
+
+  const handleShowRandomEpisode = useCallback(async () => {
+    getRandomEpisode();
+    setShowRandomEpisode(true);
+  }, [getRandomEpisode]);
+
+  const handleHideRandomEpisode = useCallback(() => {
+    setRandomEpisode(undefined);
+    setShowRandomEpisode(false);
+  }, []);
+
+  const handleTryAgainRandomEpisode = useCallback(() => {
+    getRandomEpisode();
+  }, [getRandomEpisode]);
 
   return (
     <Container
@@ -124,9 +158,51 @@ const Podcast: React.FC = () => {
                 </PodcastNameDescription>
               </PodcastInfoContent>
 
-              <RandomEpisodeButton type="button">
+              <RandomEpisodeButton
+                type="button"
+                onClick={handleShowRandomEpisode}
+              >
                 Pick a random episode
               </RandomEpisodeButton>
+
+              {showRandomEpisode && (
+                <RandomEpisodePopupContainer>
+                  <RandomEpisodePopup>
+                    <RandomEpisodePopupHeader>
+                      <p>We got you!</p>
+                    </RandomEpisodePopupHeader>
+
+                    <RandomEpisodePopupBody>
+                      <p>Here’s your randomly picked episode:</p>
+
+                      <RandomEpisodePopupEpisode>
+                        {randomEpisode && (
+                          <>
+                            <p>{randomEpisode.title}</p>
+                            <button type="button">
+                              <img src={playIcon} alt="Play episode" />
+                              Play episode
+                            </button>
+                            <span>{randomEpisode.duration}</span>
+                          </>
+                        )}
+                      </RandomEpisodePopupEpisode>
+                    </RandomEpisodePopupBody>
+
+                    <RandomEpisodePopupFooter>
+                      <button type="button" onClick={handleHideRandomEpisode}>
+                        Cancel
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleTryAgainRandomEpisode}
+                      >
+                        Try again
+                      </button>
+                    </RandomEpisodePopupFooter>
+                  </RandomEpisodePopup>
+                </RandomEpisodePopupContainer>
+              )}
             </PodcastInfo>
 
             <EpisodesContainer>
