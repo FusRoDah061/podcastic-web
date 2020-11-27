@@ -18,6 +18,7 @@ import {
   EpisodesContainerHeader,
   EpisodesFiltersForm,
   EpisodeSearchInputContainer,
+  MobileEpisodeSearchLink,
   EpisodesList,
 } from './styles';
 
@@ -134,9 +135,9 @@ const Podcast: React.FC = () => {
                     </button>
                   </EpisodeSearchInputContainer>
 
-                  <button type="button">
+                  <MobileEpisodeSearchLink to={`/podcast/${podcastId}/search`}>
                     <img src={searchIconBlack} alt="Search episode" />
-                  </button>
+                  </MobileEpisodeSearchLink>
                 </EpisodesFiltersForm>
               </EpisodesContainerHeader>
 

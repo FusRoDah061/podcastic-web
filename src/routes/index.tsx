@@ -6,6 +6,7 @@ import Home from '../pages/Home';
 import AllPodcasts from '../pages/AllPodcasts';
 import Search from '../pages/Search';
 import Podcast from '../pages/Podcast';
+import EpisodeSearch from '../pages/EpisodeSearch';
 
 const Routes: React.FC = () => {
   const location = useLocation();
@@ -17,6 +18,11 @@ const Routes: React.FC = () => {
         <Route exact path="/all" component={AllPodcasts} />
         <Route exact path="/search" component={Search} />
         <Route exact path="/podcast/:podcastId" component={Podcast} />
+        <Route
+          exact
+          path="/podcast/:podcastId/search"
+          component={EpisodeSearch}
+        />
         <Route exact path="/" component={Home} />
       </Switch>
     </AnimatePresence>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ImageOrLetterStyled } from '../../components/ImageOrLetter/styles';
 import { colors } from '../../styles/variables';
@@ -141,22 +142,6 @@ export const EpisodesFiltersForm = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   flex: 1;
-
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 4.2rem;
-    height: 4.2rem;
-    background: ${colors.white};
-    border: 2px solid ${colors.greenDark};
-    border-radius: 1rem;
-    transition: background 0.2s;
-
-    &:hover {
-      background: ${darken(0.05, colors.white)};
-    }
-  }
 `;
 
 export const EpisodeSearchInputContainer = styled.div`
@@ -191,6 +176,22 @@ export const EpisodeSearchInputContainer = styled.div`
     &:hover {
       background: ${darken(0.05, colors.white)};
     }
+  }
+`;
+
+export const MobileEpisodeSearchLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.2rem;
+  height: 4.2rem;
+  background: ${colors.white};
+  border: 2px solid ${colors.greenDark};
+  border-radius: 1rem;
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${darken(0.05, colors.white)};
   }
 `;
 
