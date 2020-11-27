@@ -99,7 +99,7 @@ export const PageContent = styled.article`
   }
 `;
 
-export const PodcastsList = styled.div`
+export const EpisodesList = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -109,6 +109,13 @@ export const PodcastsList = styled.div`
 
   ul {
     width: 100%;
+
+    li {
+      & > p {
+        color: ${colors.textDark};
+        text-align: center;
+      }
+    }
 
     li + li {
       margin-top: 1.5rem;

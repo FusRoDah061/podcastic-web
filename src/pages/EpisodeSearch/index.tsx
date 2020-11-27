@@ -12,7 +12,7 @@ import {
   HeaderContent,
   PageContent,
   PageContentContainer,
-  PodcastsList,
+  EpisodesList,
 } from './styles';
 
 import closeIcon from '../../assets/close-black-icon.svg';
@@ -103,7 +103,7 @@ const EpisodeSearch: React.FC = () => {
       <HeaderContainer>
         <HeaderContent>
           <form onSubmit={handleSearchEpisodes}>
-            <GoBackButton onClick={handleGoBack}>
+            <GoBackButton type="button" onClick={handleGoBack}>
               <img src={closeIcon} alt="Go back" />
             </GoBackButton>
 
@@ -125,7 +125,7 @@ const EpisodeSearch: React.FC = () => {
         <PageContent>
           <h2>Search results</h2>
 
-          <PodcastsList>
+          <EpisodesList>
             <ul>
               {podcast ? (
                 podcast.episodes.map(episode => (
@@ -139,7 +139,7 @@ const EpisodeSearch: React.FC = () => {
                 </li>
               )}
             </ul>
-          </PodcastsList>
+          </EpisodesList>
         </PageContent>
       </PageContentContainer>
     </Container>
