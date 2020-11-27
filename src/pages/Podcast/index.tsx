@@ -18,11 +18,13 @@ import {
   EpisodesContainerHeader,
   EpisodesFiltersForm,
   EpisodeSearchInputContainer,
+  EpisodesSortSelectContainer,
   MobileEpisodeSearchLink,
   EpisodesList,
 } from './styles';
 
 import chevronLeftWhiteIcon from '../../assets/chevron-left-white-icon.svg';
+import chevronDownGreenIcon from '../../assets/chevron-down-green-icon.svg';
 import searchIconBlack from '../../assets/search-black-icon.svg';
 import logoImg from '../../assets/podcastic-green-logo.svg';
 import EpisodeItem from '../../components/EpisodeItem';
@@ -58,10 +60,15 @@ const Podcast: React.FC = () => {
   const history = useHistory();
   const { podcastId } = useParams<RouteParams>();
   const [podcast, setPodcast] = useState<PodcastDTO>();
+  const [sort, setSort] = useState('newest');
 
   useEffect(() => {
     async function fetchPodcast() {
-      const response = await api.get<PodcastDTO>(`/podcasts/${podcastId}`);
+      const response = await api.get<PodcastDTO>(`/podcasts/${podcastId}`, {
+        params: {
+          sort,
+        },
+      });
 
       if (response.status === 200) {
         response.data.episodes.forEach((episode, index) => {
@@ -78,7 +85,7 @@ const Podcast: React.FC = () => {
     }
 
     fetchPodcast();
-  }, [podcastId]);
+  }, [podcastId, sort]);
 
   const handleGoBack = useCallback(() => {
     history.goBack();
@@ -134,6 +141,19 @@ const Podcast: React.FC = () => {
                       <img src={searchIconBlack} alt="Search episode" />
                     </button>
                   </EpisodeSearchInputContainer>
+
+                  <EpisodesSortSelectContainer>
+                    <select
+                      defaultValue={sort}
+                      onChange={e => setSort(e.target.value)}
+                    >
+                      <option value="newest">Newest</option>
+                      <option value="oldest">Oldest</option>
+                      <option value="longest">Longest</option>
+                      <option value="shortest">Shortest</option>
+                    </select>
+                    <img src={chevronDownGreenIcon} alt="V" />
+                  </EpisodesSortSelectContainer>
 
                   <MobileEpisodeSearchLink to={`/podcast/${podcastId}/search`}>
                     <img src={searchIconBlack} alt="Search episode" />

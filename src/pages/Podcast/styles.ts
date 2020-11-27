@@ -179,6 +179,45 @@ export const EpisodeSearchInputContainer = styled.div`
   }
 `;
 
+export const EpisodesSortSelectContainer = styled.div`
+  display: block;
+  position: relative;
+
+  select {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 1rem 1.5rem;
+    padding-right: 3rem;
+    color: ${colors.textDark};
+    border: 2px solid ${colors.greenDark};
+    border-radius: 1rem;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+
+  option {
+    display: block;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    display: block;
+    width: 1.2rem;
+    height: 100%;
+    border-radius: 1rem;
+    pointer-events: none;
+  }
+`;
+
 export const MobileEpisodeSearchLink = styled(Link)`
   display: flex;
   align-items: center;
@@ -189,6 +228,7 @@ export const MobileEpisodeSearchLink = styled(Link)`
   border: 2px solid ${colors.greenDark};
   border-radius: 1rem;
   transition: background 0.2s;
+  margin-left: 1.2rem;
 
   &:hover {
     background: ${darken(0.05, colors.white)};
