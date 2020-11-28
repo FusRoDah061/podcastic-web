@@ -3,7 +3,7 @@ import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import EpisodeItem from '../../components/EpisodeItem';
 import PodcastDTO from '../../dtos/PodcastDTO';
-import useQuery from '../../hooks/useQuery';
+import useQuery from '../../hooks/query';
 import { api } from '../../services/api';
 import {
   Container,

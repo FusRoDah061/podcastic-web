@@ -1,7 +1,7 @@
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { Variants } from 'framer-motion';
 import PodcastItem from '../../components/PodcastItem';
-import useQuery from '../../hooks/useQuery';
+import useQuery from '../../hooks/query';
 import {
   Container,
   HeaderContainer,
