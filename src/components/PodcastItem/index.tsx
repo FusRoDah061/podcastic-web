@@ -18,8 +18,8 @@ const PodcastItem: React.FC<PodcastItemProps> = ({ podcast }) => {
         />
 
         <PodcastItemInfo>
-          <h3>{podcast.name}</h3>
-          <p>{podcast.description}</p>
+          <h3 title={podcast.name}>{podcast.name}</h3>
+          <p title={podcast.description}>{podcast.description}</p>
         </PodcastItemInfo>
       </PodcastItemLink>
     </PodcastItemStyled>

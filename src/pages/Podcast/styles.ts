@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ImageOrLetterStyled } from '../../components/ImageOrLetter/styles';
-import { colors } from '../../styles/variables';
+import { colors, dims } from '../../styles/variables';
+
+interface RandomEpisodePopupContainerProps {
+  visible: boolean;
+}
 
 export const Container = styled(motion.main)`
   height: 100%;
@@ -18,8 +22,20 @@ export const HeaderContainer = styled.header`
     ${colors.greenLight} 55%
   );
 
-  & > img {
+  button:first-child {
     display: none;
+  }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    padding: 3rem;
+    background: ${colors.white};
+    height: auto;
+
+    button:first-child {
+      display: block;
+      background: none;
+      border: 0;
+    }
   }
 `;
 
@@ -35,11 +51,20 @@ export const GoBackButton = styled.button`
   img {
     margin-right: 1.5rem;
   }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    display: none;
+  }
 `;
 
 export const PageContent = styled.section`
   height: calc(100% - 6rem);
   padding: 0rem 1.7rem;
+
+  @media (min-width: ${dims.tabletBreak}) {
+    height: calc(100% - 10rem);
+    padding: 0rem 3rem;
+  }
 `;
 
 export const HasPodcastPageContainer = styled.div`
@@ -47,6 +72,15 @@ export const HasPodcastPageContainer = styled.div`
   flex-direction: column;
   margin-top: -8rem;
   max-height: 100%;
+
+  @media (min-width: ${dims.tabletBreak}) {
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-column-gap: 4rem;
+    margin-top: 0;
+    flex-direction: row;
+    height: 100%;
+  }
 `;
 
 export const PodcastInfo = styled.aside``;
@@ -58,8 +92,6 @@ export const PodcastInfoContent = styled.div`
 
   ${ImageOrLetterStyled} {
     display: block;
-    width: 9rem;
-    height: 9rem;
 
     img {
       width: 9rem;
@@ -81,6 +113,26 @@ export const PodcastInfoContent = styled.div`
       font-family: Nunito;
     }
   }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+
+    ${ImageOrLetterStyled} {
+      img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+      }
+
+      span {
+        width: 300px;
+        height: 300px;
+        line-height: 300px;
+        font-size: 12rem;
+      }
+    }
+  }
 `;
 
 export const PodcastNameDescription = styled.div`
@@ -98,6 +150,25 @@ export const PodcastNameDescription = styled.div`
     font-weight: normal;
     font-family: Roboto;
     overflow: hidden;
+  }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    h1 {
+      display: block;
+      color: ${colors.textDark};
+      font-family: Nunito;
+      font-weight: bold;
+      font-size: 2.4rem;
+      margin-top: 1rem;
+    }
+
+    p {
+      color: ${colors.textDark};
+      padding-top: 0;
+      margin-left: 0;
+      max-height: 9.6rem;
+      margin-top: 1rem;
+    }
   }
 `;
 
@@ -120,8 +191,8 @@ export const RandomEpisodeButton = styled.button`
   }
 `;
 
-export const RandomEpisodePopupContainer = styled(motion.div)`
-  display: flex;
+// eslint-disable-next-line prettier/prettier
+export const RandomEpisodePopupContainer = styled(motion.div)<RandomEpisodePopupContainerProps>`
   position: fixed;
   top: 0;
   left: 0;
@@ -131,6 +202,24 @@ export const RandomEpisodePopupContainer = styled(motion.div)`
   align-items: center;
   justify-content: center;
   z-index: 10;
+
+  ${props =>
+    props.visible
+      ? css`
+          display: flex;
+        `
+      : css`
+          display: none;
+        `}
+
+  @media (min-width: ${dims.tabletBreak}) {
+    display: flex !important;
+    position: relative;
+    top: unset;
+    left: unset;
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const RandomEpisodePopup = styled.div`
@@ -143,6 +232,15 @@ export const RandomEpisodePopup = styled.div`
   border-radius: 2rem;
   color: ${colors.textDark};
   padding: 0rem 2.5rem;
+
+  @media (min-width: ${dims.tabletBreak}) {
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    margin-top: 3rem;
+  }
 `;
 
 export const RandomEpisodePopupHeader = styled.div`
@@ -153,6 +251,10 @@ export const RandomEpisodePopupHeader = styled.div`
     font-weight: bold;
     font-size: 1.8rem;
   }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    display: none;
+  }
 `;
 
 export const RandomEpisodePopupBody = styled.div`
@@ -161,6 +263,12 @@ export const RandomEpisodePopupBody = styled.div`
   & > p {
     font-size: 1.5rem;
     margin-bottom: 2rem;
+  }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    & > p {
+      display: none;
+    }
   }
 `;
 
@@ -200,6 +308,19 @@ export const RandomEpisodePopupEpisode = styled.div`
       margin-right: -0.6rem;
     }
   }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    button {
+      width: 7rem;
+      height: 7rem;
+
+      img {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-right: -0.6rem;
+      }
+    }
+  }
 `;
 
 export const RandomEpisodePopupFooter = styled.div`
@@ -221,6 +342,10 @@ export const RandomEpisodePopupFooter = styled.div`
       background: ${darken(0.05, colors.white)};
     }
   }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    display: none;
+  }
 `;
 
 export const EpisodesContainer = styled.article`
@@ -228,6 +353,10 @@ export const EpisodesContainer = styled.article`
   flex-direction: column;
   margin-top: 1.5rem;
   overflow: hidden;
+
+  @media (min-width: ${dims.tabletBreak}) {
+    margin-top: 0;
+  }
 `;
 
 export const EpisodesContainerHeader = styled.div`
@@ -239,9 +368,17 @@ export const EpisodesContainerHeader = styled.div`
     color: ${colors.textDark};
     font-size: 1.6rem;
   }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    align-items: normal;
+
+    & > p {
+      font-size: 1.8rem;
+    }
+  }
 `;
 
-export const EpisodesFiltersForm = styled.div`
+export const EpisodesFiltersForm = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -250,35 +387,39 @@ export const EpisodesFiltersForm = styled.div`
 
 export const EpisodeSearchInputContainer = styled.div`
   display: none;
-  /* display: flex; */
-  flex-direction: row;
-  align-items: center;
-  border-radius: 1rem;
-  border: 2px solid ${colors.greenDark};
-  padding: 0.5rem 1.5rem;
-  padding-right: 0.5rem;
 
-  input {
-    display: block;
-    flex: 1;
-    font-size: 1.6rem;
-    color: ${colors.textDark};
-    border: none;
-  }
-
-  button {
+  @media (min-width: ${dims.tabletBreak}) {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    width: 4.2rem;
-    height: 4.2rem;
-    background: ${colors.white};
-    border: 0;
     border-radius: 1rem;
-    transition: background 0.2s;
+    border: 2px solid ${colors.greenDark};
+    padding-left: 1.5rem;
+    width: 50%;
+    max-width: 500px;
 
-    &:hover {
-      background: ${darken(0.05, colors.white)};
+    input {
+      display: block;
+      flex: 1;
+      font-size: 1.6rem;
+      color: ${colors.textDark};
+      border: none;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4.2rem;
+      height: 4.2rem;
+      background: ${colors.white};
+      border: 0;
+      border-radius: 1rem;
+      transition: background 0.2s;
+
+      &:hover {
+        background: ${darken(0.05, colors.white)};
+      }
     }
   }
 `;
@@ -320,6 +461,14 @@ export const EpisodesSortSelectContainer = styled.div`
     border-radius: 1rem;
     pointer-events: none;
   }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    margin-left: 1.2rem;
+
+    select {
+      height: 100%;
+    }
+  }
 `;
 
 export const MobileEpisodeSearchLink = styled(Link)`
@@ -337,6 +486,10 @@ export const MobileEpisodeSearchLink = styled(Link)`
   &:hover {
     background: ${darken(0.05, colors.white)};
   }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    display: none;
+  }
 `;
 
 export const EpisodesList = styled.div`
@@ -348,6 +501,21 @@ export const EpisodesList = styled.div`
   ul {
     li {
       margin-bottom: 1.5rem;
+    }
+  }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    margin-top: 1.5rem;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      li {
+        width: 48%;
+        margin-right: 2%;
+      }
     }
   }
 `;

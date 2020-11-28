@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Variants } from 'framer-motion';
 import { parseISO } from 'date-fns';
@@ -64,6 +64,16 @@ const containerVariants: Variants = {
   },
 };
 
+/*
+I declare this variable here to imporve performance when there are too many episodes loaded.
+If kept on state, each time the user types a letter in the episode search input, the whole
+page will re-render, which will cause a brief lock on the ui and the user won't see the next
+letters typed, until he stops.
+Keeping it outside, I update it at the onChange event of the input, and the state will be
+updated only once when the search form is submitted.
+*/
+let episodeToSearchTmp = '';
+
 const Podcast: React.FC = () => {
   const history = useHistory();
   const { podcastId } = useParams<RouteParams>();
@@ -71,12 +81,14 @@ const Podcast: React.FC = () => {
   const [showRandomEpisode, setShowRandomEpisode] = useState(false);
   const [randomEpisode, setRandomEpisode] = useState<EpisodeDTO>();
   const [sort, setSort] = useState('newest');
+  const [episodeToSearch, setEpisodeToSearch] = useState('');
 
   useEffect(() => {
     async function fetchPodcast() {
       const response = await api.get<PodcastDTO>(`/podcasts/${podcastId}`, {
         params: {
           sort,
+          q: episodeToSearch,
         },
       });
 
@@ -95,7 +107,7 @@ const Podcast: React.FC = () => {
     }
 
     fetchPodcast();
-  }, [podcastId, sort]);
+  }, [podcastId, sort, episodeToSearch]);
 
   const handleGoBack = useCallback(() => {
     history.goBack();
@@ -125,6 +137,14 @@ const Podcast: React.FC = () => {
     getRandomEpisode();
   }, [getRandomEpisode]);
 
+  const handleEpisodeSearch = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setEpisodeToSearch(episodeToSearchTmp);
+    },
+    [],
+  );
+
   return (
     <Container
       variants={containerVariants}
@@ -133,7 +153,9 @@ const Podcast: React.FC = () => {
       exit="exit"
     >
       <HeaderContainer>
-        <img src={logoImg} alt="Podcastic" />
+        <button type="button" onClick={handleGoBack}>
+          <img src={logoImg} alt="Podcastic" />
+        </button>
 
         <GoBackButton type="button" onClick={handleGoBack}>
           <img src={chevronLeftWhiteIcon} alt="Go back" />
@@ -153,8 +175,8 @@ const Podcast: React.FC = () => {
                 />
 
                 <PodcastNameDescription>
-                  <h1>{podcast.name}</h1>
-                  <p>{podcast.description}</p>
+                  <h1 title={podcast.name}>{podcast.name}</h1>
+                  <p title={podcast.description}>{podcast.description}</p>
                 </PodcastNameDescription>
               </PodcastInfoContent>
 
@@ -165,55 +187,56 @@ const Podcast: React.FC = () => {
                 Pick a random episode
               </RandomEpisodeButton>
 
-              {showRandomEpisode && (
-                <RandomEpisodePopupContainer>
-                  <RandomEpisodePopup>
-                    <RandomEpisodePopupHeader>
-                      <p>We got you!</p>
-                    </RandomEpisodePopupHeader>
+              <RandomEpisodePopupContainer visible={showRandomEpisode}>
+                <RandomEpisodePopup>
+                  <RandomEpisodePopupHeader>
+                    <p>We got you!</p>
+                  </RandomEpisodePopupHeader>
 
-                    <RandomEpisodePopupBody>
-                      <p>Here’s your randomly picked episode:</p>
+                  <RandomEpisodePopupBody>
+                    <p>Here’s your randomly picked episode:</p>
 
-                      <RandomEpisodePopupEpisode>
-                        {randomEpisode && (
-                          <>
-                            <p>{randomEpisode.title}</p>
-                            <button type="button">
-                              <img src={playIcon} alt="Play episode" />
-                              Play episode
-                            </button>
-                            <span>{randomEpisode.duration}</span>
-                          </>
-                        )}
-                      </RandomEpisodePopupEpisode>
-                    </RandomEpisodePopupBody>
+                    <RandomEpisodePopupEpisode>
+                      {randomEpisode && (
+                        <>
+                          <p>{randomEpisode.title}</p>
+                          <button type="button">
+                            <img src={playIcon} alt="Play episode" />
+                            Play episode
+                          </button>
+                          <span>{randomEpisode.duration}</span>
+                        </>
+                      )}
+                    </RandomEpisodePopupEpisode>
+                  </RandomEpisodePopupBody>
 
-                    <RandomEpisodePopupFooter>
-                      <button type="button" onClick={handleHideRandomEpisode}>
-                        Cancel
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleTryAgainRandomEpisode}
-                      >
-                        Try again
-                      </button>
-                    </RandomEpisodePopupFooter>
-                  </RandomEpisodePopup>
-                </RandomEpisodePopupContainer>
-              )}
+                  <RandomEpisodePopupFooter>
+                    <button type="button" onClick={handleHideRandomEpisode}>
+                      Cancel
+                    </button>
+                    <button type="button" onClick={handleTryAgainRandomEpisode}>
+                      Try again
+                    </button>
+                  </RandomEpisodePopupFooter>
+                </RandomEpisodePopup>
+              </RandomEpisodePopupContainer>
             </PodcastInfo>
 
             <EpisodesContainer>
               <EpisodesContainerHeader>
                 <p>Episodes</p>
 
-                <EpisodesFiltersForm>
+                <EpisodesFiltersForm onSubmit={handleEpisodeSearch}>
                   <EpisodeSearchInputContainer>
-                    <input type="text" placeholder="Search episode" />
+                    <input
+                      type="text"
+                      placeholder="Search episode"
+                      onChange={e => {
+                        episodeToSearchTmp = e.target.value;
+                      }}
+                    />
 
-                    <button type="button">
+                    <button type="submit">
                       <img src={searchIconBlack} alt="Search episode" />
                     </button>
                   </EpisodeSearchInputContainer>

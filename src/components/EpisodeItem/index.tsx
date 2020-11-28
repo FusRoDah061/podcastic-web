@@ -17,7 +17,7 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode }) => {
       </button>
 
       <EpisodeContent>
-        <p>{episode.title}</p>
+        <p title={episode.title}>{episode.title}</p>
         <EpisodeInfo>
           <p>{episode.duration}</p>
           <span />
