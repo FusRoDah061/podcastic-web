@@ -26,9 +26,8 @@ import {
   EpisodeSearchInputContainer,
   EpisodesSortSelectContainer,
   MobileEpisodeSearchLink,
-  EpisodesList,
+  EpisodesListContainer,
 } from './styles';
-import EpisodeItem from '../../components/EpisodeItem';
 import ImageOrLetter from '../../components/ImageOrLetter';
 import formatDate from '../../utils/formatDate';
 import formatDateAsTimeAgo from '../../utils/formatDateAsTimeAgo';
@@ -39,6 +38,7 @@ import searchIconBlack from '../../assets/search-black-icon.svg';
 import logoImg from '../../assets/podcastic-green-logo.svg';
 import playIcon from '../../assets/play-green-icon.svg';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
+import EpisodesList from '../../components/EpisodesList';
 
 interface RouteParams {
   podcastId: string;
@@ -260,15 +260,9 @@ const Podcast: React.FC = () => {
                 </EpisodesFiltersForm>
               </EpisodesContainerHeader>
 
-              <EpisodesList>
-                <ul>
-                  {podcast.episodes.map(episode => (
-                    <li key={episode._id}>
-                      <EpisodeItem episode={episode} />
-                    </li>
-                  ))}
-                </ul>
-              </EpisodesList>
+              <EpisodesListContainer>
+                <EpisodesList podcast={podcast} />
+              </EpisodesListContainer>
             </EpisodesContainer>
           </HasPodcastPageContainer>
         )}

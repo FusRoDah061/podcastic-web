@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { EpisodesListStyled } from '../../components/EpisodesList/styles';
 import { ImageOrLetterStyled } from '../../components/ImageOrLetter/styles';
 import { colors, dims } from '../../styles/variables';
 
@@ -492,16 +493,13 @@ export const MobileEpisodeSearchLink = styled(Link)`
   }
 `;
 
-export const EpisodesList = styled.div`
+export const EpisodesListContainer = styled.div`
   flex: 1;
-  overflow: auto;
   margin-top: 1.2rem;
   height: calc(100% - 5.2rem);
 
-  ul {
-    li {
-      margin-bottom: 1.5rem;
-    }
+  ${EpisodesListStyled} {
+    height: 100%;
   }
 
   @media (min-width: ${dims.tabletBreak}) {

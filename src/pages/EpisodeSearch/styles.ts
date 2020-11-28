@@ -99,12 +99,11 @@ export const PageContent = styled.article`
   }
 `;
 
-export const EpisodesList = styled.div`
+export const EpisodesListContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
-  overflow: auto;
   padding-bottom: 1.6rem;
 
   ul {

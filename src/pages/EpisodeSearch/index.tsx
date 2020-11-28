@@ -1,7 +1,6 @@
 import { Variants } from 'framer-motion';
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import EpisodeItem from '../../components/EpisodeItem';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import useQuery from '../../hooks/query';
 import { api } from '../../services/api';
@@ -12,11 +11,12 @@ import {
   HeaderContent,
   PageContent,
   PageContentContainer,
-  EpisodesList,
+  EpisodesListContainer,
 } from './styles';
 
 import closeIcon from '../../assets/close-black-icon.svg';
 import searchIcon from '../../assets/search-black-icon.svg';
+import EpisodesList from '../../components/EpisodesList';
 
 interface RouteParams {
   podcastId: string;
@@ -125,21 +125,17 @@ const EpisodeSearch: React.FC = () => {
         <PageContent>
           <h2>Search results</h2>
 
-          <EpisodesList>
-            <ul>
-              {podcast ? (
-                podcast.episodes.map(episode => (
-                  <li key={episode._id}>
-                    <EpisodeItem episode={episode} />
-                  </li>
-                ))
-              ) : (
+          <EpisodesListContainer>
+            {podcast ? (
+              <EpisodesList podcast={podcast} />
+            ) : (
+              <ul>
                 <li>
                   <p>No episodes found</p>
                 </li>
-              )}
-            </ul>
-          </EpisodesList>
+              </ul>
+            )}
+          </EpisodesListContainer>
         </PageContent>
       </PageContentContainer>
     </Container>
