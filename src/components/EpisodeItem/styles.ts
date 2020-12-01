@@ -1,9 +1,13 @@
 import { darken } from 'polished';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { colors } from '../../styles/variables';
 
+interface EpisodeItemStyled {
+  isPlaying?: boolean;
+}
+
 /* Exposes root container so other can easily override styles */
-export const EpisodeItemStyled = styled.div`
+export const EpisodeItemStyled = styled.div<EpisodeItemStyled>`
   display: grid;
   grid-template-columns: 4.8rem auto;
   grid-column-gap: 1.5rem;
@@ -25,9 +29,13 @@ export const EpisodeItemStyled = styled.div`
       background: ${darken(0.05, colors.white)};
     }
 
-    img {
-      margin-right: -0.3rem;
-    }
+    ${props =>
+      !props.isPlaying &&
+      css`
+        img {
+          margin-right: -0.3rem;
+        }
+      `}
   }
 `;
 

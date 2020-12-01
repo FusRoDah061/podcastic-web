@@ -1,7 +1,11 @@
 import { darken } from 'polished';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { colors, dims } from '../../styles/variables';
 import { AudioProgressBarStyled } from './AudioProgressBar/styles';
+
+interface PlayPauseButtonProps {
+  isPlaying?: boolean;
+}
 
 export const AudioPlayerStyled = styled.div`
   position: fixed;
@@ -67,7 +71,7 @@ export const RewindButton = styled.button`
   }
 `;
 
-export const PlayPauseButton = styled.button`
+export const PlayPauseButton = styled.button<PlayPauseButtonProps>`
   display: flex;
   width: 4.8rem;
   height: 4.8rem;
@@ -84,9 +88,13 @@ export const PlayPauseButton = styled.button`
     background: ${darken(0.05, colors.white)};
   }
 
-  img {
-    margin-right: -0.3rem;
-  }
+  ${props =>
+    !props.isPlaying &&
+    css`
+      img {
+        margin-right: -0.3rem;
+      }
+    `}
 `;
 
 export const ForwardButton = styled.button`
@@ -142,6 +150,10 @@ export const AudioProgressInfo = styled.div`
     font-size: 1.2rem;
     text-align: center;
     margin-top: 0.6rem;
+  }
+
+  div.js-react-player {
+    display: none;
   }
 
   @media (min-width: ${dims.tabletBreak}) {

@@ -496,6 +496,7 @@ export const MobileEpisodeSearchLink = styled(Link)`
 export const EpisodesListContainer = styled.div`
   flex: 1;
   margin-top: 1.2rem;
+  overflow: auto;
   height: calc(100% - 5.2rem);
 
   ${EpisodesListStyled} {

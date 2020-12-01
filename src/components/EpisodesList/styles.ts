@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const EpisodesListStyled = styled.div`
-  overflow: auto;
   height: 100%;
 
   ul {

@@ -1,12 +1,8 @@
-import { gestureProps } from 'framer-motion/types/motion/features/gestures';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { lighten } from 'polished';
 import { colors } from '../../../styles/variables';
 
-interface AudioProgressBarProps {
-  value: number;
-}
-
-export const AudioProgressBarStyled = styled.div<AudioProgressBarProps>`
+export const AudioProgressBarStyled = styled.div`
   position: relative;
   display: flex;
   align-items: center;
@@ -22,17 +18,6 @@ export const AudioProgressBarStyled = styled.div<AudioProgressBarProps>`
     outline: none;
   }
 
-  input::before {
-    content: '';
-    position: absolute;
-    height: 0.4rem;
-    background: ${colors.greenDark};
-
-    ${props => css`
-      width: ${props.value}%;
-    `}
-  }
-
   input::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -41,6 +26,7 @@ export const AudioProgressBarStyled = styled.div<AudioProgressBarProps>`
     border-radius: 50%;
     background: ${colors.greenDark};
     cursor: pointer;
+    z-index: 15;
   }
 
   input::-moz-range-thumb {
@@ -49,5 +35,14 @@ export const AudioProgressBarStyled = styled.div<AudioProgressBarProps>`
     border-radius: 50%;
     background: ${colors.greenDark};
     cursor: pointer;
+    z-index: 15;
   }
+`;
+
+export const AudioProgressBarBackground = styled.div`
+  position: absolute;
+  height: 0.4rem;
+  background: ${colors.greenDark};
+  pointer-events: none;
+  z-index: 10;
 `;

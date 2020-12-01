@@ -104,6 +104,7 @@ export const EpisodesListContainer = styled.div`
   flex: 1;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
   padding-bottom: 1.6rem;
 
   ul {

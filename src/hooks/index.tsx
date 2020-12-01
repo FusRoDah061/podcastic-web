@@ -1,13 +1,8 @@
 import React from 'react';
-import AudioPlayer from '../components/AudioPlayer';
+import { AudioPlayerProvider } from './audioPlayer';
 
 const HooksProvider: React.FC = ({ children }) => {
-  return (
-    <>
-      {children}
-      <AudioPlayer />
-    </>
-  );
+  return <AudioPlayerProvider>{children}</AudioPlayerProvider>;
 };
 
 export default HooksProvider;
