@@ -54,7 +54,6 @@ export const RewindButton = styled.button`
   border: 0;
   transition: background 0.2s;
   font-size: 0.9rem;
-  text-indent: 2px;
 
   &:hover {
     background: ${darken(0.05, colors.white)};
@@ -107,7 +106,6 @@ export const ForwardButton = styled.button`
   border: 0;
   transition: background 0.2s;
   font-size: 0.9rem;
-  text-indent: -2px;
 
   &:hover {
     background: ${darken(0.05, colors.white)};
