@@ -19,15 +19,10 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
 
   const play = useCallback(
     (audio: AudioDTO) => {
-      console.log('play: ', audio);
-      console.log('audioPlaying: ', audioPlaying);
-
       if (!audioPlaying || audio.id !== audioPlaying.id) {
-        console.log('audio novo');
         setAudioPlaying(audio);
         setIsPaused(false);
       } else if (isPaused) {
-        console.log('audio pausado');
         setIsPaused(false);
       }
     },
@@ -42,12 +37,10 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
   );
 
   const pause = useCallback(() => {
-    console.log('pause');
     setIsPaused(true);
   }, []);
 
   const dismiss = useCallback(() => {
-    console.log('dismiss');
     setIsPaused(true);
     setAudioPlaying(undefined);
   }, []);

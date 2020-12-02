@@ -1,10 +1,4 @@
-import React, {
-  SyntheticEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { Variants } from 'framer-motion';
 import {
@@ -129,7 +123,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   const handleTimeUpdate = useCallback(
     (e: PlayerProgress) => {
-      console.log(e);
       const currentTime = e.playedSeconds * 1000;
       updateCurrentTime(currentTime);
     },
@@ -143,8 +136,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     }
   }, [onEnd]);
 
-  const handleError = useCallback((e: any) => {
-    console.log('onError: ', e);
+  const handleError = useCallback(() => {
     setIsPlaying(false);
   }, []);
 
@@ -226,16 +218,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
               url={audioPlaying.mediaUrl}
               playing={isPlaying && !isSeeking}
               controls={false}
-              onReady={() => console.log('onReady')}
-              onStart={() => console.log('onStart')}
               onPause={handleOnPause}
-              onSeek={e => console.log('onSeek', e)}
               onProgress={handleTimeUpdate}
               onDuration={handleDurationChange}
               onEnded={handleEnded}
-              onError={e => {
-                handleError(e);
-              }}
+              onError={handleError}
             />
           </AudioProgressInfo>
         </AudioInfoContainer>

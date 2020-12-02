@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { lighten } from 'polished';
 import { colors } from '../../../styles/variables';
 
 export const AudioProgressBarStyled = styled.div`
