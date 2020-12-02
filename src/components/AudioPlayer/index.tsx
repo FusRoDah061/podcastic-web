@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import ReactPlayer from 'react-player';
+import { Variants } from 'framer-motion';
 import {
   AudioPlayerStyled,
   AudioPlayerContent,
@@ -39,6 +40,23 @@ interface PlayerProgress {
   loaded?: number;
   loadedSeconds?: number;
 }
+
+const containerVariants: Variants = {
+  show: {
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut',
+    },
+  },
+  hide: {
+    y: '100%',
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut',
+    },
+  },
+};
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({
   audio,
@@ -153,7 +171,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   );
 
   return (
-    <AudioPlayerStyled>
+    <AudioPlayerStyled
+      animate="show"
+      initial="hide"
+      variants={containerVariants}
+    >
       <AudioPlayerContent>
         <PlayerButtons>
           <RewindButton type="button" onClick={handleRewind}>

@@ -36,7 +36,6 @@ import chevronLeftWhiteIcon from '../../assets/chevron-left-white-icon.svg';
 import chevronDownGreenIcon from '../../assets/chevron-down-green-icon.svg';
 import searchIconBlack from '../../assets/search-black-icon.svg';
 import logoImg from '../../assets/podcastic-green-logo.svg';
-import playIcon from '../../assets/play-green-icon.svg';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
 import EpisodesList from '../../components/EpisodesList';
 import { useAudioPlayer } from '../../hooks/audioPlayer';

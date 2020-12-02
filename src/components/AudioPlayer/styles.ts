@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import styled, { css } from 'styled-components';
 import { colors, dims } from '../../styles/variables';
@@ -7,7 +8,7 @@ interface PlayPauseButtonProps {
   isPlaying?: boolean;
 }
 
-export const AudioPlayerStyled = styled.div`
+export const AudioPlayerStyled = styled(motion.div)`
   position: fixed;
   left: 0;
   right: 0;
@@ -54,6 +55,7 @@ export const RewindButton = styled.button`
   border: 0;
   transition: background 0.2s;
   font-size: 0.9rem;
+  padding-top: 0.3rem;
 
   &:hover {
     background: ${darken(0.05, colors.white)};
@@ -106,6 +108,7 @@ export const ForwardButton = styled.button`
   border: 0;
   transition: background 0.2s;
   font-size: 0.9rem;
+  padding-top: 0.3rem;
 
   &:hover {
     background: ${darken(0.05, colors.white)};
