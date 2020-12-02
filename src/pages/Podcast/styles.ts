@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { EpisodesListStyled } from '../../components/EpisodesList/styles';
 import { ImageOrLetterStyled } from '../../components/ImageOrLetter/styles';
+import { RandomEpisodeStyled } from '../../components/RandomEpisode/styles';
 import { colors, dims } from '../../styles/variables';
 
 interface RandomEpisodePopupContainerProps {
@@ -274,51 +275,30 @@ export const RandomEpisodePopupBody = styled.div`
 `;
 
 export const RandomEpisodePopupEpisode = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${RandomEpisodeStyled} {
+    button {
+      width: 10rem;
+      height: 10rem;
 
-  p {
-    font-family: Nunito;
-    font-weight: bold;
-    font-size: 1.9rem;
-    text-align: center;
-    margin: 0;
-  }
-
-  button {
-    display: flex;
-    width: 10rem;
-    height: 10rem;
-    align-items: center;
-    justify-content: center;
-    font-size: 0;
-    background: ${colors.white};
-    border-radius: 50%;
-    border: 2px solid ${colors.greenDark};
-    transition: background 0.2s;
-    margin: 1.9rem 0;
-
-    &:hover {
-      background: ${darken(0.05, colors.white)};
-    }
-
-    img {
-      width: 3rem;
-      height: 3rem;
-      margin-right: -0.6rem;
+      img {
+        width: 3rem;
+        height: 3rem;
+        margin-right: -0.6rem;
+      }
     }
   }
 
   @media (min-width: ${dims.tabletBreak}) {
-    button {
-      width: 7rem;
-      height: 7rem;
+    ${RandomEpisodeStyled} {
+      button {
+        width: 7rem;
+        height: 7rem;
 
-      img {
-        width: 2.5rem;
-        height: 2.5rem;
-        margin-right: -0.6rem;
+        img {
+          width: 2.5rem;
+          height: 2.5rem;
+          margin-right: -0.6rem;
+        }
       }
     }
   }

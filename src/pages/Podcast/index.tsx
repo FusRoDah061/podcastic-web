@@ -39,6 +39,8 @@ import logoImg from '../../assets/podcastic-green-logo.svg';
 import playIcon from '../../assets/play-green-icon.svg';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
 import EpisodesList from '../../components/EpisodesList';
+import { useAudioPlayer } from '../../hooks/audioPlayer';
+import RandomEpisode from '../../components/RandomEpisode';
 
 interface RouteParams {
   podcastId: string;
@@ -75,6 +77,7 @@ updated only once when the search form is submitted.
 let episodeToSearchTmp = '';
 
 const Podcast: React.FC = () => {
+  const player = useAudioPlayer();
   const history = useHistory();
   const { podcastId } = useParams<RouteParams>();
   const [podcast, setPodcast] = useState<PodcastDTO>();
@@ -145,6 +148,23 @@ const Podcast: React.FC = () => {
     [],
   );
 
+  const handlePlayRandomEpisode = useCallback(
+    (episode: EpisodeDTO, isPlaying: boolean) => {
+      if (!isPlaying) {
+        player.play({
+          id: episode._id,
+          displayName: episode.title,
+          mediaUrl: episode.file.url,
+          mediaType: episode.file.mediaType,
+          duration: episode.duration,
+        });
+      } else {
+        player.pause();
+      }
+    },
+    [player],
+  );
+
   return (
     <Container
       variants={containerVariants}
@@ -198,14 +218,10 @@ const Podcast: React.FC = () => {
 
                     <RandomEpisodePopupEpisode>
                       {randomEpisode && (
-                        <>
-                          <p>{randomEpisode.title}</p>
-                          <button type="button">
-                            <img src={playIcon} alt="Play episode" />
-                            Play episode
-                          </button>
-                          <span>{randomEpisode.duration}</span>
-                        </>
+                        <RandomEpisode
+                          episode={randomEpisode}
+                          onPlay={handlePlayRandomEpisode}
+                        />
                       )}
                     </RandomEpisodePopupEpisode>
                   </RandomEpisodePopupBody>
