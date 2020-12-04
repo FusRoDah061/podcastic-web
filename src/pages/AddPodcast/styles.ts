@@ -53,6 +53,7 @@ export const PageContent = styled.div`
 
   form {
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     color: ${colors.textDark};
