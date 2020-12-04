@@ -46,8 +46,10 @@ const AudioProgressBar: React.FC<AudioProgressBarProps> = ({
         max={max}
         value={value}
         onMouseDown={handleMouseDown}
+        onTouchStart={handleMouseDown}
         onChange={handleChange}
         onMouseUp={handleMouseUp}
+        onTouchEnd={handleMouseUp}
       />
 
       <AudioProgressBarBackground
