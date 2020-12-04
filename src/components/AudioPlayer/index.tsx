@@ -1,31 +1,39 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
-import { Variants } from 'framer-motion';
+import { AnimatePresence, Variants } from 'framer-motion';
 import {
   AudioPlayerStyled,
   AudioPlayerContent,
+  PlayerControls,
+  DismissButton,
   PlayerButtons,
   RewindButton,
   PlayPauseButton,
   ForwardButton,
+  MinimizeButton,
   AudioInfoContainer,
   AudioProgressInfo,
 } from './styles';
 
+import dismissIcon from '../../assets/close-black-icon.svg';
 import rewindIcon from '../../assets/rewind-green-icon.svg';
 import playIcon from '../../assets/play-green-icon.svg';
 import pauseIcon from '../../assets/pause-green-icon.svg';
 import forwardIcon from '../../assets/forward-green-icon.svg';
+import minimizeIcon from '../../assets/chevron-down-black-icon.svg';
+import maximizeIcon from '../../assets/chevron-up-black-icon.svg';
 import AudioProgressBar from './AudioProgressBar';
 import { AudioDTO } from '../../dtos/AudioDTO';
 import formatDuration from '../../utils/formatDuration';
 
 interface AudioPlayerProps {
-  audio: AudioDTO;
+  isOpen: boolean;
+  audio?: AudioDTO;
   isPaused?: boolean;
   onPlay?: () => void;
   onPause?: () => void;
   onEnd?: () => void;
+  onDismiss?: () => void;
 }
 
 interface PlayerProgress {
@@ -40,7 +48,7 @@ const containerVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.3,
-      ease: 'easeOut',
+      ease: 'easeIn',
     },
   },
   hide: {
@@ -53,24 +61,27 @@ const containerVariants: Variants = {
 };
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({
+  isOpen,
   audio,
   isPaused,
   onPlay,
   onPause,
   onEnd,
+  onDismiss,
 }) => {
-  const audioRef = useRef<ReactPlayer>(null);
+  const reactPlayerRef = useRef<ReactPlayer>(null);
   const [isPlaying, setIsPlaying] = useState(!isPaused);
   const [isSeeking, setIsSeeking] = useState(false);
   const [audioPlaying, setAudioPlaying] = useState(audio);
   const [audioDurationMs, setAudioDurationMs] = useState(0);
   const [formattedAudioDuration, setFormattedAudioDuration] = useState(
-    audioPlaying.duration,
+    audioPlaying?.duration || 0,
   );
   const [audioCurrentTimeMs, setAudioCurrentTimeMs] = useState(0);
   const [formattedAudioCurrentTime, setFormattedAudioCurrentTime] = useState(
     '00:00:00',
   );
+  const [isMinimized, setIsMinimized] = useState(false);
 
   const updateCurrentTime = useCallback((currentTimeMs: number) => {
     setAudioCurrentTimeMs(currentTimeMs);
@@ -87,12 +98,17 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     setIsPlaying(!isPaused);
   }, [isPaused]);
 
+  const handleDismissPlayer = useCallback(() => {
+    if (onDismiss) onDismiss();
+    setIsMinimized(false);
+  }, [onDismiss]);
+
   const handleRewind = useCallback(() => {
     let timeToSeekMs = audioCurrentTimeMs - 15000;
 
     if (timeToSeekMs < 0) timeToSeekMs = 0;
 
-    audioRef.current?.seekTo(timeToSeekMs / 1000);
+    reactPlayerRef.current?.seekTo(timeToSeekMs / 1000);
     updateCurrentTime(timeToSeekMs);
   }, [audioCurrentTimeMs, updateCurrentTime]);
 
@@ -101,7 +117,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
     if (timeToSeekMs > audioDurationMs) timeToSeekMs = audioDurationMs;
 
-    audioRef.current?.seekTo(timeToSeekMs / 1000);
+    reactPlayerRef.current?.seekTo(timeToSeekMs / 1000);
     updateCurrentTime(timeToSeekMs);
   }, [audioCurrentTimeMs, audioDurationMs, updateCurrentTime]);
 
@@ -110,6 +126,10 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
       if (onPlay) onPlay();
     } else if (onPause) onPause();
   }, [isPaused, onPlay, onPause]);
+
+  const handleMinimizePlayer = useCallback(() => {
+    setIsMinimized(!isMinimized);
+  }, [isMinimized]);
 
   const handleOnPause = useCallback(() => {
     if (onPause) onPause();
@@ -156,78 +176,108 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const handleEndSeek = useCallback(
     (value: number) => {
       setIsSeeking(false);
-      audioRef.current?.seekTo(value / 1000);
+      reactPlayerRef.current?.seekTo(value / 1000);
       if (onPlay) onPlay();
     },
     [onPlay],
   );
 
   return (
-    <AudioPlayerStyled
-      animate="show"
-      initial="hide"
-      variants={containerVariants}
-    >
-      <AudioPlayerContent>
-        <PlayerButtons>
-          <RewindButton type="button" onClick={handleRewind}>
-            <img
-              src={rewindIcon}
-              alt="Rewind 15 seconds"
-              aria-label="Rewind 15 seconds"
-            />
-            15
-          </RewindButton>
+    <AnimatePresence>
+      {isOpen && (
+        <AudioPlayerStyled
+          animate="show"
+          initial="hide"
+          exit="hide"
+          variants={containerVariants}
+          isMinimized={isMinimized}
+        >
+          <AudioPlayerContent layout>
+            <PlayerControls layout>
+              <DismissButton layout type="button" onClick={handleDismissPlayer}>
+                <img src={dismissIcon} alt="Dismiss player" />
+                Dismiss player
+              </DismissButton>
 
-          <PlayPauseButton isPlaying={!isPaused} onClick={handlePlayPause}>
-            <img
-              src={isPlaying ? pauseIcon : playIcon}
-              alt={isPlaying ? 'Pause' : 'Play'}
-              aria-label={isPlaying ? 'Pause' : 'Play'}
-            />
-          </PlayPauseButton>
+              <PlayerButtons layout>
+                <RewindButton layout type="button" onClick={handleRewind}>
+                  <img
+                    src={rewindIcon}
+                    alt="Rewind 15 seconds"
+                    aria-label="Rewind 15 seconds"
+                  />
+                  15
+                </RewindButton>
 
-          <ForwardButton type="button" onClick={handleForward}>
-            <img
-              src={forwardIcon}
-              alt="Advance 15 seconds"
-              aria-label="Advance 15 seconds"
-            />
-            15
-          </ForwardButton>
-        </PlayerButtons>
+                <PlayPauseButton
+                  layout
+                  isPlaying={!isPaused}
+                  onClick={handlePlayPause}
+                >
+                  <img
+                    src={isPlaying ? pauseIcon : playIcon}
+                    alt={isPlaying ? 'Pause' : 'Play'}
+                    aria-label={isPlaying ? 'Pause' : 'Play'}
+                  />
+                </PlayPauseButton>
 
-        <AudioInfoContainer>
-          <p>{audioPlaying.displayName}</p>
-          <AudioProgressInfo>
-            <AudioProgressBar
-              min={0}
-              max={audioDurationMs}
-              value={audioCurrentTimeMs}
-              onBeginSeek={handleBeginSeek}
-              onProgressChange={handleProgressChange}
-              onEndSeek={handleEndSeek}
-            />
-            <span>
-              {formattedAudioCurrentTime} / {formattedAudioDuration}
-            </span>
+                <ForwardButton layout type="button" onClick={handleForward}>
+                  <img
+                    src={forwardIcon}
+                    alt="Advance 15 seconds"
+                    aria-label="Advance 15 seconds"
+                  />
+                  15
+                </ForwardButton>
+              </PlayerButtons>
 
-            <ReactPlayer
-              className="js-react-player"
-              ref={audioRef}
-              url={audioPlaying.mediaUrl}
-              playing={isPlaying && !isSeeking}
-              controls={false}
-              onPause={handleOnPause}
-              onProgress={handleTimeUpdate}
-              onDuration={handleDurationChange}
-              onEnded={handleEnded}
-              onError={handleError}
-            />
-          </AudioProgressInfo>
-        </AudioInfoContainer>
-      </AudioPlayerContent>
-    </AudioPlayerStyled>
+              <MinimizeButton
+                layout
+                type="button"
+                onClick={handleMinimizePlayer}
+              >
+                <img
+                  src={isMinimized ? maximizeIcon : minimizeIcon}
+                  alt={isMinimized ? 'Maximize player' : 'Minimize player'}
+                />
+                {isMinimized ? 'Maximize player' : 'Minimize player'}
+              </MinimizeButton>
+            </PlayerControls>
+
+            <AudioInfoContainer layout>
+              <p>{audioPlaying?.displayName || ''}</p>
+              <AudioProgressInfo layout>
+                <AudioProgressBar
+                  layout
+                  min={0}
+                  max={audioDurationMs}
+                  value={audioCurrentTimeMs}
+                  onBeginSeek={handleBeginSeek}
+                  onProgressChange={handleProgressChange}
+                  onEndSeek={handleEndSeek}
+                />
+                <span>
+                  {formattedAudioCurrentTime} / {formattedAudioDuration}
+                </span>
+
+                <ReactPlayer
+                  className="js-react-player"
+                  ref={reactPlayerRef}
+                  url={audioPlaying?.mediaUrl}
+                  playing={isPlaying && !isSeeking}
+                  controls={false}
+                  onPause={handleOnPause}
+                  onProgress={handleTimeUpdate}
+                  onDuration={handleDurationChange}
+                  onEnded={handleEnded}
+                  onError={handleError}
+                />
+              </AudioProgressInfo>
+            </AudioInfoContainer>
+          </AudioPlayerContent>
+        </AudioPlayerStyled>
+      )}
+    </AnimatePresence>
   );
 };
 

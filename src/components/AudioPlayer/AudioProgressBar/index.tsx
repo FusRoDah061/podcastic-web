@@ -8,6 +8,7 @@ interface AudioProgressBarProps {
   onBeginSeek?: () => void;
   onProgressChange?: (value: number) => void;
   onEndSeek?: (value: number) => void;
+  layout?: boolean;
 }
 
 const AudioProgressBar: React.FC<AudioProgressBarProps> = ({
@@ -17,6 +18,7 @@ const AudioProgressBar: React.FC<AudioProgressBarProps> = ({
   onBeginSeek,
   onProgressChange,
   onEndSeek,
+  layout,
 }) => {
   const [valueState, setValueState] = useState(value);
 
@@ -37,7 +39,7 @@ const AudioProgressBar: React.FC<AudioProgressBarProps> = ({
   }, [onEndSeek, valueState]);
 
   return (
-    <AudioProgressBarStyled>
+    <AudioProgressBarStyled layout={!!layout}>
       <input
         type="range"
         min={min}

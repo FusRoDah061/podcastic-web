@@ -4,11 +4,15 @@ import styled, { css } from 'styled-components';
 import { colors, dims } from '../../styles/variables';
 import { AudioProgressBarStyled } from './AudioProgressBar/styles';
 
+interface AudioPlayerProps {
+  isMinimized: boolean;
+}
+
 interface PlayPauseButtonProps {
   isPlaying?: boolean;
 }
 
-export const AudioPlayerStyled = styled(motion.div)`
+export const AudioPlayerStyled = styled(motion.div)<AudioPlayerProps>`
   position: fixed;
   left: 0;
   right: 0;
@@ -16,9 +20,60 @@ export const AudioPlayerStyled = styled(motion.div)`
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
   background: ${colors.white};
   color: ${colors.textDark};
+
+  ${props =>
+    props.isMinimized &&
+    css`
+      ${AudioPlayerContent} {
+        padding: 1rem 2rem;
+        padding-bottom: 0.5rem;
+
+        ${PlayerControls} {
+          grid-template-columns: 3.5rem 1fr 3.5rem;
+          grid-column-gap: 0;
+          margin-bottom: 0;
+
+          ${DismissButton} {
+            width: 3.5rem;
+            height: 3.5rem;
+          }
+
+          ${PlayerButtons} {
+            ${RewindButton}, ${ForwardButton}, ${PlayPauseButton} {
+              width: 3.5rem;
+              height: 3.5rem;
+            }
+
+            ${PlayPauseButton} {
+              border-width: 3px;
+
+              img {
+                width: 1.2rem;
+                height: 1.2rem;
+              }
+            }
+          }
+        }
+
+        ${AudioInfoContainer} {
+          position: absolute;
+          top: -7px;
+
+          & > P {
+            display: none;
+          }
+
+          ${AudioProgressInfo} {
+            span {
+              display: none;
+            }
+          }
+        }
+      }
+    `}
 `;
 
-export const AudioPlayerContent = styled.div`
+export const AudioPlayerContent = styled(motion.div)`
   display: flex;
   width: 100%;
   max-width: 900px;
@@ -27,25 +82,60 @@ export const AudioPlayerContent = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1.5rem 2rem;
+  background: ${colors.white};
 
   @media (min-width: ${dims.tabletBreak}) {
     flex-direction: row;
   }
 `;
 
-export const PlayerButtons = styled.div`
-  display: flex;
-  flex-direction: row;
+export const PlayerControls = styled(motion.div)`
+  display: grid;
+  width: 100%;
+  grid-template-columns: 4rem 1fr 4rem;
+  grid-column-gap: 1.5rem;
   align-items: center;
   margin-bottom: 1.5rem;
 
   @media (min-width: ${dims.tabletBreak}) {
+    grid-template-columns: 4rem 1fr;
+    width: auto;
     margin-bottom: 0;
     margin-right: 1.5rem;
   }
 `;
 
-export const RewindButton = styled.button`
+export const DismissButton = styled(motion.button)`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  background: ${colors.white};
+  border-radius: 50%;
+  border: 0;
+  transition: background 0.2s;
+  font-size: 0;
+
+  &:hover {
+    background: ${darken(0.05, colors.white)};
+  }
+
+  img {
+    width: 40%;
+    height: 40%;
+  }
+`;
+
+export const PlayerButtons = styled(motion.div)`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const RewindButton = styled(motion.button)`
   position: relative;
   width: 4rem;
   height: 4rem;
@@ -72,7 +162,7 @@ export const RewindButton = styled.button`
   }
 `;
 
-export const PlayPauseButton = styled.button<PlayPauseButtonProps>`
+export const PlayPauseButton = styled(motion.button)<PlayPauseButtonProps>`
   display: flex;
   width: 4.8rem;
   height: 4.8rem;
@@ -98,7 +188,7 @@ export const PlayPauseButton = styled.button<PlayPauseButtonProps>`
     `}
 `;
 
-export const ForwardButton = styled.button`
+export const ForwardButton = styled(motion.button)`
   position: relative;
   width: 4rem;
   height: 4rem;
@@ -125,7 +215,34 @@ export const ForwardButton = styled.button`
   }
 `;
 
-export const AudioInfoContainer = styled.div`
+export const MinimizeButton = styled(motion.button)`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  background: ${colors.white};
+  border-radius: 50%;
+  border: 0;
+  transition: background 0.2s;
+  font-size: 0;
+
+  &:hover {
+    background: ${darken(0.05, colors.white)};
+  }
+
+  img {
+    width: 40%;
+    height: 40%;
+  }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    display: none;
+  }
+`;
+
+export const AudioInfoContainer = styled(motion.div)`
   flex: 1;
   width: 100%;
 
@@ -141,7 +258,7 @@ export const AudioInfoContainer = styled.div`
   }
 `;
 
-export const AudioProgressInfo = styled.div`
+export const AudioProgressInfo = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;

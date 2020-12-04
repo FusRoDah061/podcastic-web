@@ -57,19 +57,23 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
     setIsPaused(true);
   }, []);
 
+  const handleOnDismiss = useCallback(() => {
+    dismiss();
+  }, [dismiss]);
+
   return (
     <AudioPlayerContext.Provider value={{ play, isPlaying, pause, dismiss }}>
       {children}
 
-      {audioPlaying && (
-        <AudioPlayer
-          audio={audioPlaying}
-          isPaused={isPaused}
-          onPlay={handleOnPlay}
-          onPause={handleOnPause}
-          onEnd={handleOnEnd}
-        />
-      )}
+      <AudioPlayer
+        isOpen={!!audioPlaying}
+        audio={audioPlaying}
+        isPaused={isPaused}
+        onPlay={handleOnPlay}
+        onPause={handleOnPause}
+        onEnd={handleOnEnd}
+        onDismiss={handleOnDismiss}
+      />
     </AudioPlayerContext.Provider>
   );
 };

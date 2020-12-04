@@ -1,7 +1,8 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { colors } from '../../../styles/variables';
 
-export const AudioProgressBarStyled = styled.div`
+export const AudioProgressBarStyled = styled(motion.div)`
   position: relative;
   display: flex;
   align-items: center;
