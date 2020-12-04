@@ -64,6 +64,18 @@ export const AudioPlayerStyled = styled(motion.div)<AudioPlayerProps>`
           }
 
           ${AudioProgressInfo} {
+            ${AudioProgressBarStyled} {
+              input::-webkit-slider-thumb {
+                width: 0.4rem;
+                height: 0.4rem;
+              }
+
+              input::-moz-range-thumb {
+                width: 0.4rem;
+                height: 0.4rem;
+              }
+            }
+
             span {
               display: none;
             }

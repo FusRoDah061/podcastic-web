@@ -26,6 +26,7 @@ export const AudioProgressBarStyled = styled(motion.div)`
     border-radius: 50%;
     background: ${colors.greenDark};
     cursor: pointer;
+    transition: 0.2s;
     z-index: 15;
   }
 
@@ -35,6 +36,7 @@ export const AudioProgressBarStyled = styled(motion.div)`
     border-radius: 50%;
     background: ${colors.greenDark};
     cursor: pointer;
+    transition: 0.2s;
     z-index: 15;
   }
 `;
