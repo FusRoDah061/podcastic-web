@@ -6,6 +6,7 @@ export const colors = {
   greenLight: '#2CE560',
   white: '#FFFFFF',
   black: '#000000',
+  placeholderContent: '#F1F1F1',
 };
 
 export const dims = {

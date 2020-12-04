@@ -1,6 +1,13 @@
-import React, { FormEvent, useCallback, useEffect, useState } from 'react';
+import React, {
+  FormEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { useAnimation, Variants } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
+import { lighten } from 'polished';
 import {
   Container,
   Header,
@@ -18,7 +25,7 @@ import {
   SearchButton,
 } from './styles';
 
-import { dims } from '../../styles/variables';
+import { colors, dims } from '../../styles/variables';
 import logoImg from '../../assets/podcastic-white-logo.svg';
 import addIconDesktop from '../../assets/add-green-icon.svg';
 import addIconMobile from '../../assets/add-white-icon.svg';
@@ -26,9 +33,12 @@ import searchIcon from '../../assets/arrow-right-white-icon.svg';
 import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
 import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
 import arrowDownGrey from '../../assets/arrow-down-grey.svg';
-import PodcastItem from '../../components/PodcastItem';
+import PodcastItem, {
+  PodcastItemPlaceholder,
+} from '../../components/PodcastItem';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import { api } from '../../services/api';
+import range from '../../utils/range';
 
 const containerVariants: Variants = {
   initial: {
@@ -74,6 +84,7 @@ const Home: React.FC = () => {
   const [searchText, setSearchText] = useState('');
   const [podcasts, setPodcasts] = useState<PodcastDTO[]>([]);
   const [recentPodcasts, setRecentPodcasts] = useState<PodcastDTO[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchPodcasts() {
@@ -92,7 +103,15 @@ const Home: React.FC = () => {
       }
     }
 
-    Promise.all([fetchPodcasts(), fetchRecentPodcasts()]);
+    setIsLoading(true);
+
+    Promise.all([fetchPodcasts(), fetchRecentPodcasts()])
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   const handleSearchTextChange = useCallback(
@@ -122,6 +141,30 @@ const Home: React.FC = () => {
       await animationControls.start('hide');
     }
   }, [showRecentPodcasts, animationControls]);
+
+  const recentPodcastsPlaceholderItems = useMemo(() => {
+    return range(10).map(dummy => (
+      <li key={dummy}>
+        <PodcastItemPlaceholder
+          displayInfo={
+            window.innerWidth > Number(dims.tabletBreak.replace('px', ''))
+          }
+        />
+      </li>
+    ));
+  }, []);
+
+  const allPodcastsPlaceholderItems = useMemo(() => {
+    return range(10).map(dummy => (
+      <li key={dummy}>
+        <PodcastItemPlaceholder
+          displayInfo={
+            window.innerWidth > Number(dims.tabletBreak.replace('px', ''))
+          }
+        />
+      </li>
+    ));
+  }, []);
 
   return (
     <Container
@@ -172,6 +215,8 @@ const Home: React.FC = () => {
 
           <PodcastListContainer>
             <ul>
+              {isLoading && recentPodcastsPlaceholderItems}
+
               {recentPodcasts.map(podcast => (
                 <li key={podcast._id}>
                   <PodcastItem podcast={podcast} />
@@ -190,6 +235,8 @@ const Home: React.FC = () => {
 
           <PodcastGridContainer>
             <ul>
+              {isLoading && allPodcastsPlaceholderItems}
+
               {podcasts.map(podcast => (
                 <li key={podcast._id}>
                   <PodcastItem podcast={podcast} />
@@ -218,6 +265,8 @@ const Home: React.FC = () => {
 
         <AllRecentListContainer>
           <ul>
+            {isLoading && recentPodcastsPlaceholderItems}
+
             {recentPodcasts.map(podcast => (
               <li key={podcast._id}>
                 <PodcastItem podcast={podcast} />

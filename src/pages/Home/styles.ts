@@ -305,6 +305,7 @@ export const PodcastListContainer = styled.div`
     height: calc(100% - 4.8rem);
     flex: 1;
     padding: 0;
+    grid-template-columns: 100%;
 
     ul {
       flex-direction: column;
@@ -437,6 +438,7 @@ export const PodcastGridContainer = styled.div`
     flex: 1;
     padding: 0;
     scrollbar-color: ${colors.white} transparent;
+    grid-template-columns: 100%;
 
     &::-webkit-scrollbar-track {
       background: transparent;
