@@ -1,7 +1,6 @@
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Variants } from 'framer-motion';
-import { parseISO } from 'date-fns';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import { api } from '../../services/api';
 import {
@@ -29,8 +28,6 @@ import {
   EpisodesListContainer,
 } from './styles';
 import ImageOrLetter from '../../components/ImageOrLetter';
-import formatDate from '../../utils/formatDate';
-import formatDateAsTimeAgo from '../../utils/formatDateAsTimeAgo';
 
 import chevronLeftWhiteIcon from '../../assets/chevron-left-white-icon.svg';
 import chevronDownGreenIcon from '../../assets/chevron-down-green-icon.svg';
