@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 import { parseISO } from 'date-fns';
+import ContentLoader, { IContentLoaderProps } from 'react-content-loader';
+import { darken } from 'polished';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
 import { EpisodeItemStyled, EpisodeContent, EpisodeInfo } from './styles';
 import { useAudioPlayer } from '../../hooks/audioPlayer';
@@ -8,10 +10,16 @@ import playIcon from '../../assets/play-green-icon.svg';
 import pauseIcon from '../../assets/pause-green-icon.svg';
 import formatDate from '../../utils/formatDate';
 import formatDateAsTimeAgo from '../../utils/formatDateAsTimeAgo';
+import { colors } from '../../styles/variables';
+import random from '../../utils/random';
 
 interface EpisodeItemProps {
   episode: EpisodeDTO;
   onPlay?: (episode: EpisodeDTO, isPlaying: boolean) => void;
+}
+
+interface EpisodeItemPlaceholderProps extends IContentLoaderProps {
+  maxWidth?: number;
 }
 
 const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
@@ -54,6 +62,33 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
         </EpisodeInfo>
       </EpisodeContent>
     </EpisodeItemStyled>
+  );
+};
+
+export const EpisodeItemPlaceholder: React.FC<EpisodeItemPlaceholderProps> = ({
+  maxWidth,
+  ...rest
+}) => {
+  const width = useMemo(() => {
+    return maxWidth || 320;
+  }, [maxWidth]);
+
+  return (
+    <ContentLoader
+      speed={1}
+      width={width}
+      height={45}
+      viewBox={`0 0 ${width} 45`}
+      backgroundColor={colors.placeholderContent}
+      foregroundColor={darken(0.1, colors.placeholderContent)}
+      {...rest}
+    >
+      <circle cx="22" cy="22" r="22" />
+      <rect x="60" y="6" rx="0" ry="0" width={random(50, width)} height="16" />
+      <rect x="61" y="25" rx="0" ry="0" width="57" height="14" />
+      <rect x="146" y="25" rx="0" ry="0" width="57" height="14" />
+      <circle cx="132" cy="32" r="4" />
+    </ContentLoader>
   );
 };
 

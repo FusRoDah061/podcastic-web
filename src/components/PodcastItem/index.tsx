@@ -46,7 +46,7 @@ export const PodcastItemPlaceholder: React.FC<PodcastItemPlaceholderProps> = ({
 
   return (
     <ContentLoader
-      speed={2}
+      speed={1}
       width={displayInfo ? width : 90}
       height={90}
       viewBox={`0 0 ${displayInfo ? width : 90} 90`}

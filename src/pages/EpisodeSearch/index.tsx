@@ -1,5 +1,11 @@
 import { Variants } from 'framer-motion';
-import React, { FormEvent, useCallback, useEffect, useState } from 'react';
+import React, {
+  FormEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import useQuery from '../../hooks/query';
@@ -17,6 +23,9 @@ import {
 import closeIcon from '../../assets/close-black-icon.svg';
 import searchIcon from '../../assets/search-black-icon.svg';
 import EpisodesList from '../../components/EpisodesList';
+import range from '../../utils/range';
+import { EpisodeItemPlaceholder } from '../../components/EpisodeItem';
+import { dims } from '../../styles/variables';
 
 interface RouteParams {
   podcastId: string;
@@ -52,10 +61,13 @@ const EpisodeSearch: React.FC = () => {
     return text || '';
   });
   const [searchText, setSearchText] = useState(paramSearchText);
+  const [isLoading, setIsLoading] = useState(false);
 
   const searchEpisodes = useCallback(
     async nameToSearch => {
       if (!nameToSearch) return;
+
+      setIsLoading(true);
 
       const response = await api.get(`/podcasts/${podcastId}`, {
         params: {
@@ -66,6 +78,8 @@ const EpisodeSearch: React.FC = () => {
       if (response.status === 200) {
         setPodcast(response.data);
       }
+
+      setIsLoading(false);
     },
     [podcastId],
   );
@@ -92,6 +106,20 @@ const EpisodeSearch: React.FC = () => {
   const handleGoBack = useCallback(() => {
     history.goBack();
   }, [history]);
+
+  const episodesPlaceholderItems = useMemo(() => {
+    return range(10).map(dummy => (
+      <li key={dummy}>
+        <EpisodeItemPlaceholder
+          maxWidth={
+            window.innerWidth > Number(dims.tabletBreak.replace('px', ''))
+              ? 900
+              : undefined
+          }
+        />
+      </li>
+    ));
+  }, []);
 
   return (
     <Container
@@ -126,9 +154,13 @@ const EpisodeSearch: React.FC = () => {
           <h2>Search results</h2>
 
           <EpisodesListContainer>
-            {podcast ? (
-              <EpisodesList podcast={podcast} />
+            {isLoading ? (
+              <ul>{episodesPlaceholderItems}</ul>
             ) : (
+              podcast && <EpisodesList podcast={podcast} />
+            )}
+
+            {!podcast && (
               <ul>
                 <li>
                   <p>No episodes found</p>
