@@ -11,6 +11,7 @@ import {
 
 import chevronLeftBlackIcon from '../../assets/chevron-left-black-icon.svg';
 import { api } from '../../services/api';
+import Spinner from '../../components/Spinner';
 
 const containerVariants: Variants = {
   initial: {
@@ -35,19 +36,25 @@ const containerVariants: Variants = {
 const AddPodcast: React.FC = () => {
   const history = useHistory();
   const [feedUrl, setFeedUrl] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleAddPodcast = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      if (feedUrl) {
+      if (feedUrl && !isLoading) {
+        setIsLoading(true);
+
         await api.post('/podcasts', {
           feedUrl,
         });
 
+        setIsLoading(false);
+
         history.goBack();
       }
     },
-    [feedUrl, history],
+    [feedUrl, history, isLoading],
   );
 
   return (
@@ -78,7 +85,10 @@ const AddPodcast: React.FC = () => {
             />
           </label>
 
-          <AddPodcastConfirmButton type="submit">Add</AddPodcastConfirmButton>
+          <AddPodcastConfirmButton type="submit">
+            {isLoading && <Spinner />}
+            Add
+          </AddPodcastConfirmButton>
         </form>
       </PageContent>
     </Container>

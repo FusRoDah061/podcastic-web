@@ -3,6 +3,7 @@ import { darken } from 'polished';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { colors, dims } from '../../styles/variables';
+import { SpinnerStyled } from '../../components/Spinner/styles';
 
 export const Container = styled(motion.main)`
   display: flex;
@@ -95,7 +96,10 @@ export const PageContent = styled.div`
 `;
 
 export const AddPodcastConfirmButton = styled.button`
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   width: 13rem;
   color: ${colors.textLight};
   background: ${colors.greenLight};
@@ -105,10 +109,14 @@ export const AddPodcastConfirmButton = styled.button`
   padding: 0.9rem 2rem;
   border-radius: 1rem;
   border: 2px solid ${colors.greenDark};
-  transition: background 0.2s;
+  transition: 0.2s;
 
   &:hover {
     background: ${darken(0.05, colors.greenLight)};
+  }
+
+  ${SpinnerStyled} {
+    margin-right: 0.9rem;
   }
 
   @media (min-width: ${dims.tabletBreak}) {
