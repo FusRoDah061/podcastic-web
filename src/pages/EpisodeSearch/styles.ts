@@ -111,6 +111,8 @@ export const EpisodesListContainer = styled.div`
     width: 100%;
 
     li {
+      list-style: none;
+
       & > p {
         color: ${colors.textDark};
         text-align: center;
