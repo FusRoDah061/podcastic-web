@@ -5,8 +5,6 @@ export default interface EpisodeDTO {
   date: Date;
   image: string;
   duration: string;
-  formattedDate?: string;
-  formattedDateAsTimeAgo?: string;
   file: {
     url: string;
     mediaType: string;

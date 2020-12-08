@@ -95,15 +95,6 @@ const Podcast: React.FC = () => {
       });
 
       if (response.status === 200) {
-        response.data.episodes.forEach((episode, index) => {
-          const parsedDate = parseISO(episode.date.toString());
-          response.data.episodes[index].formattedDate = formatDate(parsedDate);
-
-          response.data.episodes[
-            index
-          ].formattedDateAsTimeAgo = formatDateAsTimeAgo(parsedDate);
-        });
-
         setPodcast(response.data);
       }
     }
