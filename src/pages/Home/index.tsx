@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 import { useAnimation, Variants } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
-import { lighten } from 'polished';
 import {
   Container,
   Header,
@@ -25,7 +24,7 @@ import {
   SearchButton,
 } from './styles';
 
-import { colors, dims } from '../../styles/variables';
+import { dims } from '../../styles/variables';
 import logoImg from '../../assets/podcastic-white-logo.svg';
 import addIconDesktop from '../../assets/add-green-icon.svg';
 import addIconMobile from '../../assets/add-white-icon.svg';
@@ -217,11 +216,12 @@ const Home: React.FC = () => {
             <ul>
               {isLoading && recentPodcastsPlaceholderItems}
 
-              {recentPodcasts.map(podcast => (
-                <li key={podcast._id}>
-                  <PodcastItem podcast={podcast} />
-                </li>
-              ))}
+              {!isLoading &&
+                recentPodcasts.map(podcast => (
+                  <li key={podcast._id}>
+                    <PodcastItem podcast={podcast} />
+                  </li>
+                ))}
             </ul>
           </PodcastListContainer>
 
@@ -237,11 +237,12 @@ const Home: React.FC = () => {
             <ul>
               {isLoading && allPodcastsPlaceholderItems}
 
-              {podcasts.map(podcast => (
-                <li key={podcast._id}>
-                  <PodcastItem podcast={podcast} />
-                </li>
-              ))}
+              {!isLoading &&
+                podcasts.map(podcast => (
+                  <li key={podcast._id}>
+                    <PodcastItem podcast={podcast} />
+                  </li>
+                ))}
 
               <ViewAllPodcastsLink to="/all">
                 View all
@@ -267,11 +268,12 @@ const Home: React.FC = () => {
           <ul>
             {isLoading && recentPodcastsPlaceholderItems}
 
-            {recentPodcasts.map(podcast => (
-              <li key={podcast._id}>
-                <PodcastItem podcast={podcast} />
-              </li>
-            ))}
+            {!isLoading &&
+              recentPodcasts.map(podcast => (
+                <li key={podcast._id}>
+                  <PodcastItem podcast={podcast} />
+                </li>
+              ))}
           </ul>
         </AllRecentListContainer>
       </AllRecentPodcastsContainer>

@@ -1,6 +1,14 @@
-import React, { FormEvent, useCallback, useEffect, useState } from 'react';
+import React, {
+  FormEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { Variants } from 'framer-motion';
-import PodcastItem from '../../components/PodcastItem';
+import PodcastItem, {
+  PodcastItemPlaceholder,
+} from '../../components/PodcastItem';
 import useQuery from '../../hooks/query';
 import {
   Container,
@@ -16,6 +24,8 @@ import arrowLeftWhite from '../../assets/arrow-left-white-icon.svg';
 import searchIcon from '../../assets/search-white-icon.svg';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import { api } from '../../services/api';
+import range from '../../utils/range';
+import { dims } from '../../styles/variables';
 
 const containerVariants: Variants = {
   initial: {
@@ -45,15 +55,20 @@ const Search: React.FC = () => {
     return text || '';
   });
   const [searchText, setSearchText] = useState(paramSearchText);
+  const [isLoading, setIsLoading] = useState(false);
 
   const searchPodcasts = useCallback(async nameToSearch => {
     if (!nameToSearch) return;
+
+    setIsLoading(true);
 
     const response = await api.get('/podcasts/search', {
       params: {
         q: nameToSearch,
       },
     });
+
+    setIsLoading(false);
 
     if (response.status === 200) {
       setPodcasts(response.data);
@@ -78,6 +93,20 @@ const Search: React.FC = () => {
     },
     [],
   );
+
+  const podcastsPlaceholderItems = useMemo(() => {
+    return range(5).map(dummy => (
+      <li key={dummy}>
+        <PodcastItemPlaceholder
+          maxWidth={
+            window.innerWidth > Number(dims.tabletBreak.replace('px', ''))
+              ? 900
+              : undefined
+          }
+        />
+      </li>
+    ));
+  }, []);
 
   return (
     <Container
@@ -113,11 +142,14 @@ const Search: React.FC = () => {
 
           <PodcastsList>
             <ul>
-              {podcasts.map(podcast => (
-                <li key={podcast._id}>
-                  <PodcastItem podcast={podcast} />
-                </li>
-              ))}
+              {isLoading && podcastsPlaceholderItems}
+
+              {!isLoading &&
+                podcasts.map(podcast => (
+                  <li key={podcast._id}>
+                    <PodcastItem podcast={podcast} />
+                  </li>
+                ))}
             </ul>
           </PodcastsList>
         </PageContent>

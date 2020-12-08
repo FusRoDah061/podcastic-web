@@ -1,5 +1,5 @@
 import { darken } from 'polished';
-import React from 'react';
+import React, { useMemo } from 'react';
 import ContentLoader, { IContentLoaderProps } from 'react-content-loader';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import { colors } from '../../styles/variables';
@@ -13,6 +13,7 @@ interface PodcastItemProps {
 
 interface PodcastItemPlaceholderProps extends IContentLoaderProps {
   displayInfo?: boolean;
+  maxWidth?: number;
 }
 
 const PodcastItem: React.FC<PodcastItemProps> = ({ podcast }) => {
@@ -36,14 +37,19 @@ const PodcastItem: React.FC<PodcastItemProps> = ({ podcast }) => {
 
 export const PodcastItemPlaceholder: React.FC<PodcastItemPlaceholderProps> = ({
   displayInfo = true,
+  maxWidth,
   ...rest
 }) => {
+  const width = useMemo(() => {
+    return maxWidth || 320;
+  }, [maxWidth]);
+
   return (
     <ContentLoader
       speed={2}
-      width={displayInfo ? 320 : 90}
+      width={displayInfo ? width : 90}
       height={90}
-      viewBox={`0 0 ${displayInfo ? 320 : 90} 90`}
+      viewBox={`0 0 ${displayInfo ? width : 90} 90`}
       backgroundColor={colors.placeholderContent}
       foregroundColor={darken(0.1, colors.placeholderContent)}
       {...rest}
@@ -57,7 +63,7 @@ export const PodcastItemPlaceholder: React.FC<PodcastItemPlaceholderProps> = ({
             y="10"
             rx="0"
             ry="0"
-            width={random(50, 320)}
+            width={random(50, width)}
             height="20"
           />
           <rect
@@ -65,7 +71,7 @@ export const PodcastItemPlaceholder: React.FC<PodcastItemPlaceholderProps> = ({
             y="35"
             rx="0"
             ry="0"
-            width={random(50, 320)}
+            width={random(50, width)}
             height="13"
           />
           <rect
@@ -73,7 +79,7 @@ export const PodcastItemPlaceholder: React.FC<PodcastItemPlaceholderProps> = ({
             y="52"
             rx="0"
             ry="0"
-            width={random(50, 320)}
+            width={random(50, width)}
             height="13"
           />
           <rect
@@ -81,7 +87,7 @@ export const PodcastItemPlaceholder: React.FC<PodcastItemPlaceholderProps> = ({
             y="69"
             rx="0"
             ry="0"
-            width={random(50, 320)}
+            width={random(50, width)}
             height="13"
           />
         </>
