@@ -157,10 +157,11 @@ const EpisodeSearch: React.FC = () => {
             {isLoading ? (
               <ul>{episodesPlaceholderItems}</ul>
             ) : (
-              podcast && <EpisodesList podcast={podcast} />
+              podcast &&
+              podcast.episodes.length > 0 && <EpisodesList podcast={podcast} />
             )}
 
-            {!podcast && (
+            {(!podcast || podcast.episodes.length <= 0) && (
               <ul>
                 <li>
                   <p>No episodes found</p>
