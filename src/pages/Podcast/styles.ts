@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 import { EpisodesListStyled } from '../../components/EpisodesList/styles';
 import { ImageOrLetterStyled } from '../../components/ImageOrLetter/styles';
 import { RandomEpisodeStyled } from '../../components/RandomEpisode/styles';
+import { SpinnerStyled } from '../../components/Spinner/styles';
 import { colors, dims } from '../../styles/variables';
 
 interface RandomEpisodePopupContainerProps {
@@ -60,12 +61,24 @@ export const GoBackButton = styled.button`
 `;
 
 export const PageContent = styled.section`
+  display: flex;
+  justify-content: center;
+  width: 100%;
   height: calc(100% - 6rem);
   padding: 0rem 1.7rem;
+
+  & > ${SpinnerStyled} {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   @media (min-width: ${dims.tabletBreak}) {
     height: calc(100% - 10rem);
     padding: 0rem 3rem;
+    align-items: center;
   }
 `;
 
@@ -74,6 +87,7 @@ export const HasPodcastPageContainer = styled.div`
   flex-direction: column;
   margin-top: -8rem;
   max-height: 100%;
+  width: 100%;
 
   @media (min-width: ${dims.tabletBreak}) {
     display: grid;
@@ -366,7 +380,12 @@ export const EpisodesFiltersForm = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
   flex: 1;
+
+  ${SpinnerStyled} {
+    margin-right: 1.2rem;
+  }
 `;
 
 export const EpisodeSearchInputContainer = styled.div`
@@ -411,6 +430,7 @@ export const EpisodeSearchInputContainer = styled.div`
 export const EpisodesSortSelectContainer = styled.div`
   display: block;
   position: relative;
+  height: 100%;
 
   select {
     width: 100%;

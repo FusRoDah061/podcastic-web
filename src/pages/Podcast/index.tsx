@@ -84,15 +84,20 @@ const Podcast: React.FC = () => {
   const [sort, setSort] = useState('newest');
   const [episodeToSearch, setEpisodeToSearch] = useState('');
   const [isLoadingRandom, setIsLoadingRandom] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchPodcast() {
+      setIsLoading(true);
+
       const response = await api.get<PodcastDTO>(`/podcasts/${podcastId}`, {
         params: {
           sort,
           q: episodeToSearch,
         },
       });
+
+      setIsLoading(false);
 
       if (response.status === 200) {
         setPodcast(response.data);
@@ -245,6 +250,10 @@ const Podcast: React.FC = () => {
                 <p>Episodes</p>
 
                 <EpisodesFiltersForm onSubmit={handleEpisodeSearch}>
+                  {isLoading && (
+                    <Spinner color={colors.greenDark} size={30} thickness={3} />
+                  )}
+
                   <EpisodeSearchInputContainer>
                     <input
                       type="text"
@@ -283,6 +292,10 @@ const Podcast: React.FC = () => {
               </EpisodesListContainer>
             </EpisodesContainer>
           </HasPodcastPageContainer>
+        )}
+
+        {!podcast && (
+          <Spinner color={colors.greenDark} size={50} thickness={5} />
         )}
       </PageContent>
     </Container>
