@@ -275,6 +275,9 @@ export const RandomEpisodePopupBody = styled.div`
 `;
 
 export const RandomEpisodePopupEpisode = styled.div`
+  display: flex;
+  justify-content: center;
+
   ${RandomEpisodeStyled} {
     button {
       width: 10rem;

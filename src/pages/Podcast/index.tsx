@@ -37,6 +37,8 @@ import EpisodeDTO from '../../dtos/EpisodeDTO';
 import EpisodesList from '../../components/EpisodesList';
 import { useAudioPlayer } from '../../hooks/audioPlayer';
 import RandomEpisode from '../../components/RandomEpisode';
+import Spinner from '../../components/Spinner';
+import { colors } from '../../styles/variables';
 
 interface RouteParams {
   podcastId: string;
@@ -81,6 +83,7 @@ const Podcast: React.FC = () => {
   const [randomEpisode, setRandomEpisode] = useState<EpisodeDTO>();
   const [sort, setSort] = useState('newest');
   const [episodeToSearch, setEpisodeToSearch] = useState('');
+  const [isLoadingRandom, setIsLoadingRandom] = useState(false);
 
   useEffect(() => {
     async function fetchPodcast() {
@@ -104,9 +107,13 @@ const Podcast: React.FC = () => {
   }, [history]);
 
   const getRandomEpisode = useCallback(async () => {
+    setIsLoadingRandom(true);
+
     const response = await api.get<EpisodeDTO>(
       `/podcasts/${podcastId}/episodes/random`,
     );
+
+    setIsLoadingRandom(false);
 
     if (response.status === 200) {
       setRandomEpisode(response.data);
@@ -204,7 +211,15 @@ const Podcast: React.FC = () => {
                     <p>Here’s your randomly picked episode:</p>
 
                     <RandomEpisodePopupEpisode>
-                      {randomEpisode && (
+                      {isLoadingRandom && (
+                        <Spinner
+                          color={colors.greenDark}
+                          size={50}
+                          thickness={5}
+                        />
+                      )}
+
+                      {!isLoadingRandom && randomEpisode && (
                         <RandomEpisode
                           episode={randomEpisode}
                           onPlay={handlePlayRandomEpisode}
