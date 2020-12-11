@@ -122,10 +122,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   }, [audioCurrentTimeMs, audioDurationMs, updateCurrentTime]);
 
   const handlePlayPause = useCallback(() => {
-    if (isPaused) {
-      if (onPlay) onPlay();
-    } else if (onPause) onPause();
-  }, [isPaused, onPlay, onPause]);
+    setIsPlaying(!isPlaying);
+  }, [isPlaying]);
 
   const handleMinimizePlayer = useCallback(() => {
     setIsMinimized(!isMinimized);
@@ -134,6 +132,10 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const handleOnPause = useCallback(() => {
     if (onPause) onPause();
   }, [onPause]);
+
+  const handleOnPlay = useCallback(() => {
+    if (onPlay) onPlay();
+  }, [onPlay]);
 
   const handleDurationChange = useCallback((duration: number) => {
     const durationMs = duration * 1000;
@@ -211,7 +213,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
                 <PlayPauseButton
                   layout
-                  isPlaying={!isPaused}
+                  isPlaying={isPlaying}
                   onClick={handlePlayPause}
                 >
                   <img
@@ -267,6 +269,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                   playing={isPlaying && !isSeeking}
                   controls={false}
                   onPause={handleOnPause}
+                  onPlay={handleOnPlay}
                   onProgress={handleTimeUpdate}
                   onDuration={handleDurationChange}
                   onEnded={handleEnded}
