@@ -12,7 +12,7 @@ import PodcastItem, {
   PodcastItemPlaceholder,
 } from '../../components/PodcastItem';
 import PodcastDTO from '../../dtos/PodcastDTO';
-import { api } from '../../services/api';
+import api from '../../services/api';
 import range from '../../utils/range';
 
 const containerVariants: Variants = {
@@ -43,7 +43,7 @@ const AllPodcasts: React.FC = () => {
     async function fetchPodcasts() {
       setIsLoading(true);
 
-      const response = await api.get('/podcasts');
+      const response = await api.getAllPodcasts();
 
       if (response.status === 200) {
         setPodcasts(response.data);

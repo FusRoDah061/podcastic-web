@@ -10,7 +10,7 @@ import {
 } from './styles';
 
 import chevronLeftBlackIcon from '../../assets/chevron-left-black-icon.svg';
-import { api } from '../../services/api';
+import api from '../../services/api';
 import Spinner from '../../components/Spinner';
 
 const containerVariants: Variants = {
@@ -46,13 +46,11 @@ const AddPodcast: React.FC = () => {
         setIsLoading(true);
 
         try {
-          await api.post('/podcasts', {
-            feedUrl,
-          });
+          await api.addPodcast(feedUrl);
 
           history.goBack();
         } catch (err) {
-          // console.log(err.request.response);
+          // console.log(err.request.parsedResponse);
           setIsLoading(false);
         }
 

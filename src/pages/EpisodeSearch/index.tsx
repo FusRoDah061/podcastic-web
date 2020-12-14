@@ -9,7 +9,7 @@ import React, {
 import { useHistory, useParams } from 'react-router-dom';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import useQuery from '../../hooks/query';
-import { api } from '../../services/api';
+import api from '../../services/api';
 import {
   Container,
   GoBackButton,
@@ -69,10 +69,9 @@ const EpisodeSearch: React.FC = () => {
 
       setIsLoading(true);
 
-      const response = await api.get(`/podcasts/${podcastId}`, {
-        params: {
-          q: nameToSearch,
-        },
+      const response = await api.getPodcast({
+        podcastId,
+        episodeToSearch: nameToSearch,
       });
 
       if (response.status === 200) {

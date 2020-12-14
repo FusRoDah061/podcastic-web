@@ -23,7 +23,7 @@ import {
 import arrowLeftWhite from '../../assets/arrow-left-white-icon.svg';
 import searchIcon from '../../assets/search-white-icon.svg';
 import PodcastDTO from '../../dtos/PodcastDTO';
-import { api } from '../../services/api';
+import api from '../../services/api';
 import range from '../../utils/range';
 import { dims } from '../../styles/variables';
 
@@ -62,11 +62,7 @@ const Search: React.FC = () => {
 
     setIsLoading(true);
 
-    const response = await api.get('/podcasts/search', {
-      params: {
-        q: nameToSearch,
-      },
-    });
+    const response = await api.searchPodcasts(nameToSearch);
 
     setIsLoading(false);
 

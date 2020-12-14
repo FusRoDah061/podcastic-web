@@ -2,7 +2,7 @@ import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Variants } from 'framer-motion';
 import PodcastDTO from '../../dtos/PodcastDTO';
-import { api } from '../../services/api';
+import api from '../../services/api';
 import {
   Container,
   HeaderContainer,
@@ -90,11 +90,10 @@ const Podcast: React.FC = () => {
     async function fetchPodcast() {
       setIsLoading(true);
 
-      const response = await api.get<PodcastDTO>(`/podcasts/${podcastId}`, {
-        params: {
-          sort,
-          q: episodeToSearch,
-        },
+      const response = await api.getPodcast({
+        podcastId,
+        sort,
+        episodeToSearch,
       });
 
       setIsLoading(false);
@@ -114,9 +113,7 @@ const Podcast: React.FC = () => {
   const getRandomEpisode = useCallback(async () => {
     setIsLoadingRandom(true);
 
-    const response = await api.get<EpisodeDTO>(
-      `/podcasts/${podcastId}/episodes/random`,
-    );
+    const response = await api.getRandomEpisode(podcastId);
 
     setIsLoadingRandom(false);
 
