@@ -45,13 +45,18 @@ const AddPodcast: React.FC = () => {
       if (feedUrl && !isLoading) {
         setIsLoading(true);
 
-        await api.post('/podcasts', {
-          feedUrl,
-        });
+        try {
+          await api.post('/podcasts', {
+            feedUrl,
+          });
+
+          history.goBack();
+        } catch (err) {
+          // console.log(err.request.response);
+          setIsLoading(false);
+        }
 
         setIsLoading(false);
-
-        history.goBack();
       }
     },
     [feedUrl, history, isLoading],
