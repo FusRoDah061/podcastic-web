@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import EpisodeDTO from '../dtos/EpisodeDTO';
 import PodcastDTO from '../dtos/PodcastDTO';
-import getLocale from '../utils/getLocale';
+import { getLocale } from '../utils/localeUtils';
 
 type ApiResponse<T> = Promise<AxiosResponse<T>>;
 

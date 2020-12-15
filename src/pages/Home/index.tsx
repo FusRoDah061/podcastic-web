@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import { useAnimation, Variants } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 import {
   Container,
   Header,
@@ -190,7 +191,10 @@ const Home: React.FC = () => {
               />
               <img src={addIconMobile} alt="Add podcast" />
             </picture>
-            Add podcast
+            <FormattedMessage
+              id="home.addPodcast"
+              defaultMessage="Add podcast"
+            />
           </AddPodcastButton>
         </HeaderTop>
 

@@ -14,16 +14,12 @@ const Routes: React.FC = () => {
   return (
     <AnimatePresence exitBeforeEnter>
       <Switch location={location} key={location.key}>
-        <Route exact path="/new" component={AddPodcast} />
-        <Route exact path="/all" component={AllPodcasts} />
-        <Route exact path="/search" component={Search} />
-        <Route exact path="/podcast/:podcastId" component={Podcast} />
-        <Route
-          exact
-          path="/podcast/:podcastId/search"
-          component={EpisodeSearch}
-        />
         <Route exact path="/" component={Home} />
+        <Route path="/new" component={AddPodcast} />
+        <Route path="/all" component={AllPodcasts} />
+        <Route path="/search" component={Search} />
+        <Route path="/podcast/:podcastId" component={Podcast} />
+        <Route path="/podcast/:podcastId/search" component={EpisodeSearch} />
       </Switch>
     </AnimatePresence>
   );
