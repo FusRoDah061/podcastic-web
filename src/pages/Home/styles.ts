@@ -73,6 +73,7 @@ export const HeaderTop = styled.div`
         max-width: 100%;
         font-size: 1.8rem;
         margin-left: 1.6rem;
+        margin-top: 0;
       }
     }
   }
