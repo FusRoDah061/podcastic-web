@@ -1,3 +1,16 @@
 {
-  "home.addPodcast": "Add podcast"
+  "home.podcasticLogo": "Podcastic logo",
+  "home.slogan1": "Your favorite podcasts, ",
+  "home.slogan2": "quick",
+  "home.slogan3": "and",
+  "home.slogan4": "easy.",
+  "home.addPodcast": "Add podcast",
+  "home.searchForAPodcast": "Search for a podcast",
+  "home.search": "Search",
+  "home.recentlyAdded": "Recently added",
+  "home.viewAllRecent": "View all recent",
+  "home.all": "All",
+  "home.viewAll": "View all",
+  "home.dismiss": "Dismiss",
+  "home.recentylAddedPodcasts": "Recently added podcasts"
 }

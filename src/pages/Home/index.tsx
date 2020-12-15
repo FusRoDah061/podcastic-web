@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { useIntl } from 'react-intl';
 import { useAnimation, Variants } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -79,6 +80,7 @@ const recentPodcastsVariants: Variants = {
 
 const Home: React.FC = () => {
   const history = useHistory();
+  const intl = useIntl();
   const animationControls = useAnimation();
   const [showRecentPodcasts, setShowRecentPodcasts] = useState(false);
   const [searchText, setSearchText] = useState('');
@@ -176,10 +178,25 @@ const Home: React.FC = () => {
       <Header>
         <HeaderTop>
           <div>
-            <img src={logoImg} alt="Podcastic logo" />
+            <img
+              src={logoImg}
+              alt={intl.formatMessage({
+                id: 'home.podcasticLogo',
+                defaultMessage: 'Podcastic logo',
+              })}
+            />
             <h1>
-              Your favorite podcasts, <strong>simple</strong> and{' '}
-              <strong>easy</strong>.
+              <FormattedMessage
+                id="home.slogan1"
+                defaultMessage="Your favorite podcasts, "
+              />{' '}
+              <strong>
+                <FormattedMessage id="home.slogan2" defaultMessage="quick" />
+              </strong>{' '}
+              <FormattedMessage id="home.slogan3" defaultMessage="and" />{' '}
+              <strong>
+                <FormattedMessage id="home.slogan4" defaultMessage="easy." />
+              </strong>
             </h1>
           </div>
 
@@ -189,7 +206,13 @@ const Home: React.FC = () => {
                 media={`(min-width: ${dims.tabletBreak})`}
                 srcSet={addIconDesktop}
               />
-              <img src={addIconMobile} alt="Add podcast" />
+              <img
+                src={addIconMobile}
+                alt={intl.formatMessage({
+                  id: 'home.addPodcast',
+                  defaultMessage: 'Add podcast',
+                })}
+              />
             </picture>
             <FormattedMessage
               id="home.addPodcast"
@@ -202,19 +225,33 @@ const Home: React.FC = () => {
           <input
             type="text"
             value={searchText}
-            placeholder="Search for a podcast"
+            placeholder={intl.formatMessage({
+              id: 'home.searchForAPodcast',
+              defaultMessage: 'Search for a podcast',
+            })}
             onChange={handleSearchTextChange}
           />
 
           <SearchButton type="submit" disabled={searchText.length === 0}>
-            <img src={searchIcon} alt="Search" />
+            <img
+              src={searchIcon}
+              alt={intl.formatMessage({
+                id: 'home.search',
+                defaultMessage: 'Search',
+              })}
+            />
           </SearchButton>
         </SearchContainer>
       </Header>
 
       <PodcastsContainer>
         <RecentlyAddedPodcastsContainer>
-          <h2>Recently added</h2>
+          <h2>
+            <FormattedMessage
+              id="home.recentlyAdded"
+              defaultMessage="Recently added"
+            />
+          </h2>
 
           <PodcastListContainer>
             <ul>
@@ -230,12 +267,20 @@ const Home: React.FC = () => {
           </PodcastListContainer>
 
           <button type="button" onClick={toggleAllRecentePodcasts}>
-            <img src={chevronRightBlackIcon} alt="View all recent" />
+            <img
+              src={chevronRightBlackIcon}
+              alt={intl.formatMessage({
+                id: 'home.viewAllRecent',
+                defaultMessage: 'View all recent',
+              })}
+            />
           </button>
         </RecentlyAddedPodcastsContainer>
 
         <AllPodcastsContainer>
-          <h2>All</h2>
+          <h2>
+            <FormattedMessage id="home.all" defaultMessage="All" />
+          </h2>
 
           <PodcastGridContainer>
             <ul>
@@ -249,8 +294,14 @@ const Home: React.FC = () => {
                 ))}
 
               <ViewAllPodcastsLink to="/all">
-                View all
-                <img src={chevronRightWhiteIcon} alt="View all recent" />
+                <FormattedMessage id="home.viewAll" defaultMessage="View all" />
+                <img
+                  src={chevronRightWhiteIcon}
+                  alt={intl.formatMessage({
+                    id: 'home.viewAll',
+                    defaultMessage: 'View all',
+                  })}
+                />
               </ViewAllPodcastsLink>
             </ul>
           </PodcastGridContainer>
@@ -263,10 +314,21 @@ const Home: React.FC = () => {
         animate={animationControls}
       >
         <button type="button" onClick={toggleAllRecentePodcasts}>
-          <img src={arrowDownGrey} alt="Dismiss" />
+          <img
+            src={arrowDownGrey}
+            alt={intl.formatMessage({
+              id: 'home.dismiss',
+              defaultMessage: 'Dismiss',
+            })}
+          />
         </button>
 
-        <h2>Recently added podcasts</h2>
+        <h2>
+          <FormattedMessage
+            id="home.recentylAddedPodcasts"
+            defaultMessage="Recently added podcasts"
+          />
+        </h2>
 
         <AllRecentListContainer>
           <ul>

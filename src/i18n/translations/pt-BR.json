@@ -1,3 +1,16 @@
 {
-  "home.addPodcast": "Novo podcast"
+  "home.podcasticLogo": "Logotipo do Podcastic",
+  "home.slogan1": "Seus podcasts favoritos, ",
+  "home.slogan2": "rápido",
+  "home.slogan3": "e",
+  "home.slogan4": "fácil.",
+  "home.addPodcast": "Novo podcast",
+  "home.searchForAPodcast": "Pesquisar podcast",
+  "home.search": "Pesquisar",
+  "home.recentlyAdded": "Adicionados recentemente",
+  "home.viewAllRecent": "Ver todos recentes",
+  "home.all": "Todos",
+  "home.viewAll": "Ver todos",
+  "home.dismiss": "Fechar",
+  "home.recentylAddedPodcasts": "Podcasts adicionados recentemente"
 }
