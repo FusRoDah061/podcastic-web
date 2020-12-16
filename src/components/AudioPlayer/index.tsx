@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { AnimatePresence, Variants } from 'framer-motion';
+import { FormattedMessage, useIntl } from 'react-intl';
 import {
   AudioPlayerStyled,
   AudioPlayerContent,
@@ -69,6 +70,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   onEnd,
   onDismiss,
 }) => {
+  const intl = useIntl();
   const reactPlayerRef = useRef<ReactPlayer>(null);
   const [isPlaying, setIsPlaying] = useState(!isPaused);
   const [isSeeking, setIsSeeking] = useState(false);
@@ -197,16 +199,27 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
           <AudioPlayerContent layout>
             <PlayerControls layout>
               <DismissButton layout type="button" onClick={handleDismissPlayer}>
-                <img src={dismissIcon} alt="Dismiss player" />
-                Dismiss player
+                <img
+                  src={dismissIcon}
+                  alt={intl.formatMessage({
+                    id: 'audioPlayer.dismissPlayer',
+                    defaultMessage: 'Dismiss player',
+                  })}
+                />
+                <FormattedMessage
+                  id="audioPlayer.dismissPlayer"
+                  defaultMessage="Dismiss player"
+                />
               </DismissButton>
 
               <PlayerButtons layout>
                 <RewindButton layout type="button" onClick={handleRewind}>
                   <img
                     src={rewindIcon}
-                    alt="Rewind 15 seconds"
-                    aria-label="Rewind 15 seconds"
+                    alt={intl.formatMessage({
+                      id: 'audioPlayer.rewind15Seconds',
+                      defaultMessage: 'Rewind 15 seconds',
+                    })}
                   />
                   15
                 </RewindButton>
@@ -218,16 +231,27 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 >
                   <img
                     src={isPlaying ? pauseIcon : playIcon}
-                    alt={isPlaying ? 'Pause' : 'Play'}
-                    aria-label={isPlaying ? 'Pause' : 'Play'}
+                    alt={
+                      isPlaying
+                        ? intl.formatMessage({
+                            id: 'audioPlayer.pause',
+                            defaultMessage: 'Pause',
+                          })
+                        : intl.formatMessage({
+                            id: 'audioPlayer.play',
+                            defaultMessage: 'Play',
+                          })
+                    }
                   />
                 </PlayPauseButton>
 
                 <ForwardButton layout type="button" onClick={handleForward}>
                   <img
                     src={forwardIcon}
-                    alt="Advance 15 seconds"
-                    aria-label="Advance 15 seconds"
+                    alt={intl.formatMessage({
+                      id: 'audioPlayer.advance15Seconds',
+                      defaultMessage: 'Advance 15 seconds',
+                    })}
                   />
                   15
                 </ForwardButton>
@@ -240,9 +264,30 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
               >
                 <img
                   src={isMinimized ? maximizeIcon : minimizeIcon}
-                  alt={isMinimized ? 'Maximize player' : 'Minimize player'}
+                  alt={
+                    isMinimized
+                      ? intl.formatMessage({
+                          id: 'audioPlayer.maximizePlayer',
+                          defaultMessage: 'Maximize player',
+                        })
+                      : intl.formatMessage({
+                          id: 'audioPlayer.minimizePlayer',
+                          defaultMessage: 'Minimize player',
+                        })
+                  }
                 />
-                {isMinimized ? 'Maximize player' : 'Minimize player'}
+
+                {isMinimized ? (
+                  <FormattedMessage
+                    id="audioPlayer.maximizePlayer"
+                    defaultMessage="Maximize player"
+                  />
+                ) : (
+                  <FormattedMessage
+                    id="audioPlayer.minimizePlayer"
+                    defaultMessage="Minimize player"
+                  />
+                )}
               </MinimizeButton>
             </PlayerControls>
 

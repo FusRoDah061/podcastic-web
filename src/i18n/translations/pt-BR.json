@@ -34,5 +34,12 @@
   "podcast.longest": "Mais longos",
   "podcast.shortest": "Mais curtos",
   "episodeSearch.searchHereForAnEpisode": "Buscar um episódio",
-  "episodeSearch.noEpisodesFound": "Nenhum episódio encontrado"
+  "episodeSearch.noEpisodesFound": "Nenhum episódio encontrado",
+  "audioPlayer.dismissPlayer": "Fechar player",
+  "audioPlayer.rewind15Seconds": "Retroceder 15 segundos",
+  "audioPlayer.pause": "Pausar",
+  "audioPlayer.play": "Reproduzir",
+  "audioPlayer.advance15Seconds": "Avançar 15 segundos",
+  "audioPlayer.maximizePlayer": "Maximizar player",
+  "audioPlayer.minimizePlayer": "Minimizar player"
 }
