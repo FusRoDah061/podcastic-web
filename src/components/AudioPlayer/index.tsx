@@ -75,7 +75,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const [audioPlaying, setAudioPlaying] = useState(audio);
   const [audioDurationMs, setAudioDurationMs] = useState(0);
   const [formattedAudioDuration, setFormattedAudioDuration] = useState(
-    audioPlaying?.duration || 0,
+    audioPlaying?.duration || '00:00:00',
   );
   const [audioCurrentTimeMs, setAudioCurrentTimeMs] = useState(0);
   const [formattedAudioCurrentTime, setFormattedAudioCurrentTime] = useState(
