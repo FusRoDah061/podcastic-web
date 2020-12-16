@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Variants } from 'framer-motion';
+import { FormattedMessage, useIntl } from 'react-intl';
 import {
   Container,
   AllPodcastsHeader,
@@ -36,6 +37,7 @@ const containerVariants: Variants = {
 };
 
 const AllPodcasts: React.FC = () => {
+  const intl = useIntl();
   const [podcasts, setPodcasts] = useState<PodcastDTO[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -72,8 +74,17 @@ const AllPodcasts: React.FC = () => {
     >
       <AllPodcastsHeader>
         <GoBackLink to="/">
-          <img src={chevronLeftBlackIcon} alt="Go back" />
-          All podcasts
+          <img
+            src={chevronLeftBlackIcon}
+            alt={intl.formatMessage({
+              id: 'allPodcasts.goBack',
+              defaultMessage: 'Go back',
+            })}
+          />
+          <FormattedMessage
+            id="addPodcasts.allPodcasts"
+            defaultMessage="All podcasts"
+          />
         </GoBackLink>
       </AllPodcastsHeader>
 

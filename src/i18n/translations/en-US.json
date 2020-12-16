@@ -12,5 +12,7 @@
   "home.all": "All",
   "home.viewAll": "View all",
   "home.dismiss": "Dismiss",
-  "home.recentylAddedPodcasts": "Recently added podcasts"
+  "home.recentylAddedPodcasts": "Recently added podcasts",
+  "allPodcasts.goBack": "Go back",
+  "addPodcasts.allPodcasts": "All podcasts"
 }
