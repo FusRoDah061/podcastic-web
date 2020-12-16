@@ -21,5 +21,16 @@
   "addPodcast.add": "Add",
   "search.goBackToHome": "Go back to home",
   "search.searchHereForAPodcast": "Search here for a podcast",
-  "search.searchResults": "Search results"
+  "search.searchResults": "Search results",
+  "podcast.pickARandomEpisode": "Pick a random episode",
+  "podcast.weGotyou": "We got you!",
+  "podcast.heresYourRandomlyPickedEpisode": "Here’s your randomly picked episode:",
+  "podcast.cancel": "Cancel",
+  "podcast.tryAgain": "Try again",
+  "podcast.episodes": "Episodes",
+  "podcast.searchEpisode": "Search episode",
+  "podcast.newest": "Newest",
+  "podcast.oldest": "Oldest",
+  "podcast.longest": "Longest",
+  "podcast.shortest": "Shortest"
 }

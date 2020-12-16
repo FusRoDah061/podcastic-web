@@ -1,6 +1,7 @@
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Variants } from 'framer-motion';
+import { FormattedMessage, useIntl } from 'react-intl';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import api from '../../services/api';
 import {
@@ -75,6 +76,7 @@ updated only once when the search form is submitted.
 let episodeToSearchTmp = '';
 
 const Podcast: React.FC = () => {
+  const intl = useIntl();
   const player = useAudioPlayer();
   const history = useHistory();
   const { podcastId } = useParams<RouteParams>();
@@ -174,8 +176,19 @@ const Podcast: React.FC = () => {
         </button>
 
         <GoBackButton type="button" onClick={handleGoBack}>
-          <img src={chevronLeftWhiteIcon} alt="Go back" />
-          {podcast ? podcast.name : 'Go back'}
+          <img
+            src={chevronLeftWhiteIcon}
+            alt={intl.formatMessage({
+              id: 'generic.goBack',
+              defaultMessage: 'Go back',
+            })}
+          />
+          {podcast
+            ? podcast.name
+            : intl.formatMessage({
+                id: 'generic.goBack',
+                defaultMessage: 'Go back',
+              })}
         </GoBackButton>
       </HeaderContainer>
 
@@ -200,17 +213,30 @@ const Podcast: React.FC = () => {
                 type="button"
                 onClick={handleShowRandomEpisode}
               >
-                Pick a random episode
+                <FormattedMessage
+                  id="podcast.pickARandomEpisode"
+                  defaultMessage="Pick a random episode"
+                />
               </RandomEpisodeButton>
 
               <RandomEpisodePopupContainer visible={showRandomEpisode}>
                 <RandomEpisodePopup>
                   <RandomEpisodePopupHeader>
-                    <p>We got you!</p>
+                    <p>
+                      <FormattedMessage
+                        id="podcast.weGotyou"
+                        defaultMessage="We got you!"
+                      />
+                    </p>
                   </RandomEpisodePopupHeader>
 
                   <RandomEpisodePopupBody>
-                    <p>Here’s your randomly picked episode:</p>
+                    <p>
+                      <FormattedMessage
+                        id="podcast.heresYourRandomlyPickedEpisode"
+                        defaultMessage="Here’s your randomly picked episode:"
+                      />
+                    </p>
 
                     <RandomEpisodePopupEpisode>
                       {isLoadingRandom && (
@@ -232,10 +258,16 @@ const Podcast: React.FC = () => {
 
                   <RandomEpisodePopupFooter>
                     <button type="button" onClick={handleHideRandomEpisode}>
-                      Cancel
+                      <FormattedMessage
+                        id="podcast.cancel"
+                        defaultMessage="Cancel"
+                      />
                     </button>
                     <button type="button" onClick={handleTryAgainRandomEpisode}>
-                      Try again
+                      <FormattedMessage
+                        id="podcast.tryAgain"
+                        defaultMessage="Try again"
+                      />
                     </button>
                   </RandomEpisodePopupFooter>
                 </RandomEpisodePopup>
@@ -244,7 +276,12 @@ const Podcast: React.FC = () => {
 
             <EpisodesContainer>
               <EpisodesContainerHeader>
-                <p>Episodes</p>
+                <p>
+                  <FormattedMessage
+                    id="podcast.episodes"
+                    defaultMessage="Episodes"
+                  />
+                </p>
 
                 <EpisodesFiltersForm onSubmit={handleEpisodeSearch}>
                   {isLoading && (
@@ -254,14 +291,23 @@ const Podcast: React.FC = () => {
                   <EpisodeSearchInputContainer>
                     <input
                       type="text"
-                      placeholder="Search episode"
+                      placeholder={intl.formatMessage({
+                        id: 'podcast.searchEpisode',
+                        defaultMessage: 'Search episode',
+                      })}
                       onChange={e => {
                         episodeToSearchTmp = e.target.value;
                       }}
                     />
 
                     <button type="submit">
-                      <img src={searchIconBlack} alt="Search episode" />
+                      <img
+                        src={searchIconBlack}
+                        alt={intl.formatMessage({
+                          id: 'podcast.searchEpisode',
+                          defaultMessage: 'Search episode',
+                        })}
+                      />
                     </button>
                   </EpisodeSearchInputContainer>
 
@@ -270,16 +316,42 @@ const Podcast: React.FC = () => {
                       defaultValue={sort}
                       onChange={e => setSort(e.target.value)}
                     >
-                      <option value="newest">Newest</option>
-                      <option value="oldest">Oldest</option>
-                      <option value="longest">Longest</option>
-                      <option value="shortest">Shortest</option>
+                      <option value="newest">
+                        {intl.formatMessage({
+                          id: 'podcast.newest',
+                          defaultMessage: 'Newest',
+                        })}
+                      </option>
+                      <option value="oldest">
+                        {intl.formatMessage({
+                          id: 'podcast.oldest',
+                          defaultMessage: 'Oldest',
+                        })}
+                      </option>
+                      <option value="longest">
+                        {intl.formatMessage({
+                          id: 'podcast.longest',
+                          defaultMessage: 'Longest',
+                        })}
+                      </option>
+                      <option value="shortest">
+                        {intl.formatMessage({
+                          id: 'podcast.shortest',
+                          defaultMessage: 'Shortest',
+                        })}
+                      </option>
                     </select>
                     <img src={chevronDownGreenIcon} alt="V" />
                   </EpisodesSortSelectContainer>
 
                   <MobileEpisodeSearchLink to={`/podcast/${podcastId}/search`}>
-                    <img src={searchIconBlack} alt="Search episode" />
+                    <img
+                      src={searchIconBlack}
+                      alt={intl.formatMessage({
+                        id: 'podcast.searchEpisode',
+                        defaultMessage: 'Search episode',
+                      })}
+                    />
                   </MobileEpisodeSearchLink>
                 </EpisodesFiltersForm>
               </EpisodesContainerHeader>

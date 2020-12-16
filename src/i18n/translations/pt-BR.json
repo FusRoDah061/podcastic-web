@@ -21,5 +21,16 @@
   "addPodcast.add": "Adicionar",
   "search.goBackToHome": "Voltar para a página inicial",
   "search.searchHereForAPodcast": "Busque aqui um podcast",
-  "search.searchResults": "Resultados da busca"
+  "search.searchResults": "Resultados da busca",
+  "podcast.pickARandomEpisode": "Sortear um episódio",
+  "podcast.weGotyou": "É pra já!",
+  "podcast.heresYourRandomlyPickedEpisode": "Aqui está seu episódio escolhido aleatóriamente:",
+  "podcast.cancel": "Cancelar",
+  "podcast.tryAgain": "Sortear outro",
+  "podcast.episodes": "Episódios",
+  "podcast.searchEpisode": "Buscar episódio",
+  "podcast.newest": "Mais novos",
+  "podcast.oldest": "Mais antigos",
+  "podcast.longest": "Mais longos",
+  "podcast.shortest": "Mais curtos"
 }
