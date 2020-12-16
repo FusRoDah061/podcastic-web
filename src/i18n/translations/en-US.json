@@ -1,4 +1,5 @@
 {
+  "generic.goBack": "Go back",
   "home.podcasticLogo": "Podcastic logo",
   "home.slogan1": "Your favorite podcasts, ",
   "home.slogan2": "quick",
@@ -13,6 +14,9 @@
   "home.viewAll": "View all",
   "home.dismiss": "Dismiss",
   "home.recentylAddedPodcasts": "Recently added podcasts",
-  "allPodcasts.goBack": "Go back",
-  "addPodcasts.allPodcasts": "All podcasts"
+  "addPodcasts.allPodcasts": "All podcasts",
+  "addPodcast.newPodcastFeed": "New podcast feed",
+  "addPodcast.feedAddress": "Feed address:",
+  "addPodcast.feedAddressPlaceholder": "https://cool-podcast.com/feed/",
+  "addPodcast.add": "Add"
 }

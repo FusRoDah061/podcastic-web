@@ -77,7 +77,7 @@ const AllPodcasts: React.FC = () => {
           <img
             src={chevronLeftBlackIcon}
             alt={intl.formatMessage({
-              id: 'allPodcasts.goBack',
+              id: 'generic.goBack',
               defaultMessage: 'Go back',
             })}
           />

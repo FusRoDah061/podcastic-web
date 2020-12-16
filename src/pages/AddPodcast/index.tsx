@@ -1,6 +1,7 @@
 import React, { FormEvent, useCallback, useState } from 'react';
 import { Variants } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
+import { FormattedMessage, useIntl } from 'react-intl';
 import {
   Container,
   AddPodcastPopupHeader,
@@ -34,6 +35,7 @@ const containerVariants: Variants = {
 };
 
 const AddPodcast: React.FC = () => {
+  const intl = useIntl();
   const history = useHistory();
   const [feedUrl, setFeedUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -69,19 +71,35 @@ const AddPodcast: React.FC = () => {
     >
       <AddPodcastPopupHeader>
         <GoBackLink to="/">
-          <img src={chevronLeftBlackIcon} alt="Go back" />
-          New podcast feed
+          <img
+            src={chevronLeftBlackIcon}
+            alt={intl.formatMessage({
+              id: 'generic.goBack',
+              defaultMessage: 'Go back',
+            })}
+          />
+          <FormattedMessage
+            id="addPodcast.newPodcastFeed"
+            defaultMessage="New podcast feed"
+          />
         </GoBackLink>
       </AddPodcastPopupHeader>
 
       <PageContent>
         <form onSubmit={handleAddPodcast}>
           <label htmlFor="js-feed-address">
-            Feed address:
+            <FormattedMessage
+              id="addPodcast.feedAddress"
+              defaultMessage="Feed address:"
+            />
+
             <input
               id="js-feed-address"
               type="text"
-              placeholder="https://cool-podcast.com/feed/"
+              placeholder={intl.formatMessage({
+                id: 'addPodcast.feedAddressPlaceholder',
+                defaultMessage: 'https://cool-podcast.com/feed/',
+              })}
               onChange={e => {
                 setFeedUrl(e.target.value);
               }}
@@ -90,7 +108,7 @@ const AddPodcast: React.FC = () => {
 
           <AddPodcastConfirmButton type="submit">
             {isLoading && <Spinner />}
-            Add
+            <FormattedMessage id="addPodcast.add" defaultMessage="Add" />
           </AddPodcastConfirmButton>
         </form>
       </PageContent>

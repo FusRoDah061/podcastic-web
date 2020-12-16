@@ -1,4 +1,5 @@
 {
+  "generic.goBack": "Voltar",
   "home.podcasticLogo": "Logotipo do Podcastic",
   "home.slogan1": "Seus podcasts favoritos, ",
   "home.slogan2": "rápido",
@@ -13,6 +14,9 @@
   "home.viewAll": "Ver todos",
   "home.dismiss": "Fechar",
   "home.recentylAddedPodcasts": "Podcasts adicionados recentemente",
-  "allPodcasts.goBack": "Voltar",
-  "addPodcasts.allPodcasts": "Todos os podcasts"
+  "addPodcasts.allPodcasts": "Todos os podcasts",
+  "addPodcast.newPodcastFeed": "Adicionar feed de podcast",
+  "addPodcast.feedAddress": "Endereço do feed:",
+  "addPodcast.feedAddressPlaceholder": "https://podcast-legal.com/feed/",
+  "addPodcast.add": "Adicionar"
 }
