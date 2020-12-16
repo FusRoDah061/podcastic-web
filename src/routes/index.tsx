@@ -18,8 +18,12 @@ const Routes: React.FC = () => {
         <Route path="/new" component={AddPodcast} />
         <Route path="/all" component={AllPodcasts} />
         <Route path="/search" component={Search} />
-        <Route path="/podcast/:podcastId" component={Podcast} />
-        <Route path="/podcast/:podcastId/search" component={EpisodeSearch} />
+        <Route
+          exact
+          path="/podcast/:podcastId/search"
+          component={EpisodeSearch}
+        />
+        <Route exact path="/podcast/:podcastId" component={Podcast} />
       </Switch>
     </AnimatePresence>
   );
