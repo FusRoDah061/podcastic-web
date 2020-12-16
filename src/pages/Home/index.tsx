@@ -236,7 +236,7 @@ const Home: React.FC = () => {
             <img
               src={searchIcon}
               alt={intl.formatMessage({
-                id: 'home.search',
+                id: 'generic.search',
                 defaultMessage: 'Search',
               })}
             />

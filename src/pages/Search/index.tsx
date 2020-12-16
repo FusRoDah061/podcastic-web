@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { Variants } from 'framer-motion';
+import { FormattedMessage, useIntl } from 'react-intl';
 import PodcastItem, {
   PodcastItemPlaceholder,
 } from '../../components/PodcastItem';
@@ -48,6 +49,7 @@ const containerVariants: Variants = {
 };
 
 const Search: React.FC = () => {
+  const intl = useIntl();
   const query = useQuery();
   const [podcasts, setPodcasts] = useState<PodcastDTO[]>([]);
   const [paramSearchText] = useState(() => {
@@ -115,18 +117,33 @@ const Search: React.FC = () => {
         <HeaderContent>
           <form onSubmit={handleSearchPodcasts}>
             <GoBackLink to="/">
-              <img src={arrowLeftWhite} alt="Go back to home" />
+              <img
+                src={arrowLeftWhite}
+                alt={intl.formatMessage({
+                  id: 'search.goBackToHome',
+                  defaultMessage: 'Go back to home',
+                })}
+              />
             </GoBackLink>
 
             <input
               type="text"
               value={searchText}
-              placeholder="Search here for a podcast"
+              placeholder={intl.formatMessage({
+                id: 'search.searchHereForAPodcast',
+                defaultMessage: 'Search here for a podcast',
+              })}
               onChange={handleSearchTextChange}
             />
 
             <button type="submit">
-              <img src={searchIcon} alt="Search" />
+              <img
+                src={searchIcon}
+                alt={intl.formatMessage({
+                  id: 'generic.search',
+                  defaultMessage: 'Search',
+                })}
+              />
             </button>
           </form>
         </HeaderContent>
@@ -134,7 +151,12 @@ const Search: React.FC = () => {
 
       <PageContentContainer>
         <PageContent>
-          <h2>Search results</h2>
+          <h2>
+            <FormattedMessage
+              id="search.searchResults"
+              defaultMessage="Search results"
+            />
+          </h2>
 
           <PodcastsList>
             <ul>
