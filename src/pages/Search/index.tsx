@@ -153,7 +153,7 @@ const Search: React.FC = () => {
         <PageContent>
           <h2>
             <FormattedMessage
-              id="search.searchResults"
+              id="generic.searchResults"
               defaultMessage="Search results"
             />
           </h2>

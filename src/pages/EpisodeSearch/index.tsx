@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { FormattedMessage, useIntl } from 'react-intl';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import useQuery from '../../hooks/query';
 import api from '../../services/api';
@@ -52,6 +53,7 @@ const containerVariants: Variants = {
 };
 
 const EpisodeSearch: React.FC = () => {
+  const intl = useIntl();
   const history = useHistory();
   const query = useQuery();
   const { podcastId } = useParams<RouteParams>();
@@ -131,18 +133,33 @@ const EpisodeSearch: React.FC = () => {
         <HeaderContent>
           <form onSubmit={handleSearchEpisodes}>
             <GoBackButton type="button" onClick={handleGoBack}>
-              <img src={closeIcon} alt="Go back" />
+              <img
+                src={closeIcon}
+                alt={intl.formatMessage({
+                  id: 'generic.goBack',
+                  defaultMessage: 'Go back',
+                })}
+              />
             </GoBackButton>
 
             <input
               type="text"
               value={searchText}
-              placeholder="Search here for an episode"
+              placeholder={intl.formatMessage({
+                id: 'episodeSearch.searchHereForAnEpisode',
+                defaultMessage: 'Search here for an episode',
+              })}
               onChange={handleSearchTextChange}
             />
 
             <button type="submit">
-              <img src={searchIcon} alt="Search" />
+              <img
+                src={searchIcon}
+                alt={intl.formatMessage({
+                  id: 'generic.search',
+                  defaultMessage: 'Search',
+                })}
+              />
             </button>
           </form>
         </HeaderContent>
@@ -150,7 +167,12 @@ const EpisodeSearch: React.FC = () => {
 
       <PageContentContainer>
         <PageContent>
-          <h2>Search results</h2>
+          <h2>
+            <FormattedMessage
+              id="generic.searchResults"
+              defaultMessage="Search results"
+            />
+          </h2>
 
           <EpisodesListContainer>
             {isLoading ? (
@@ -163,7 +185,12 @@ const EpisodeSearch: React.FC = () => {
             {(!podcast || podcast.episodes.length <= 0) && (
               <ul>
                 <li>
-                  <p>No episodes found</p>
+                  <p>
+                    <FormattedMessage
+                      id="episodeSearch.noEpisodesFound"
+                      defaultMessage="No episodes found"
+                    />
+                  </p>
                 </li>
               </ul>
             )}

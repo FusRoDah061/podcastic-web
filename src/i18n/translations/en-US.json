@@ -1,6 +1,7 @@
 {
   "generic.goBack": "Go back",
   "generic.search": "Search",
+  "generic.searchResults": "Search results",
   "home.podcasticLogo": "Podcastic logo",
   "home.slogan1": "Your favorite podcasts, ",
   "home.slogan2": "quick",
@@ -21,7 +22,6 @@
   "addPodcast.add": "Add",
   "search.goBackToHome": "Go back to home",
   "search.searchHereForAPodcast": "Search here for a podcast",
-  "search.searchResults": "Search results",
   "podcast.pickARandomEpisode": "Pick a random episode",
   "podcast.weGotyou": "We got you!",
   "podcast.heresYourRandomlyPickedEpisode": "Here’s your randomly picked episode:",
@@ -32,5 +32,7 @@
   "podcast.newest": "Newest",
   "podcast.oldest": "Oldest",
   "podcast.longest": "Longest",
-  "podcast.shortest": "Shortest"
+  "podcast.shortest": "Shortest",
+  "episodeSearch.searchHereForAnEpisode": "Search here for an episode",
+  "episodeSearch.noEpisodesFound": "No episodes found"
 }

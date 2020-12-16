@@ -1,6 +1,7 @@
 {
   "generic.goBack": "Voltar",
   "generic.search": "Buscar",
+  "generic.searchResults": "Resultados da busca",
   "home.podcasticLogo": "Logotipo do Podcastic",
   "home.slogan1": "Seus podcasts favoritos, ",
   "home.slogan2": "rápido",
@@ -20,8 +21,7 @@
   "addPodcast.feedAddressPlaceholder": "https://podcast-legal.com/feed/",
   "addPodcast.add": "Adicionar",
   "search.goBackToHome": "Voltar para a página inicial",
-  "search.searchHereForAPodcast": "Busque aqui um podcast",
-  "search.searchResults": "Resultados da busca",
+  "search.searchHereForAPodcast": "Busque um podcast",
   "podcast.pickARandomEpisode": "Sortear um episódio",
   "podcast.weGotyou": "É pra já!",
   "podcast.heresYourRandomlyPickedEpisode": "Aqui está seu episódio escolhido aleatóriamente:",
@@ -32,5 +32,7 @@
   "podcast.newest": "Mais novos",
   "podcast.oldest": "Mais antigos",
   "podcast.longest": "Mais longos",
-  "podcast.shortest": "Mais curtos"
+  "podcast.shortest": "Mais curtos",
+  "episodeSearch.searchHereForAnEpisode": "Buscar um episódio",
+  "episodeSearch.noEpisodesFound": "Nenhum episódio encontrado"
 }
