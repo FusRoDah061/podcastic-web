@@ -38,8 +38,8 @@ api.interceptors.response.use(undefined, error => {
 });
 
 export default {
-  addPodcast: (feedUrl: string): ApiResponse<any> =>
-    api.post('/podcasts', { feedUrl }),
+  addPodcast: (feedUrl: string): ApiResponse<void> =>
+    api.post<void>('/podcasts', { feedUrl }),
 
   getAllPodcasts: (): ApiResponse<PodcastDTO[]> =>
     api.get<PodcastDTO[]>('/podcasts'),
