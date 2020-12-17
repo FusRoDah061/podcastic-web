@@ -8,9 +8,6 @@ const IntlProviderConfigured: React.FC = ({ children }) => {
   const locale = getLocale();
   const defaultLocale = LANGUAGES.languages[LANGUAGES.default];
 
-  console.log('locale: ', locale);
-  console.log('defaultLocale: ', defaultLocale);
-
   return (
     <IntlProvider
       locale={locale}

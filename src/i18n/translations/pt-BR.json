@@ -43,5 +43,7 @@
   "audioPlayer.play": "Reproduzir",
   "audioPlayer.advance15Seconds": "Avançar 15 segundos",
   "audioPlayer.maximizePlayer": "Maximizar player",
-  "audioPlayer.minimizePlayer": "Minimizar player"
+  "audioPlayer.minimizePlayer": "Minimizar player",
+  "formatDateAsTimeAgo.lessThanAMinute": "menos de um minuto",
+  "formatDateAsTimeAgo.ago": "há {time}"
 }
