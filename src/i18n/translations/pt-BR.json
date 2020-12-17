@@ -2,6 +2,8 @@
   "generic.goBack": "Voltar",
   "generic.search": "Buscar",
   "generic.searchResults": "Resultados da busca",
+  "generic.pauseEpisode": "Pausar episódio",
+  "generic.playEpisode": "Reproduzir episódio",
   "home.podcasticLogo": "Logotipo do Podcastic",
   "home.slogan1": "Seus podcasts favoritos, ",
   "home.slogan2": "rápido",
@@ -41,7 +43,5 @@
   "audioPlayer.play": "Reproduzir",
   "audioPlayer.advance15Seconds": "Avançar 15 segundos",
   "audioPlayer.maximizePlayer": "Maximizar player",
-  "audioPlayer.minimizePlayer": "Minimizar player",
-  "episodeItem.pauseEpisode": "Pausar episódio",
-  "episodeItem.playEpisode": "Reproduzir episódio"
+  "audioPlayer.minimizePlayer": "Minimizar player"
 }

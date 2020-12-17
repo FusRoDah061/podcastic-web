@@ -2,6 +2,8 @@
   "generic.goBack": "Go back",
   "generic.search": "Search",
   "generic.searchResults": "Search results",
+  "generic.pauseEpisode": "Pause episode",
+  "generic.playEpisode": "Play episode",
   "home.podcasticLogo": "Podcastic logo",
   "home.slogan1": "Your favorite podcasts, ",
   "home.slogan2": "quick",
@@ -41,7 +43,5 @@
   "audioPlayer.play": "Play",
   "audioPlayer.advance15Seconds": "Advance 15 seconds",
   "audioPlayer.maximizePlayer": "Maximize player",
-  "audioPlayer.minimizePlayer": "Minimize player",
-  "episodeItem.pauseEpisode": "Pause episode",
-  "episodeItem.playEpisode": "Play episode"
+  "audioPlayer.minimizePlayer": "Minimize player"
 }

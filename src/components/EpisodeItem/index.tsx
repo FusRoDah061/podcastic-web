@@ -53,11 +53,11 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
           alt={
             isPlaying
               ? intl.formatMessage({
-                  id: 'episodeItem.pauseEpisode',
+                  id: 'generic.pauseEpisode',
                   defaultMessage: 'Pause episode',
                 })
               : intl.formatMessage({
-                  id: 'episodeItem.playEpisode',
+                  id: 'generic.playEpisode',
                   defaultMessage: 'Play episode',
                 })
           }
@@ -65,12 +65,12 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
 
         {isPlaying ? (
           <FormattedMessage
-            id="episodeItem.pauseEpisode"
+            id="generic.pauseEpisode"
             defaultMessage="Pause episode"
           />
         ) : (
           <FormattedMessage
-            id="episodeItem.playEpisode"
+            id="generic.playEpisode"
             defaultMessage="Play episode"
           />
         )}

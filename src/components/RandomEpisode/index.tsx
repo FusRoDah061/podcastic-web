@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
 import { RandomEpisodeStyled } from './styles';
 import { useAudioPlayer } from '../../hooks/audioPlayer';
@@ -12,6 +13,7 @@ interface RandomEpisodeProps {
 }
 
 const RandomEpisode: React.FC<RandomEpisodeProps> = ({ episode, onPlay }) => {
+  const intl = useIntl();
   const player = useAudioPlayer();
   const isPlaying = useMemo(() => {
     return player.isPlaying(episode._id);
@@ -30,10 +32,29 @@ const RandomEpisode: React.FC<RandomEpisodeProps> = ({ episode, onPlay }) => {
       >
         <img
           src={isPlaying ? pauseIcon : playIcon}
-          alt={isPlaying ? 'Pause episode' : 'Play episode'}
+          alt={
+            isPlaying
+              ? intl.formatMessage({
+                  id: 'generic.pauseEpisode',
+                  defaultMessage: 'Pause episode',
+                })
+              : intl.formatMessage({
+                  id: 'generic.playEpisode',
+                  defaultMessage: 'Play episode',
+                })
+          }
         />
-        {isPlaying ? 'Pause episode' : 'Play episode'}
-        Play episode
+        {isPlaying ? (
+          <FormattedMessage
+            id="generic.pauseEpisode"
+            defaultMessage="Pause episode"
+          />
+        ) : (
+          <FormattedMessage
+            id="generic.playEpisode"
+            defaultMessage="Play episode"
+          />
+        )}
       </button>
       <span>{episode.duration}</span>
     </RandomEpisodeStyled>
