@@ -41,5 +41,7 @@
   "audioPlayer.play": "Play",
   "audioPlayer.advance15Seconds": "Advance 15 seconds",
   "audioPlayer.maximizePlayer": "Maximize player",
-  "audioPlayer.minimizePlayer": "Minimize player"
+  "audioPlayer.minimizePlayer": "Minimize player",
+  "episodeItem.pauseEpisode": "Pause episode",
+  "episodeItem.playEpisode": "Play episode"
 }

@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { parseISO } from 'date-fns';
 import ContentLoader, { IContentLoaderProps } from 'react-content-loader';
 import { darken } from 'polished';
+import { FormattedMessage, useIntl } from 'react-intl';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
 import { EpisodeItemStyled, EpisodeContent, EpisodeInfo } from './styles';
 import { useAudioPlayer } from '../../hooks/audioPlayer';
@@ -23,6 +24,7 @@ interface EpisodeItemPlaceholderProps extends IContentLoaderProps {
 }
 
 const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
+  const intl = useIntl();
   const player = useAudioPlayer();
   const isPlaying = useMemo(() => {
     return player.isPlaying(episode._id);
@@ -48,9 +50,30 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
       >
         <img
           src={isPlaying ? pauseIcon : playIcon}
-          alt={isPlaying ? 'Pause episode' : 'Play episode'}
+          alt={
+            isPlaying
+              ? intl.formatMessage({
+                  id: 'episodeItem.pauseEpisode',
+                  defaultMessage: 'Pause episode',
+                })
+              : intl.formatMessage({
+                  id: 'episodeItem.playEpisode',
+                  defaultMessage: 'Play episode',
+                })
+          }
         />
-        {isPlaying ? 'Pause episode' : 'Play episode'}
+
+        {isPlaying ? (
+          <FormattedMessage
+            id="episodeItem.pauseEpisode"
+            defaultMessage="Pause episode"
+          />
+        ) : (
+          <FormattedMessage
+            id="episodeItem.playEpisode"
+            defaultMessage="Play episode"
+          />
+        )}
       </button>
 
       <EpisodeContent>
