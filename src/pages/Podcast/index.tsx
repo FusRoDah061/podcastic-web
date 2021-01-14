@@ -13,6 +13,7 @@ import {
   PodcastInfo,
   PodcastInfoContent,
   PodcastNameDescription,
+  PodcastLinks,
   RandomEpisodeButton,
   RandomEpisodePopupContainer,
   RandomEpisodePopup,
@@ -29,17 +30,19 @@ import {
   EpisodesListContainer,
 } from './styles';
 import ImageOrLetter from '../../components/ImageOrLetter';
-
-import chevronLeftWhiteIcon from '../../assets/chevron-left-white-icon.svg';
-import chevronDownGreenIcon from '../../assets/chevron-down-green-icon.svg';
-import searchIconBlack from '../../assets/search-black-icon.svg';
-import logoImg from '../../assets/podcastic-green-logo.svg';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
 import EpisodesList from '../../components/EpisodesList';
 import { useAudioPlayer } from '../../hooks/audioPlayer';
 import RandomEpisode from '../../components/RandomEpisode';
 import Spinner from '../../components/Spinner';
 import { colors } from '../../styles/variables';
+
+import chevronLeftWhiteIcon from '../../assets/chevron-left-white-icon.svg';
+import chevronDownGreenIcon from '../../assets/chevron-down-green-icon.svg';
+import searchIconBlack from '../../assets/search-black-icon.svg';
+import logoImg from '../../assets/podcastic-green-logo.svg';
+import rssIcon from '../../assets/rss_icon_gray.svg';
+import externalLinkIcon from '../../assets/external_link_icon_gray.svg';
 
 interface RouteParams {
   podcastId: string;
@@ -205,6 +208,42 @@ const Podcast: React.FC = () => {
 
                 <PodcastNameDescription>
                   <h1 title={podcast.name}>{podcast.name}</h1>
+
+                  <PodcastLinks>
+                    <a
+                      href={podcast.websiteUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        src={externalLinkIcon}
+                        alt={intl.formatMessage({
+                          id: 'podcast.officialWebsiteLink',
+                          defaultMessage: 'Official website link',
+                        })}
+                      />
+
+                      <FormattedMessage
+                        id="podcast.officialWebsite"
+                        defaultMessage="Official website"
+                      />
+                    </a>
+                    <a href={podcast.feedUrl} target="_blank" rel="noreferrer">
+                      <img
+                        src={rssIcon}
+                        alt={intl.formatMessage({
+                          id: 'podcast.feedLink',
+                          defaultMessage: 'Feed link',
+                        })}
+                      />
+
+                      <FormattedMessage
+                        id="podcast.feed"
+                        defaultMessage="Feed"
+                      />
+                    </a>
+                  </PodcastLinks>
+
                   <p title={podcast.description}>{podcast.description}</p>
                 </PodcastNameDescription>
               </PodcastInfoContent>

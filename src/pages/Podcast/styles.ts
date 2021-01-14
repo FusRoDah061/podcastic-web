@@ -188,6 +188,28 @@ export const PodcastNameDescription = styled.div`
   }
 `;
 
+export const PodcastLinks = styled.div`
+  display: none;
+
+  @media (min-width: ${dims.tabletBreak}) {
+    display: flex;
+    align-items: center;
+
+    a {
+      display: flex;
+      font-size: 1.5rem;
+      color: ${colors.textPlaceholder};
+      align-items: center;
+      margin-right: 1rem;
+
+      img {
+        width: 1.5rem;
+        margin-right: 0.3rem;
+      }
+    }
+  }
+`;
+
 export const RandomEpisodeButton = styled.button`
   display: flex;
   align-items: center;
