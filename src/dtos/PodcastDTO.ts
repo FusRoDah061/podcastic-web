@@ -8,4 +8,6 @@ export default interface PodcastDTO {
   feedUrl: string;
   websiteUrl: string;
   episodes: Array<EpisodeDTO>;
+  isServiceAvailable: boolean;
+  lastSuccessfulHealthcheckAt: string;
 }

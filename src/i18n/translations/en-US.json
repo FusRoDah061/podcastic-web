@@ -39,6 +39,8 @@
   "podcast.feed": "Feed",
   "podcast.officialWebsiteLink": "Official website link",
   "podcast.feedLink": "Feed link",
+  "podcast.warning": "Warning",
+  "podcast.weCantReachFeed": "We can't reach this podcast feed since {date}",
   "episodeSearch.searchHereForAnEpisode": "Search here for an episode",
   "episodeSearch.noEpisodesFound": "No episodes found",
   "audioPlayer.dismissPlayer": "Dismiss player",

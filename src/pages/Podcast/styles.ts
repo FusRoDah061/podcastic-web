@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { darken } from 'polished';
+import { darken, lighten } from 'polished';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { EpisodesListStyled } from '../../components/EpisodesList/styles';
@@ -207,6 +207,27 @@ export const PodcastLinks = styled.div`
         margin-right: 0.3rem;
       }
     }
+  }
+`;
+
+export const PodcastAvalabilityWarningContainer = styled.div`
+  display: flex;
+  align-items: center;
+  border: 2px solid ${colors.red};
+  border-radius: 1.5rem;
+  color: ${colors.textDark};
+  background: ${lighten(0.35, colors.red)};
+  padding: 1rem 0.7rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  img {
+    width: 2rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-left: 1rem;
   }
 `;
 

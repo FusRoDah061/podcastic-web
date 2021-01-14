@@ -2,6 +2,7 @@ import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Variants } from 'framer-motion';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { parseISO } from 'date-fns';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import api from '../../services/api';
 import {
@@ -14,6 +15,7 @@ import {
   PodcastInfoContent,
   PodcastNameDescription,
   PodcastLinks,
+  PodcastAvalabilityWarningContainer,
   RandomEpisodeButton,
   RandomEpisodePopupContainer,
   RandomEpisodePopup,
@@ -43,6 +45,8 @@ import searchIconBlack from '../../assets/search-black-icon.svg';
 import logoImg from '../../assets/podcastic-green-logo.svg';
 import rssIcon from '../../assets/rss_icon_gray.svg';
 import externalLinkIcon from '../../assets/external_link_icon_gray.svg';
+import warningIcon from '../../assets/warning_icon_red.svg';
+import formatDate from '../../utils/formatDate';
 
 interface RouteParams {
   podcastId: string;
@@ -247,6 +251,29 @@ const Podcast: React.FC = () => {
                   <p title={podcast.description}>{podcast.description}</p>
                 </PodcastNameDescription>
               </PodcastInfoContent>
+
+              {!podcast.isServiceAvailable && (
+                <PodcastAvalabilityWarningContainer>
+                  <img
+                    src={warningIcon}
+                    alt={intl.formatMessage({
+                      id: 'podcast.warning',
+                      defaultMessage: 'Warning',
+                    })}
+                  />
+                  <p>
+                    <FormattedMessage
+                      id="podcast.weCantReachFeed"
+                      defaultMessage="We can't reach this podcast feed since {date}"
+                      values={{
+                        date: formatDate(
+                          parseISO(podcast.lastSuccessfulHealthcheckAt),
+                        ),
+                      }}
+                    />
+                  </p>
+                </PodcastAvalabilityWarningContainer>
+              )}
 
               <RandomEpisodeButton
                 type="button"
