@@ -25,24 +25,24 @@ export const HeaderContainer = styled.header`
     ${colors.greenLight} 55%
   );
 
-  button:first-child {
-    display: none;
-  }
-
   @media (min-width: ${dims.tabletBreak}) {
     padding: 3rem;
     background: ${colors.white};
     height: auto;
-
-    button:first-child {
-      display: block;
-      background: none;
-      border: 0;
-    }
   }
 `;
 
-export const GoBackButton = styled.button`
+export const LogoLink = styled(Link)`
+  display: none;
+
+  @media (min-width: ${dims.tabletBreak}) {
+    display: block;
+    background: none;
+    border: 0;
+  }
+`;
+
+export const GoBackLink = styled(Link)`
   display: flex;
   align-items: center;
   font-family: Nunito;
@@ -50,6 +50,8 @@ export const GoBackButton = styled.button`
   font-size: 1.8rem;
   border: none;
   background: transparent;
+  color: ${colors.textLight};
+  text-decoration: none;
 
   img {
     margin-right: 1.5rem;

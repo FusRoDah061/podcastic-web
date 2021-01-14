@@ -1,5 +1,5 @@
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Variants } from 'framer-motion';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { parseISO } from 'date-fns';
@@ -8,7 +8,8 @@ import api from '../../services/api';
 import {
   Container,
   HeaderContainer,
-  GoBackButton,
+  LogoLink,
+  GoBackLink,
   PageContent,
   HasPodcastPageContainer,
   PodcastInfo,
@@ -85,7 +86,6 @@ let episodeToSearchTmp = '';
 const Podcast: React.FC = () => {
   const intl = useIntl();
   const player = useAudioPlayer();
-  const history = useHistory();
   const { podcastId } = useParams<RouteParams>();
   const [podcast, setPodcast] = useState<PodcastDTO>();
   const [showRandomEpisode, setShowRandomEpisode] = useState(false);
@@ -114,10 +114,6 @@ const Podcast: React.FC = () => {
 
     fetchPodcast();
   }, [podcastId, sort, episodeToSearch]);
-
-  const handleGoBack = useCallback(() => {
-    history.goBack();
-  }, [history]);
 
   const getRandomEpisode = useCallback(async () => {
     setIsLoadingRandom(true);
@@ -178,11 +174,11 @@ const Podcast: React.FC = () => {
       exit="exit"
     >
       <HeaderContainer>
-        <button type="button" onClick={handleGoBack}>
+        <LogoLink to="/">
           <img src={logoImg} alt="Podcastic" />
-        </button>
+        </LogoLink>
 
-        <GoBackButton type="button" onClick={handleGoBack}>
+        <GoBackLink to="/">
           <img
             src={chevronLeftWhiteIcon}
             alt={intl.formatMessage({
@@ -196,7 +192,7 @@ const Podcast: React.FC = () => {
                 id: 'generic.goBack',
                 defaultMessage: 'Go back',
               })}
-        </GoBackButton>
+        </GoBackLink>
       </HeaderContainer>
 
       <PageContent>
