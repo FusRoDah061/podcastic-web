@@ -67,7 +67,10 @@ export default function formatDateAsTimeAgo(
         weeks: Math.round(diffInSeconds / WEEK),
       },
       { locale: localeObj },
-    );
+    )
+      // Temporary fix while waiting for this PR: https://github.com/date-fns/date-fns/pull/2125
+      .replace('mês', 'semana')
+      .replace('meses', 'semanas');
   } else if (diffInSeconds < YEAR) {
     // x months ago
     time = formatDuration(
