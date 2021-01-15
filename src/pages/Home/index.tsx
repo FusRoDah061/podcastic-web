@@ -232,7 +232,14 @@ const Home: React.FC = () => {
             onChange={handleSearchTextChange}
           />
 
-          <SearchButton type="submit" disabled={searchText.length === 0}>
+          <SearchButton
+            type="submit"
+            disabled={searchText.length === 0}
+            title={intl.formatMessage({
+              id: 'generic.search',
+              defaultMessage: 'Search',
+            })}
+          >
             <img
               src={searchIcon}
               alt={intl.formatMessage({

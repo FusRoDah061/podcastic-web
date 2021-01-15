@@ -29,6 +29,17 @@ const RandomEpisode: React.FC<RandomEpisodeProps> = ({ episode, onPlay }) => {
             onPlay(episode, isPlaying);
           }
         }}
+        title={
+          isPlaying
+            ? intl.formatMessage({
+                id: 'generic.pauseEpisode',
+                defaultMessage: 'Pause episode',
+              })
+            : intl.formatMessage({
+                id: 'generic.playEpisode',
+                defaultMessage: 'Play episode',
+              })
+        }
       >
         <img
           src={isPlaying ? pauseIcon : playIcon}

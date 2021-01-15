@@ -198,7 +198,15 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         >
           <AudioPlayerContent layout>
             <PlayerControls layout>
-              <DismissButton layout type="button" onClick={handleDismissPlayer}>
+              <DismissButton
+                layout
+                type="button"
+                onClick={handleDismissPlayer}
+                title={intl.formatMessage({
+                  id: 'audioPlayer.dismissPlayer',
+                  defaultMessage: 'Dismiss player',
+                })}
+              >
                 <img
                   src={dismissIcon}
                   alt={intl.formatMessage({
@@ -213,7 +221,15 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
               </DismissButton>
 
               <PlayerButtons layout>
-                <RewindButton layout type="button" onClick={handleRewind}>
+                <RewindButton
+                  layout
+                  type="button"
+                  onClick={handleRewind}
+                  title={intl.formatMessage({
+                    id: 'audioPlayer.rewind15Seconds',
+                    defaultMessage: 'Rewind 15 seconds',
+                  })}
+                >
                   <img
                     src={rewindIcon}
                     alt={intl.formatMessage({
@@ -228,6 +244,17 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                   layout
                   isPlaying={isPlaying}
                   onClick={handlePlayPause}
+                  title={
+                    isPlaying
+                      ? intl.formatMessage({
+                          id: 'audioPlayer.pause',
+                          defaultMessage: 'Pause',
+                        })
+                      : intl.formatMessage({
+                          id: 'audioPlayer.play',
+                          defaultMessage: 'Play',
+                        })
+                  }
                 >
                   <img
                     src={isPlaying ? pauseIcon : playIcon}
@@ -245,7 +272,15 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                   />
                 </PlayPauseButton>
 
-                <ForwardButton layout type="button" onClick={handleForward}>
+                <ForwardButton
+                  layout
+                  type="button"
+                  onClick={handleForward}
+                  title={intl.formatMessage({
+                    id: 'audioPlayer.advance15Seconds',
+                    defaultMessage: 'Advance 15 seconds',
+                  })}
+                >
                   <img
                     src={forwardIcon}
                     alt={intl.formatMessage({
@@ -261,6 +296,17 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 layout
                 type="button"
                 onClick={handleMinimizePlayer}
+                title={
+                  isMinimized
+                    ? intl.formatMessage({
+                        id: 'audioPlayer.maximizePlayer',
+                        defaultMessage: 'Maximize player',
+                      })
+                    : intl.formatMessage({
+                        id: 'audioPlayer.minimizePlayer',
+                        defaultMessage: 'Minimize player',
+                      })
+                }
               >
                 <img
                   src={isMinimized ? maximizeIcon : minimizeIcon}

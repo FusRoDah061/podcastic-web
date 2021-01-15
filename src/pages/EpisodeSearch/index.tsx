@@ -132,7 +132,14 @@ const EpisodeSearch: React.FC = () => {
       <HeaderContainer>
         <HeaderContent>
           <form onSubmit={handleSearchEpisodes}>
-            <GoBackButton type="button" onClick={handleGoBack}>
+            <GoBackButton
+              type="button"
+              onClick={handleGoBack}
+              title={intl.formatMessage({
+                id: 'generic.goBack',
+                defaultMessage: 'Go back',
+              })}
+            >
               <img
                 src={closeIcon}
                 alt={intl.formatMessage({
@@ -152,7 +159,13 @@ const EpisodeSearch: React.FC = () => {
               onChange={handleSearchTextChange}
             />
 
-            <button type="submit">
+            <button
+              type="submit"
+              title={intl.formatMessage({
+                id: 'generic.search',
+                defaultMessage: 'Search',
+              })}
+            >
               <img
                 src={searchIcon}
                 alt={intl.formatMessage({

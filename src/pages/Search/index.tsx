@@ -116,7 +116,13 @@ const Search: React.FC = () => {
       <HeaderContainer>
         <HeaderContent>
           <form onSubmit={handleSearchPodcasts}>
-            <GoBackLink to="/">
+            <GoBackLink
+              to="/"
+              title={intl.formatMessage({
+                id: 'search.goBackToHome',
+                defaultMessage: 'Go back to home',
+              })}
+            >
               <img
                 src={arrowLeftWhite}
                 alt={intl.formatMessage({
@@ -136,7 +142,13 @@ const Search: React.FC = () => {
               onChange={handleSearchTextChange}
             />
 
-            <button type="submit">
+            <button
+              type="submit"
+              title={intl.formatMessage({
+                id: 'generic.search',
+                defaultMessage: 'Search',
+              })}
+            >
               <img
                 src={searchIcon}
                 alt={intl.formatMessage({

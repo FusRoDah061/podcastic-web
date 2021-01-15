@@ -362,7 +362,13 @@ const Podcast: React.FC = () => {
                       }}
                     />
 
-                    <button type="submit">
+                    <button
+                      type="submit"
+                      title={intl.formatMessage({
+                        id: 'podcast.searchEpisode',
+                        defaultMessage: 'Search episode',
+                      })}
+                    >
                       <img
                         src={searchIconBlack}
                         alt={intl.formatMessage({
