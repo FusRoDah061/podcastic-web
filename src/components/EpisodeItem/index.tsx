@@ -65,6 +65,7 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
       )}
 
       <button
+        disabled={!episode.existsOnFeed}
         type="button"
         onClick={() => {
           if (onPlay) {
