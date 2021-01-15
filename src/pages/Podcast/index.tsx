@@ -253,7 +253,7 @@ const Podcast: React.FC = () => {
                   <img
                     src={warningIcon}
                     alt={intl.formatMessage({
-                      id: 'podcast.warning',
+                      id: 'generic.warning',
                       defaultMessage: 'Warning',
                     })}
                   />

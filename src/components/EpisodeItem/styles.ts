@@ -1,4 +1,4 @@
-import { darken } from 'polished';
+import { darken, transparentize } from 'polished';
 import styled, { css } from 'styled-components';
 import { colors } from '../../styles/variables';
 
@@ -8,6 +8,7 @@ interface EpisodeItemStyled {
 
 /* Exposes root container so other can easily override styles */
 export const EpisodeItemStyled = styled.div<EpisodeItemStyled>`
+  position: relative;
   display: grid;
   grid-template-columns: 4.8rem auto;
   grid-column-gap: 1.5rem;
@@ -36,6 +37,24 @@ export const EpisodeItemStyled = styled.div<EpisodeItemStyled>`
           margin-right: -0.3rem;
         }
       `}
+  }
+`;
+
+export const EpisodeUnavailableOverlay = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: ${transparentize(0.09, colors.white)};
+  padding: 0 1rem;
+
+  p {
+    margin-left: 1rem;
+    color: ${colors.textDark};
+    font-size: 1.5rem;
   }
 `;
 

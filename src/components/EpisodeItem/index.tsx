@@ -4,15 +4,21 @@ import ContentLoader, { IContentLoaderProps } from 'react-content-loader';
 import { darken } from 'polished';
 import { FormattedMessage, useIntl } from 'react-intl';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
-import { EpisodeItemStyled, EpisodeContent, EpisodeInfo } from './styles';
+import {
+  EpisodeItemStyled,
+  EpisodeUnavailableOverlay,
+  EpisodeContent,
+  EpisodeInfo,
+} from './styles';
 import { useAudioPlayer } from '../../hooks/audioPlayer';
-
-import playIcon from '../../assets/play-green-icon.svg';
-import pauseIcon from '../../assets/pause-green-icon.svg';
 import formatDate from '../../utils/formatDate';
 import formatDateAsTimeAgo from '../../utils/formatDateAsTimeAgo';
 import { colors } from '../../styles/variables';
 import random from '../../utils/random';
+
+import playIcon from '../../assets/play-green-icon.svg';
+import pauseIcon from '../../assets/pause-green-icon.svg';
+import warningIcon from '../../assets/warning_icon_yellow.svg';
 
 interface EpisodeItemProps {
   episode: EpisodeDTO;
@@ -40,6 +46,24 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
 
   return (
     <EpisodeItemStyled isPlaying={isPlaying}>
+      {!episode.existsOnFeed && (
+        <EpisodeUnavailableOverlay>
+          <img
+            src={warningIcon}
+            alt={intl.formatMessage({
+              id: 'generic.warning',
+              defaultMessage: 'Warning',
+            })}
+          />
+          <p>
+            <FormattedMessage
+              id="episodeItem.episodeNotAvailable"
+              defaultMessage="This episode is not available on the feed anymore."
+            />
+          </p>
+        </EpisodeUnavailableOverlay>
+      )}
+
       <button
         type="button"
         onClick={() => {

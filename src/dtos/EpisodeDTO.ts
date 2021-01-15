@@ -5,6 +5,7 @@ export default interface EpisodeDTO {
   date: Date;
   image: string;
   duration: string;
+  existsOnFeed?: boolean;
   file: {
     url: string;
     mediaType: string;

@@ -4,6 +4,7 @@
   "generic.searchResults": "Search results",
   "generic.pauseEpisode": "Pause episode",
   "generic.playEpisode": "Play episode",
+  "generic.warning": "Warning",
   "home.podcasticLogo": "Podcastic logo",
   "home.slogan1": "Your favorite podcasts, ",
   "home.slogan2": "quick",
@@ -39,7 +40,6 @@
   "podcast.feed": "Feed",
   "podcast.officialWebsiteLink": "Official website link",
   "podcast.feedLink": "Feed link",
-  "podcast.warning": "Warning",
   "podcast.weCantReachFeed": "We can't reach this podcast feed since {date}",
   "episodeSearch.searchHereForAnEpisode": "Search here for an episode",
   "episodeSearch.noEpisodesFound": "No episodes found",
@@ -51,5 +51,6 @@
   "audioPlayer.maximizePlayer": "Maximize player",
   "audioPlayer.minimizePlayer": "Minimize player",
   "formatDateAsTimeAgo.lessThanAMinute": "less than a minute",
-  "formatDateAsTimeAgo.ago": "{time} ago"
+  "formatDateAsTimeAgo.ago": "{time} ago",
+  "episodeItem.episodeNotAvailable": "This episode is not available on the feed anymore."
 }

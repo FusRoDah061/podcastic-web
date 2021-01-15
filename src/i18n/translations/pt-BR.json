@@ -4,6 +4,7 @@
   "generic.searchResults": "Resultados da busca",
   "generic.pauseEpisode": "Pausar episódio",
   "generic.playEpisode": "Reproduzir episódio",
+  "generic.warning": "Atenção",
   "home.podcasticLogo": "Logotipo do Podcastic",
   "home.slogan1": "Seus podcasts favoritos, ",
   "home.slogan2": "rápido",
@@ -39,7 +40,6 @@
   "podcast.feed": "Feed",
   "podcast.officialWebsiteLink": "Endereço do site oficial",
   "podcast.feedLink": "Endereço do feed",
-  "podcast.warning": "Atenção",
   "podcast.weCantReachFeed": "Não conseguimos acessar o feed desse podcast desde o dia {date}",
   "episodeSearch.searchHereForAnEpisode": "Buscar um episódio",
   "episodeSearch.noEpisodesFound": "Nenhum episódio encontrado",
@@ -51,5 +51,6 @@
   "audioPlayer.maximizePlayer": "Maximizar player",
   "audioPlayer.minimizePlayer": "Minimizar player",
   "formatDateAsTimeAgo.lessThanAMinute": "menos de um minuto",
-  "formatDateAsTimeAgo.ago": "há {time}"
+  "formatDateAsTimeAgo.ago": "há {time}",
+  "episodeItem.episodeNotAvailable": "Este episódio não está mais disponível no feed."
 }
