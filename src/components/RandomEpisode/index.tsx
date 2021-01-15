@@ -1,11 +1,14 @@
 import React, { useMemo } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { parseISO } from 'date-fns';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
-import { RandomEpisodeStyled } from './styles';
+import { RandomEpisodeStyled, EpisodeInfo } from './styles';
 import { useAudioPlayer } from '../../hooks/audioPlayer';
 
 import playIcon from '../../assets/play-green-icon.svg';
 import pauseIcon from '../../assets/pause-green-icon.svg';
+import formatDate from '../../utils/formatDate';
+import formatDateAsTimeAgo from '../../utils/formatDateAsTimeAgo';
 
 interface RandomEpisodeProps {
   episode: EpisodeDTO;
@@ -18,6 +21,14 @@ const RandomEpisode: React.FC<RandomEpisodeProps> = ({ episode, onPlay }) => {
   const isPlaying = useMemo(() => {
     return player.isPlaying(episode._id);
   }, [player, episode._id]);
+
+  const dates = useMemo(() => {
+    const parsedDate = parseISO(episode.date.toString());
+    return {
+      formattedDate: formatDate(parsedDate),
+      formattedDateAsTimeAgo: formatDateAsTimeAgo(parsedDate),
+    };
+  }, [episode.date]);
 
   return (
     <RandomEpisodeStyled isPlaying={isPlaying}>
@@ -67,7 +78,11 @@ const RandomEpisode: React.FC<RandomEpisodeProps> = ({ episode, onPlay }) => {
           />
         )}
       </button>
-      <span>{episode.duration}</span>
+      <EpisodeInfo>
+        <p>{episode.duration}</p>
+        <span />
+        <p title={dates.formattedDate}>{dates.formattedDateAsTimeAgo}</p>
+      </EpisodeInfo>
     </RandomEpisodeStyled>
   );
 };

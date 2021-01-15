@@ -300,7 +300,7 @@ export const RandomEpisodePopup = styled.div`
     box-shadow: none;
     border-radius: 0;
     padding: 0;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
   }
 `;
 

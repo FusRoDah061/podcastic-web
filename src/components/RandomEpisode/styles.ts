@@ -12,7 +12,7 @@ export const RandomEpisodeStyled = styled.div<RandomEpisodeStyled>`
   flex-direction: column;
   align-items: center;
 
-  p {
+  & > p {
     font-family: Nunito;
     font-weight: bold;
     font-size: 1.9rem;
@@ -31,7 +31,7 @@ export const RandomEpisodeStyled = styled.div<RandomEpisodeStyled>`
     border-radius: 50%;
     border: 2px solid ${colors.greenDark};
     transition: background 0.2s;
-    margin: 1.9rem 0;
+    margin: 1.7rem 0;
 
     &:hover {
       background: ${darken(0.05, colors.white)};
@@ -47,5 +47,20 @@ export const RandomEpisodeStyled = styled.div<RandomEpisodeStyled>`
           margin-right: -0.6rem;
         `}
     }
+  }
+`;
+
+export const EpisodeInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: ${colors.textPlaceholder};
+
+  span {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: ${colors.textPlaceholder};
+    margin: 0 0.8rem;
   }
 `;
