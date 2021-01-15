@@ -100,7 +100,6 @@ export const AddPodcastConfirmButton = styled.button`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 13rem;
   color: ${colors.textLight};
   background: ${colors.greenLight};
   font-family: Nunito;
