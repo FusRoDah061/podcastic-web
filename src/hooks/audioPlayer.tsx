@@ -22,6 +22,7 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
       if (!audioPlaying || audio.id !== audioPlaying.id) {
         setAudioPlaying(audio);
         setIsPaused(false);
+        document.title = `${audio.displayName} - Podcastic`;
       } else if (isPaused) {
         setIsPaused(false);
       }
@@ -43,6 +44,7 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
   const dismiss = useCallback(() => {
     setIsPaused(true);
     setAudioPlaying(undefined);
+    document.title = 'Podcastic - Your favorite podcasts, simple and easy.';
   }, []);
 
   const handleOnPlay = useCallback(() => {
