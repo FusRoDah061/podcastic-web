@@ -15,6 +15,7 @@ import PodcastItem, {
 import PodcastDTO from '../../dtos/PodcastDTO';
 import api from '../../services/api';
 import range from '../../utils/range';
+import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 
 const containerVariants: Variants = {
   initial: {
@@ -72,6 +73,13 @@ const AllPodcasts: React.FC = () => {
       animate="animate"
       exit="exit"
     >
+      <PlayerAwareTitle
+        title={intl.formatMessage({
+          id: 'allPodcasts.title',
+          defaultMessage: 'All podcasts - Podcastic',
+        })}
+      />
+
       <AllPodcastsHeader>
         <GoBackLink to="/">
           <img
@@ -82,7 +90,7 @@ const AllPodcasts: React.FC = () => {
             })}
           />
           <FormattedMessage
-            id="addPodcasts.allPodcasts"
+            id="allPodcasts.allPodcasts"
             defaultMessage="All podcasts"
           />
         </GoBackLink>

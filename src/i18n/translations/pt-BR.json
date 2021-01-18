@@ -5,6 +5,8 @@
   "generic.pauseEpisode": "Pausar episódio",
   "generic.playEpisode": "Reproduzir episódio",
   "generic.warning": "Atenção",
+
+  "home.title": "Podcastic - Seus podcasts favoritos, rápido e fácil.",
   "home.podcasticLogo": "Logotipo do Podcastic",
   "home.slogan1": "Seus podcasts favoritos, ",
   "home.slogan2": "rápido",
@@ -18,13 +20,20 @@
   "home.viewAll": "Ver todos",
   "home.dismiss": "Fechar",
   "home.recentylAddedPodcasts": "Podcasts adicionados recentemente",
-  "addPodcasts.allPodcasts": "Todos os podcasts",
+
+  "addPodcast.title": "Adicionar novo podcast - Podcastic",
   "addPodcast.newPodcastFeed": "Adicionar feed de podcast",
   "addPodcast.feedAddress": "Endereço do feed:",
   "addPodcast.feedAddressPlaceholder": "https://podcast-legal.com/feed/",
   "addPodcast.add": "Adicionar",
+
+  "allPodcasts.title": "Todos os podcasts - Podcastic",
+  "allPodcasts.allPodcasts": "Todos os podcasts",
+
+  "search.title": "Buscar podcast - Podcastic",
   "search.goBackToHome": "Voltar para a página inicial",
   "search.searchHereForAPodcast": "Busque um podcast",
+
   "podcast.pickARandomEpisode": "Sortear um episódio",
   "podcast.weGotyou": "É pra já!",
   "podcast.heresYourRandomlyPickedEpisode": "Aqui está seu episódio escolhido aleatóriamente:",
@@ -41,8 +50,11 @@
   "podcast.officialWebsiteLink": "Endereço do site oficial",
   "podcast.feedLink": "Endereço do feed",
   "podcast.weCantReachFeed": "Não conseguimos acessar o feed desse podcast desde o dia {date}",
+
+  "episodeSearch.title": "Buscar episódio - Podcastic",
   "episodeSearch.searchHereForAnEpisode": "Buscar um episódio",
   "episodeSearch.noEpisodesFound": "Nenhum episódio encontrado",
+
   "audioPlayer.dismissPlayer": "Fechar player",
   "audioPlayer.rewind15Seconds": "Retroceder 15 segundos",
   "audioPlayer.pause": "Pausar",
@@ -50,7 +62,9 @@
   "audioPlayer.advance15Seconds": "Avançar 15 segundos",
   "audioPlayer.maximizePlayer": "Maximizar player",
   "audioPlayer.minimizePlayer": "Minimizar player",
+
   "formatDateAsTimeAgo.lessThanAMinute": "menos de um minuto",
   "formatDateAsTimeAgo.ago": "há {time}",
+
   "episodeItem.episodeNotAvailable": "Este episódio não está mais disponível no feed."
 }

@@ -5,6 +5,7 @@ import { AudioDTO } from '../dtos/AudioDTO';
 interface AudioPlayerContextData {
   play(audio: AudioDTO): void;
   isPlaying(audioId: string): boolean;
+  getAudio(): AudioDTO | undefined;
   pause(): void;
   dismiss(): void;
 }
@@ -22,7 +23,6 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
       if (!audioPlaying || audio.id !== audioPlaying.id) {
         setAudioPlaying(audio);
         setIsPaused(false);
-        document.title = `${audio.displayName} · ${audio.author} - Podcastic`;
 
         if (navigator.mediaSession) {
           const metadata: MediaMetadataInit = {
@@ -55,6 +55,10 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
     [audioPlaying, isPaused],
   );
 
+  const getAudio = useCallback(() => {
+    return audioPlaying;
+  }, [audioPlaying]);
+
   const pause = useCallback(() => {
     setIsPaused(true);
   }, []);
@@ -62,7 +66,6 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
   const dismiss = useCallback(() => {
     setIsPaused(true);
     setAudioPlaying(undefined);
-    document.title = 'Podcastic - Your favorite podcasts, simple and easy.';
 
     if (navigator.mediaSession) {
       navigator.mediaSession.metadata = new MediaMetadata();
@@ -86,7 +89,9 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
   }, [dismiss]);
 
   return (
-    <AudioPlayerContext.Provider value={{ play, isPlaying, pause, dismiss }}>
+    <AudioPlayerContext.Provider
+      value={{ play, isPlaying, getAudio, pause, dismiss }}
+    >
       {children}
 
       <AudioPlayer

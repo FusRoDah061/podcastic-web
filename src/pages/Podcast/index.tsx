@@ -48,6 +48,7 @@ import rssIcon from '../../assets/rss_icon_gray.svg';
 import externalLinkIcon from '../../assets/external_link_icon_gray.svg';
 import warningIcon from '../../assets/warning_icon_red.svg';
 import formatDate from '../../utils/formatDate';
+import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 
 interface RouteParams {
   podcastId: string;
@@ -175,6 +176,8 @@ const Podcast: React.FC = () => {
       animate="animate"
       exit="exit"
     >
+      <PlayerAwareTitle title={`${podcast?.name || 'Podcast'} - Podcastic`} />
+
       <HeaderContainer>
         <LogoLink to="/">
           <img src={logoImg} alt="Podcastic" />

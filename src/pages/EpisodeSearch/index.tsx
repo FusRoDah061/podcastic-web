@@ -27,6 +27,7 @@ import EpisodesList from '../../components/EpisodesList';
 import range from '../../utils/range';
 import { EpisodeItemPlaceholder } from '../../components/EpisodeItem';
 import { dims } from '../../styles/variables';
+import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 
 interface RouteParams {
   podcastId: string;
@@ -129,6 +130,13 @@ const EpisodeSearch: React.FC = () => {
       animate="animate"
       exit="exit"
     >
+      <PlayerAwareTitle
+        title={intl.formatMessage({
+          id: 'episodeSearch.title',
+          defaultMessage: 'Search episode - Podcastic',
+        })}
+      />
+
       <HeaderContainer>
         <HeaderContent>
           <form onSubmit={handleSearchEpisodes}>

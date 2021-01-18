@@ -5,6 +5,8 @@
   "generic.pauseEpisode": "Pause episode",
   "generic.playEpisode": "Play episode",
   "generic.warning": "Warning",
+
+  "home.title": "Podcastic - Your favorite podcasts, simple and easy.",
   "home.podcasticLogo": "Podcastic logo",
   "home.slogan1": "Your favorite podcasts, ",
   "home.slogan2": "quick",
@@ -18,13 +20,20 @@
   "home.viewAll": "View all",
   "home.dismiss": "Dismiss",
   "home.recentylAddedPodcasts": "Recently added podcasts",
-  "addPodcasts.allPodcasts": "All podcasts",
+
+  "addPodcast.title": "Add new podcast - Podcastic",
   "addPodcast.newPodcastFeed": "New podcast feed",
   "addPodcast.feedAddress": "Feed address:",
   "addPodcast.feedAddressPlaceholder": "https://cool-podcast.com/feed/",
   "addPodcast.add": "Add",
+
+  "allPodcasts.title": "All podcasts - Podcastic",
+  "allPodcasts.allPodcasts": "All podcasts",
+
+  "search.title": "Search podcast - Podcastic",
   "search.goBackToHome": "Go back to home",
   "search.searchHereForAPodcast": "Search here for a podcast",
+
   "podcast.pickARandomEpisode": "Pick a random episode",
   "podcast.weGotyou": "We got you!",
   "podcast.heresYourRandomlyPickedEpisode": "Here’s your randomly picked episode:",
@@ -41,8 +50,11 @@
   "podcast.officialWebsiteLink": "Official website link",
   "podcast.feedLink": "Feed link",
   "podcast.weCantReachFeed": "We can't reach this podcast feed since {date}",
+
+  "episodeSearch.title": "Search episode - Podcastic",
   "episodeSearch.searchHereForAnEpisode": "Search here for an episode",
   "episodeSearch.noEpisodesFound": "No episodes found",
+
   "audioPlayer.dismissPlayer": "Dismiss player",
   "audioPlayer.rewind15Seconds": "Rewind 15 seconds",
   "audioPlayer.pause": "Pause",
@@ -50,7 +62,9 @@
   "audioPlayer.advance15Seconds": "Advance 15 seconds",
   "audioPlayer.maximizePlayer": "Maximize player",
   "audioPlayer.minimizePlayer": "Minimize player",
+
   "formatDateAsTimeAgo.lessThanAMinute": "less than a minute",
   "formatDateAsTimeAgo.ago": "{time} ago",
+
   "episodeItem.episodeNotAvailable": "This episode is not available on the feed anymore."
 }

@@ -27,6 +27,7 @@ import PodcastDTO from '../../dtos/PodcastDTO';
 import api from '../../services/api';
 import range from '../../utils/range';
 import { dims } from '../../styles/variables';
+import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 
 const containerVariants: Variants = {
   initial: {
@@ -113,6 +114,13 @@ const Search: React.FC = () => {
       animate="animate"
       exit="exit"
     >
+      <PlayerAwareTitle
+        title={intl.formatMessage({
+          id: 'search.title',
+          defaultMessage: 'Search podcast - Podcastic',
+        })}
+      />
+
       <HeaderContainer>
         <HeaderContent>
           <form onSubmit={handleSearchPodcasts}>

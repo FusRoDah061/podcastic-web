@@ -40,6 +40,7 @@ import PodcastItem, {
 import PodcastDTO from '../../dtos/PodcastDTO';
 import api from '../../services/api';
 import range from '../../utils/range';
+import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 
 const containerVariants: Variants = {
   initial: {
@@ -175,6 +176,14 @@ const Home: React.FC = () => {
       animate="animate"
       exit="exit"
     >
+      <PlayerAwareTitle
+        title={intl.formatMessage({
+          id: 'home.title',
+          defaultMessage:
+            'Podcastic - Your favorite podcasts, simple and easy.',
+        })}
+      />
+
       <Header>
         <HeaderTop>
           <div>

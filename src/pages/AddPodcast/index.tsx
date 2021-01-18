@@ -13,6 +13,7 @@ import {
 import chevronLeftBlackIcon from '../../assets/chevron-left-black-icon.svg';
 import api from '../../services/api';
 import Spinner from '../../components/Spinner';
+import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 
 const containerVariants: Variants = {
   initial: {
@@ -69,6 +70,13 @@ const AddPodcast: React.FC = () => {
       animate="animate"
       exit="exit"
     >
+      <PlayerAwareTitle
+        title={intl.formatMessage({
+          id: 'addPodcast.title',
+          defaultMessage: 'Add new podcast - Podcastic',
+        })}
+      />
+
       <AddPodcastPopupHeader>
         <GoBackLink to="/">
           <img

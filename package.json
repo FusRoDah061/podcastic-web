@@ -18,6 +18,7 @@
     "react": "^17.0.1",
     "react-content-loader": "^5.1.4",
     "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
     "react-intl": "^5.10.6",
     "react-is": "^17.0.1",
     "react-player": "^2.7.0",
@@ -46,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-helmet": "^6.1.0",
     "@types/react-intl": "^3.0.0",
     "@types/react-router-dom": "^5.1.6",
     "@types/styled-components": "^5.1.4",
