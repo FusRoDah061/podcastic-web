@@ -18,6 +18,8 @@ const EpisodesList: React.FC<EpisodesListProps> = ({ podcast }) => {
         player.play({
           id: episode._id,
           displayName: episode.title,
+          author: podcast.name,
+          artworkUrl: episode.image || podcast.imageUrl,
           mediaUrl: episode.file.url,
           mediaType: episode.file.mediaType,
           duration: episode.duration,
@@ -26,7 +28,7 @@ const EpisodesList: React.FC<EpisodesListProps> = ({ podcast }) => {
         player.pause();
       }
     },
-    [player],
+    [player, podcast],
   );
 
   return (

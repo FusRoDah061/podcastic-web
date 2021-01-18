@@ -22,7 +22,25 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
       if (!audioPlaying || audio.id !== audioPlaying.id) {
         setAudioPlaying(audio);
         setIsPaused(false);
-        document.title = `${audio.displayName} - Podcastic`;
+        document.title = `${audio.displayName} · ${audio.author} - Podcastic`;
+
+        if (navigator.mediaSession) {
+          const metadata: MediaMetadataInit = {
+            title: audio.displayName,
+            artist: audio.author,
+            album: audio.displayName,
+            artwork: audio.artworkUrl
+              ? [
+                  {
+                    src: audio.artworkUrl,
+                    sizes: '250x250',
+                  },
+                ]
+              : [],
+          };
+
+          navigator.mediaSession.metadata = new MediaMetadata(metadata);
+        }
       } else if (isPaused) {
         setIsPaused(false);
       }
@@ -45,6 +63,10 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
     setIsPaused(true);
     setAudioPlaying(undefined);
     document.title = 'Podcastic - Your favorite podcasts, simple and easy.';
+
+    if (navigator.mediaSession) {
+      navigator.mediaSession.metadata = new MediaMetadata();
+    }
   }, []);
 
   const handleOnPlay = useCallback(() => {

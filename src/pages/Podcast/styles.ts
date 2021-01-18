@@ -345,7 +345,6 @@ export const RandomEpisodePopupEpisode = styled.div`
       img {
         width: 3rem;
         height: 3rem;
-        margin-right: -0.6rem;
       }
     }
   }
@@ -359,7 +358,6 @@ export const RandomEpisodePopupEpisode = styled.div`
         img {
           width: 2.5rem;
           height: 2.5rem;
-          margin-right: -0.6rem;
         }
       }
     }

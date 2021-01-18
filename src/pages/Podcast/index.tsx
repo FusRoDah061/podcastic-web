@@ -151,10 +151,12 @@ const Podcast: React.FC = () => {
 
   const handlePlayRandomEpisode = useCallback(
     (episode: EpisodeDTO, isPlaying: boolean) => {
-      if (!isPlaying) {
+      if (!isPlaying && podcast) {
         player.play({
           id: episode._id,
           displayName: episode.title,
+          author: podcast?.name,
+          artworkUrl: episode.image || podcast.imageUrl,
           mediaUrl: episode.file.url,
           mediaType: episode.file.mediaType,
           duration: episode.duration,
@@ -163,7 +165,7 @@ const Podcast: React.FC = () => {
         player.pause();
       }
     },
-    [player],
+    [player, podcast],
   );
 
   return (
