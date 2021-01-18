@@ -1,13 +1,9 @@
 import { darken, transparentize } from 'polished';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { colors } from '../../styles/variables';
 
-interface EpisodeItemStyled {
-  isPlaying?: boolean;
-}
-
 /* Exposes root container so other can easily override styles */
-export const EpisodeItemStyled = styled.div<EpisodeItemStyled>`
+export const EpisodeItemStyled = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: 4.8rem auto;
@@ -29,14 +25,6 @@ export const EpisodeItemStyled = styled.div<EpisodeItemStyled>`
     &:hover {
       background: ${darken(0.05, colors.white)};
     }
-
-    ${props =>
-      !props.isPlaying &&
-      css`
-        img {
-          margin-right: -0.3rem;
-        }
-      `}
   }
 `;
 

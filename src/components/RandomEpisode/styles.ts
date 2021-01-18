@@ -1,13 +1,9 @@
 import { darken } from 'polished';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { colors } from '../../styles/variables';
 
-interface RandomEpisodeStyled {
-  isPlaying?: boolean;
-}
-
 /* Exposes root container so other can easily override styles */
-export const RandomEpisodeStyled = styled.div<RandomEpisodeStyled>`
+export const RandomEpisodeStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,12 +36,6 @@ export const RandomEpisodeStyled = styled.div<RandomEpisodeStyled>`
     img {
       width: 3rem;
       height: 3rem;
-
-      ${props =>
-        !props.isPlaying &&
-        css`
-          margin-right: -0.6rem;
-        `}
     }
   }
 `;

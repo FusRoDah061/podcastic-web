@@ -242,7 +242,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
                 <PlayPauseButton
                   layout
-                  isPlaying={isPlaying}
                   onClick={handlePlayPause}
                   title={
                     isPlaying

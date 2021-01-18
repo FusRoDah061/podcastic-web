@@ -45,7 +45,7 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
   }, [episode.date]);
 
   return (
-    <EpisodeItemStyled isPlaying={isPlaying}>
+    <EpisodeItemStyled>
       {!episode.existsOnFeed && (
         <EpisodeUnavailableOverlay>
           <img

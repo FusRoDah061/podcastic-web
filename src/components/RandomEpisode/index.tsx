@@ -31,7 +31,7 @@ const RandomEpisode: React.FC<RandomEpisodeProps> = ({ episode, onPlay }) => {
   }, [episode.date]);
 
   return (
-    <RandomEpisodeStyled isPlaying={isPlaying}>
+    <RandomEpisodeStyled>
       <p>{episode.title}</p>
       <button
         type="button"

@@ -8,10 +8,6 @@ interface AudioPlayerProps {
   isMinimized: boolean;
 }
 
-interface PlayPauseButtonProps {
-  isPlaying?: boolean;
-}
-
 export const AudioPlayerStyled = styled(motion.div)<AudioPlayerProps>`
   position: fixed;
   left: 0;
@@ -174,7 +170,7 @@ export const RewindButton = styled(motion.button)`
   }
 `;
 
-export const PlayPauseButton = styled(motion.button)<PlayPauseButtonProps>`
+export const PlayPauseButton = styled(motion.button)`
   display: flex;
   width: 4.8rem;
   height: 4.8rem;
@@ -190,14 +186,6 @@ export const PlayPauseButton = styled(motion.button)<PlayPauseButtonProps>`
   &:hover {
     background: ${darken(0.05, colors.white)};
   }
-
-  ${props =>
-    !props.isPlaying &&
-    css`
-      img {
-        margin-right: -0.3rem;
-      }
-    `}
 `;
 
 export const ForwardButton = styled(motion.button)`
