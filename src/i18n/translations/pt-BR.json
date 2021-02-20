@@ -66,5 +66,5 @@
   "formatDateAsTimeAgo.lessThanAMinute": "menos de um minuto",
   "formatDateAsTimeAgo.ago": "há {time}",
 
-  "episodeItem.episodeNotAvailable": "Este episódio não está mais disponível no feed."
+  "episodeItem.episodeNotAvailable": "Não disponível no feed"
 }

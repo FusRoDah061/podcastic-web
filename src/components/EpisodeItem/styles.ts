@@ -29,20 +29,18 @@ export const EpisodeItemStyled = styled.div`
 `;
 
 export const EpisodeUnavailableOverlay = styled.div`
-  position: absolute;
   display: flex;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
   background: ${transparentize(0.09, colors.white)};
-  padding: 0 1rem;
+
+  img {
+    height: 1.4rem;
+  }
 
   p {
-    margin-left: 1rem;
+    margin-left: 0.6rem;
     color: ${colors.textDark};
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 `;
 

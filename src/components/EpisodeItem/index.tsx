@@ -46,26 +46,7 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
 
   return (
     <EpisodeItemStyled>
-      {!episode.existsOnFeed && (
-        <EpisodeUnavailableOverlay>
-          <img
-            src={warningIcon}
-            alt={intl.formatMessage({
-              id: 'generic.warning',
-              defaultMessage: 'Warning',
-            })}
-          />
-          <p>
-            <FormattedMessage
-              id="episodeItem.episodeNotAvailable"
-              defaultMessage="This episode is not available on the feed anymore."
-            />
-          </p>
-        </EpisodeUnavailableOverlay>
-      )}
-
       <button
-        disabled={!episode.existsOnFeed}
         type="button"
         onClick={() => {
           if (onPlay) {
@@ -118,6 +99,26 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
           <p>{episode.duration}</p>
           <span />
           <p title={dates.formattedDate}>{dates.formattedDateAsTimeAgo}</p>
+          {!episode.existsOnFeed && (
+            <>
+              <span />
+              <EpisodeUnavailableOverlay>
+                <img
+                  src={warningIcon}
+                  alt={intl.formatMessage({
+                    id: 'generic.warning',
+                    defaultMessage: 'Warning',
+                  })}
+                />
+                <p>
+                  <FormattedMessage
+                    id="episodeItem.episodeNotAvailable"
+                    defaultMessage="This episode is not available on the feed anymore."
+                  />
+                </p>
+              </EpisodeUnavailableOverlay>
+            </>
+          )}
         </EpisodeInfo>
       </EpisodeContent>
     </EpisodeItemStyled>
