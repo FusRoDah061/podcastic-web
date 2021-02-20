@@ -87,7 +87,8 @@ const Home: React.FC = () => {
   const [searchText, setSearchText] = useState('');
   const [podcasts, setPodcasts] = useState<PodcastDTO[]>([]);
   const [recentPodcasts, setRecentPodcasts] = useState<PodcastDTO[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isRecentLoading, setIsRecentLoading] = useState(false);
+  const [isAllLoading, setIsAllLoading] = useState(false);
 
   useEffect(() => {
     async function fetchPodcasts() {
@@ -106,14 +107,23 @@ const Home: React.FC = () => {
       }
     }
 
-    setIsLoading(true);
+    setIsRecentLoading(true);
+    setIsAllLoading(true);
 
-    Promise.all([fetchPodcasts(), fetchRecentPodcasts()])
+    fetchPodcasts()
       .then(() => {
-        setIsLoading(false);
+        setIsAllLoading(false);
       })
       .catch(() => {
-        setIsLoading(false);
+        setIsAllLoading(false);
+      });
+
+    fetchRecentPodcasts()
+      .then(() => {
+        setIsRecentLoading(false);
+      })
+      .catch(() => {
+        setIsRecentLoading(false);
       });
   }, []);
 
@@ -271,9 +281,9 @@ const Home: React.FC = () => {
 
           <PodcastListContainer>
             <ul>
-              {isLoading && recentPodcastsPlaceholderItems}
+              {isRecentLoading && recentPodcastsPlaceholderItems}
 
-              {!isLoading &&
+              {!isRecentLoading &&
                 recentPodcasts.map(podcast => (
                   <li key={podcast._id}>
                     <PodcastItem podcast={podcast} />
@@ -300,9 +310,9 @@ const Home: React.FC = () => {
 
           <PodcastGridContainer>
             <ul>
-              {isLoading && allPodcastsPlaceholderItems}
+              {isAllLoading && allPodcastsPlaceholderItems}
 
-              {!isLoading &&
+              {!isAllLoading &&
                 podcasts.map(podcast => (
                   <li key={podcast._id}>
                     <PodcastItem podcast={podcast} />
@@ -348,9 +358,9 @@ const Home: React.FC = () => {
 
         <AllRecentListContainer>
           <ul>
-            {isLoading && recentPodcastsPlaceholderItems}
+            {isRecentLoading && recentPodcastsPlaceholderItems}
 
-            {!isLoading &&
+            {!isRecentLoading &&
               recentPodcasts.map(podcast => (
                 <li key={podcast._id}>
                   <PodcastItem podcast={podcast} />
