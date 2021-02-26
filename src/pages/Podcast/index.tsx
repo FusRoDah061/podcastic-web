@@ -215,38 +215,47 @@ const Podcast: React.FC = () => {
                   <h1 title={podcast.name}>{podcast.name}</h1>
 
                   <PodcastLinks>
-                    <a
-                      href={podcast.websiteUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <img
-                        src={externalLinkIcon}
-                        alt={intl.formatMessage({
-                          id: 'podcast.officialWebsiteLink',
-                          defaultMessage: 'Official website link',
-                        })}
-                      />
+                    {podcast.websiteUrl && (
+                      <a
+                        href={podcast.websiteUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img
+                          src={externalLinkIcon}
+                          alt={intl.formatMessage({
+                            id: 'podcast.officialWebsiteLink',
+                            defaultMessage: 'Official website link',
+                          })}
+                        />
 
-                      <FormattedMessage
-                        id="podcast.officialWebsite"
-                        defaultMessage="Official website"
-                      />
-                    </a>
-                    <a href={podcast.feedUrl} target="_blank" rel="noreferrer">
-                      <img
-                        src={rssIcon}
-                        alt={intl.formatMessage({
-                          id: 'podcast.feedLink',
-                          defaultMessage: 'Feed link',
-                        })}
-                      />
+                        <FormattedMessage
+                          id="podcast.officialWebsite"
+                          defaultMessage="Official website"
+                        />
+                      </a>
+                    )}
 
-                      <FormattedMessage
-                        id="podcast.feed"
-                        defaultMessage="Feed"
-                      />
-                    </a>
+                    {podcast.feedUrl && (
+                      <a
+                        href={podcast.feedUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img
+                          src={rssIcon}
+                          alt={intl.formatMessage({
+                            id: 'podcast.feedLink',
+                            defaultMessage: 'Feed link',
+                          })}
+                        />
+
+                        <FormattedMessage
+                          id="podcast.feed"
+                          defaultMessage="Feed"
+                        />
+                      </a>
+                    )}
                   </PodcastLinks>
 
                   <p title={podcast.description}>{podcast.description}</p>
