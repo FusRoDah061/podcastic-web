@@ -67,7 +67,7 @@ export const PageContent = styled.div`
       flex: 1;
       text-align: start;
       font-size: 1.8rem;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.2rem;
 
       input {
         display: block;
@@ -81,6 +81,13 @@ export const PageContent = styled.div`
       }
     }
 
+    span {
+      width: 100%;
+      margin-bottom: 1.8rem;
+      color: ${colors.red};
+      text-align: center;
+    }
+
     @media (min-width: ${dims.tabletBreak}) {
       label {
         width: auto;
@@ -90,6 +97,11 @@ export const PageContent = styled.div`
           border-width: 0.2rem;
           width: 40rem;
         }
+      }
+
+      span {
+        text-align: left;
+        width: 40rem;
       }
     }
   }

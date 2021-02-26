@@ -40,6 +40,7 @@ const AddPodcast: React.FC = () => {
   const history = useHistory();
   const [feedUrl, setFeedUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleAddPodcast = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
@@ -53,7 +54,10 @@ const AddPodcast: React.FC = () => {
 
           history.goBack();
         } catch (err) {
-          // console.log(err.request.parsedResponse);
+          if (err.request.parsedResponse) {
+            setError(err.request.parsedResponse.message);
+          }
+
           setIsLoading(false);
         }
 
@@ -113,6 +117,8 @@ const AddPodcast: React.FC = () => {
               }}
             />
           </label>
+
+          {error && <span>{error}</span>}
 
           <AddPodcastConfirmButton type="submit">
             {isLoading && <Spinner />}
