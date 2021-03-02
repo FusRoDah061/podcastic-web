@@ -5,6 +5,7 @@
   "generic.pauseEpisode": "Pausar episódio",
   "generic.playEpisode": "Reproduzir episódio",
   "generic.warning": "Atenção",
+  "generic.goBackToHome": "Voltar para a página inicial",
 
   "home.title": "Podcastic - Seus podcasts favoritos, rápido e fácil.",
   "home.podcasticLogo": "Logotipo do Podcastic",
@@ -31,7 +32,6 @@
   "allPodcasts.allPodcasts": "Todos os podcasts",
 
   "search.title": "Buscar podcast - Podcastic",
-  "search.goBackToHome": "Voltar para a página inicial",
   "search.searchHereForAPodcast": "Busque um podcast",
 
   "podcast.pickARandomEpisode": "Sortear um episódio",
@@ -50,6 +50,8 @@
   "podcast.officialWebsiteLink": "Endereço do site oficial",
   "podcast.feedLink": "Endereço do feed",
   "podcast.weCantReachFeed": "Não conseguimos acessar o feed desse podcast desde o dia {date}",
+  "podcast.errorFetchingPodcast": "Erro ao carregar o podcast:",
+  "podcast.ohNo": "Ah não!",
 
   "episodeSearch.title": "Buscar episódio - Podcastic",
   "episodeSearch.searchHereForAnEpisode": "Buscar um episódio",

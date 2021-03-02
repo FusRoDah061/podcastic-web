@@ -127,14 +127,14 @@ const Search: React.FC = () => {
             <GoBackLink
               to="/"
               title={intl.formatMessage({
-                id: 'search.goBackToHome',
+                id: 'generic.goBackToHome',
                 defaultMessage: 'Go back to home',
               })}
             >
               <img
                 src={arrowLeftWhite}
                 alt={intl.formatMessage({
-                  id: 'search.goBackToHome',
+                  id: 'generic.goBackToHome',
                   defaultMessage: 'Go back to home',
                 })}
               />

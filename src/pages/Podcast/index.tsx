@@ -31,6 +31,9 @@ import {
   EpisodesSortSelectContainer,
   MobileEpisodeSearchLink,
   EpisodesListContainer,
+  PodcastFetchError,
+  PodcastFetchErrorTitle,
+  PodcastFetchErrorLabel,
 } from './styles';
 import ImageOrLetter from '../../components/ImageOrLetter';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
@@ -38,6 +41,8 @@ import EpisodesList from '../../components/EpisodesList';
 import { useAudioPlayer } from '../../hooks/audioPlayer';
 import RandomEpisode from '../../components/RandomEpisode';
 import Spinner from '../../components/Spinner';
+import formatDate from '../../utils/formatDate';
+import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 import { colors } from '../../styles/variables';
 
 import chevronLeftWhiteIcon from '../../assets/chevron-left-white-icon.svg';
@@ -47,8 +52,7 @@ import logoImg from '../../assets/podcastic-green-logo.svg';
 import rssIcon from '../../assets/rss_icon_gray.svg';
 import externalLinkIcon from '../../assets/external_link_icon_gray.svg';
 import warningIcon from '../../assets/warning_icon_red.svg';
-import formatDate from '../../utils/formatDate';
-import PlayerAwareTitle from '../../components/PlayerAwareTitle';
+import sadFace from '../../assets/error-face-image.svg';
 
 interface RouteParams {
   podcastId: string;
@@ -95,21 +99,31 @@ const Podcast: React.FC = () => {
   const [episodeToSearch, setEpisodeToSearch] = useState('');
   const [isLoadingRandom, setIsLoadingRandom] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [podcastError, setPodcastError] = useState('');
 
   useEffect(() => {
     async function fetchPodcast() {
       setIsLoading(true);
 
-      const response = await api.getPodcast({
-        podcastId,
-        sort,
-        episodeToSearch,
-      });
+      try {
+        const response = await api.getPodcast({
+          podcastId,
+          sort,
+          episodeToSearch,
+        });
 
-      setIsLoading(false);
+        if (response.status === 200) {
+          setPodcast(response.data);
+        }
 
-      if (response.status === 200) {
-        setPodcast(response.data);
+        setIsLoading(false);
+      } catch (err) {
+        if (err.request.parsedResponse) {
+          console.log(err.request.parsedResponse);
+          setPodcastError(err.request.parsedResponse.message);
+        }
+
+        setIsLoading(false);
       }
     }
 
@@ -445,8 +459,41 @@ const Podcast: React.FC = () => {
           </HasPodcastPageContainer>
         )}
 
-        {!podcast && (
+        {!podcast && !podcastError && (
           <Spinner color={colors.greenDark} size={50} thickness={5} />
+        )}
+
+        {podcastError && (
+          <PodcastFetchError>
+            <img
+              src={sadFace}
+              alt={intl.formatMessage({
+                id: 'podcast.errorFetchingPodcast',
+                defaultMessage: 'Error fetching podcast',
+              })}
+            />
+
+            <div>
+              <PodcastFetchErrorTitle>
+                <FormattedMessage id="podcast.ohNo" defaultMessage="Oh no!" />
+              </PodcastFetchErrorTitle>
+              <PodcastFetchErrorLabel>
+                <FormattedMessage
+                  id="podcast.errorFetchingPodcast"
+                  defaultMessage="Error fetching podcast:"
+                />
+              </PodcastFetchErrorLabel>
+
+              <p>{podcastError}</p>
+
+              <GoBackLink to="/">
+                <FormattedMessage
+                  id="generic.goBackToHome"
+                  defaultMessage="Go back to home"
+                />
+              </GoBackLink>
+            </div>
+          </PodcastFetchError>
         )}
       </PageContent>
     </Container>

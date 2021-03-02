@@ -564,3 +564,51 @@ export const EpisodesListContainer = styled.div`
     }
   }
 `;
+
+export const PodcastFetchError = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: ${colors.textDark};
+  text-align: center;
+  padding-top: 20%;
+  align-items: center;
+
+  img {
+    width: 12rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: ${dims.tabletBreak}) {
+    text-align: left;
+    padding: 0;
+    flex-direction: row;
+
+    img {
+      width: 18rem;
+      margin-bottom: 0;
+      margin-right: 3rem;
+    }
+
+    ${GoBackLink} {
+      display: block;
+      color: ${colors.textDark};
+      margin-top: 3rem;
+      font-family: Roboto;
+      font-weight: normal;
+      text-decoration: underline;
+      color: ${colors.greenDark};
+      font-size: 1.6rem;
+    }
+  }
+`;
+
+export const PodcastFetchErrorTitle = styled.p`
+  font-family: Nunito;
+  font-weight: bold;
+  font-size: 2.3rem;
+  margin-bottom: 1.2rem;
+`;
+
+export const PodcastFetchErrorLabel = styled.p`
+  margin-bottom: 1rem;
+`;

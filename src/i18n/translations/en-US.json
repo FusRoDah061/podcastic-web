@@ -5,6 +5,7 @@
   "generic.pauseEpisode": "Pause episode",
   "generic.playEpisode": "Play episode",
   "generic.warning": "Warning",
+  "generic.goBackToHome": "Go back to home page",
 
   "home.title": "Podcastic - Your favorite podcasts, simple and easy.",
   "home.podcasticLogo": "Podcastic logo",
@@ -31,7 +32,6 @@
   "allPodcasts.allPodcasts": "All podcasts",
 
   "search.title": "Search podcast - Podcastic",
-  "search.goBackToHome": "Go back to home",
   "search.searchHereForAPodcast": "Search here for a podcast",
 
   "podcast.pickARandomEpisode": "Pick a random episode",
@@ -50,6 +50,8 @@
   "podcast.officialWebsiteLink": "Official website link",
   "podcast.feedLink": "Feed link",
   "podcast.weCantReachFeed": "We can't reach this podcast feed since {date}",
+  "podcast.errorFetchingPodcast": "Error fetching podcast:",
+  "podcast.ohNo": "Oh no!",
 
   "episodeSearch.title": "Search episode - Podcastic",
   "episodeSearch.searchHereForAnEpisode": "Search here for an episode",
