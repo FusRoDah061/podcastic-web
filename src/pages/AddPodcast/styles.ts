@@ -84,7 +84,7 @@ export const PageContent = styled.div`
     span {
       width: 100%;
       margin-bottom: 1.8rem;
-      color: ${colors.red};
+      color: ${colors.error};
       text-align: center;
     }
 

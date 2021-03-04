@@ -7,7 +7,9 @@ export const colors = {
   white: '#FFFFFF',
   black: '#000000',
   placeholderContent: '#F1F1F1',
-  red: '#EB3434',
+  error: '#EB3434',
+  info: '#3493EB',
+  success: '#15D740',
 };
 
 export const dims = {

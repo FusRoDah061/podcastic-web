@@ -215,10 +215,10 @@ export const PodcastLinks = styled.div`
 export const PodcastAvalabilityWarningContainer = styled.div`
   display: flex;
   align-items: center;
-  border: 2px solid ${colors.red};
+  border: 2px solid ${colors.error};
   border-radius: 1.5rem;
   color: ${colors.textDark};
-  background: ${lighten(0.35, colors.red)};
+  background: ${lighten(0.35, colors.error)};
   padding: 1rem 0.7rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;

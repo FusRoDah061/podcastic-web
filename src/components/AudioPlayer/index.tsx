@@ -26,6 +26,7 @@ import maximizeIcon from '../../assets/chevron-up-black-icon.svg';
 import AudioProgressBar from './AudioProgressBar';
 import { AudioDTO } from '../../dtos/AudioDTO';
 import formatDuration from '../../utils/formatDuration';
+import { useToast } from '../../hooks/toast';
 
 interface AudioPlayerProps {
   isOpen: boolean;
@@ -89,6 +90,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     setAudioCurrentTimeMs(currentTimeMs);
     setFormattedAudioCurrentTime(formatDuration(currentTimeMs));
   }, []);
+  const { addToast } = useToast();
 
   useEffect(() => {
     setIsPlaying(true);
@@ -161,8 +163,17 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   }, [onEnd]);
 
   const handleError = useCallback(() => {
-    setIsPlaying(false);
-  }, []);
+    handleEnded();
+    handleDismissPlayer();
+
+    addToast({
+      description: intl.formatMessage({
+        id: 'audioPlayer.errorPlayingEpisode',
+        defaultMessage: 'There was an error playing the episode.',
+      }),
+      type: 'error',
+    });
+  }, [addToast, handleEnded, handleDismissPlayer, intl]);
 
   const handleBeginSeek = useCallback(() => {
     setIsSeeking(true);

@@ -64,9 +64,15 @@
   "audioPlayer.advance15Seconds": "Avançar 15 segundos",
   "audioPlayer.maximizePlayer": "Maximizar player",
   "audioPlayer.minimizePlayer": "Minimizar player",
+  "audioPlayer.errorPlayingEpisode": "Ocorreu um erro ao reproduzir o episódio.",
 
   "formatDateAsTimeAgo.lessThanAMinute": "menos de um minuto",
   "formatDateAsTimeAgo.ago": "há {time}",
 
-  "episodeItem.episodeNotAvailable": "Não disponível no feed"
+  "episodeItem.episodeNotAvailable": "Não disponível no feed",
+
+  "toast.info": "Informação",
+  "toast.error": "Erro",
+  "toast.success": "Sucesso",
+  "toast.dismissToast": "Esconder alerta"
 }
