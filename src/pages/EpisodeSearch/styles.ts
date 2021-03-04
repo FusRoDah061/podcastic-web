@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import styled from 'styled-components';
-import { colors, dims } from '../../styles/variables';
+import { colors, device } from '../../styles/variables';
 
 export const Container = styled(motion.main)`
   display: flex;
@@ -13,7 +13,7 @@ export const HeaderContainer = styled.header`
   width: 100%;
   padding: 1.5rem 0;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     padding: 3rem 0;
   }
 `;
@@ -57,7 +57,7 @@ export const HeaderContent = styled.nav`
       }
     }
 
-    @media (min-width: ${dims.tabletBreak}) {
+    @media ${device.tablet} {
       width: 900px;
       margin: auto;
     }
@@ -77,7 +77,7 @@ export const PageContentContainer = styled.section`
   padding: 1.6rem;
   padding-bottom: 0;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     height: calc(100% - 10.2rem);
   }
 `;
@@ -93,7 +93,7 @@ export const PageContent = styled.article`
     margin-bottom: 2.5rem;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     width: 900px;
     margin: auto;
   }

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { animated } from 'react-spring';
-import { colors, dims } from '../../../styles/variables';
+import { colors, device } from '../../../styles/variables';
 
 interface ContainerProps {
   type?: 'success' | 'error' | 'info';
@@ -62,7 +62,7 @@ export const Container = styled(animated.div)<ContainerProps>`
     color: inherit;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     width: 400px;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;

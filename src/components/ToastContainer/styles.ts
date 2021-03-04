@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { dims } from '../../styles/variables';
+import { device } from '../../styles/variables';
 
 export const Container = styled.div`
   position: absolute;
@@ -9,7 +9,7 @@ export const Container = styled.div`
   overflow: hidden;
   z-index: 10;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     padding: 30px;
     padding-right: 0px;
   }

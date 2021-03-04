@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import { Link } from 'react-router-dom';
-import { colors, dims } from '../../styles/variables';
+import { colors, device, size } from '../../styles/variables';
 import { PodcastItemInfo } from '../../components/PodcastItem/styles';
 
 export const Container = styled(motion.main)`
@@ -18,7 +18,7 @@ export const Container = styled(motion.main)`
     ${colors.greenLight} 100%
   );
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     padding: 2.5rem 3rem;
   }
 `;
@@ -32,7 +32,7 @@ export const Header = styled.header`
   flex-direction: column;
   z-index: 2;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     position: relative;
     top: 0;
     left: 0;
@@ -64,7 +64,7 @@ export const HeaderTop = styled.div`
     }
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     div:first-child {
       flex-direction: row;
       align-items: center;
@@ -101,7 +101,7 @@ export const AddPodcastButton = styled(Link)`
     }
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     background: ${colors.white};
     color: ${colors.textDark};
     font-family: Nunito;
@@ -141,7 +141,7 @@ export const SearchContainer = styled.form`
     flex: 1;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     width: 60rem;
     padding: 1rem;
     margin: 4rem auto 0 auto;
@@ -175,7 +175,7 @@ export const PodcastsContainer = styled.section`
     list-style: none;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: grid;
     margin-top: 8rem;
     height: calc(100% - 28rem);
@@ -224,7 +224,7 @@ export const RecentlyAddedPodcastsContainer = styled.aside`
     }
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     width: 400px;
     min-width: 350px;
     height: 100%;
@@ -258,6 +258,12 @@ export const PodcastListContainer = styled.div`
     li:nth-child(n + 4) {
       /* Displays only the first 3 items */
       display: none;
+    }
+
+    li {
+      ${PodcastItemInfo} {
+        display: none;
+      }
     }
   }
 
@@ -301,7 +307,7 @@ export const PodcastListContainer = styled.div`
     }
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     overflow: auto;
     height: calc(100% - 4.8rem);
     flex: 1;
@@ -313,6 +319,10 @@ export const PodcastListContainer = styled.div`
 
       li {
         display: block !important;
+
+        ${PodcastItemInfo} {
+          display: block;
+        }
       }
     }
 
@@ -322,7 +332,7 @@ export const PodcastListContainer = styled.div`
     }
   }
 
-  @media (max-width: ${dims.tabletBreak}) {
+  /* @media (max-width: ${size.tablet}) {
     ul {
       li {
         a > div {
@@ -330,14 +340,14 @@ export const PodcastListContainer = styled.div`
         }
       }
     }
-  }
+  } */
 `;
 
 export const AllPodcastsContainer = styled.article`
   position: relative;
   margin-top: 4.2rem;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     margin-left: 1.5rem;
     margin-top: 0;
     padding: 1.5rem;
@@ -366,7 +376,7 @@ export const ViewAllPodcastsLink = styled(Link)`
     margin-left: 0.9rem;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: none;
   }
 `;
@@ -388,6 +398,12 @@ export const PodcastGridContainer = styled.div`
     li:nth-child(n + 6) {
       /* Displays only the first 5 items */
       display: none;
+    }
+
+    li {
+      ${PodcastItemInfo} {
+        display: none;
+      }
     }
   }
 
@@ -433,7 +449,7 @@ export const PodcastGridContainer = styled.div`
     }
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     overflow: auto;
     height: calc(100% - 4.8rem);
     flex: 1;
@@ -470,11 +486,15 @@ export const PodcastGridContainer = styled.div`
 
       li {
         display: block !important;
+
+        ${PodcastItemInfo} {
+          display: block;
+        }
       }
     }
   }
 
-  @media (max-width: ${dims.tabletBreak}) {
+  /* @media (max-width: ${size.tablet}) {
     ul {
       li {
         a > div {
@@ -482,7 +502,7 @@ export const PodcastGridContainer = styled.div`
         }
       }
     }
-  }
+  } */
 `;
 
 export const AllRecentPodcastsContainer = styled(motion.div)`

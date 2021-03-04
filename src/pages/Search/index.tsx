@@ -26,8 +26,9 @@ import searchIcon from '../../assets/search-white-icon.svg';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import api from '../../services/api';
 import range from '../../utils/range';
-import { dims } from '../../styles/variables';
 import PlayerAwareTitle from '../../components/PlayerAwareTitle';
+import useMatchMedia from '../../hooks/matchMedia';
+import { device } from '../../styles/variables';
 
 const containerVariants: Variants = {
   initial: {
@@ -52,6 +53,7 @@ const containerVariants: Variants = {
 const Search: React.FC = () => {
   const intl = useIntl();
   const query = useQuery();
+  const isTablet = useMatchMedia(device.tablet);
   const [podcasts, setPodcasts] = useState<PodcastDTO[]>([]);
   const [paramSearchText] = useState(() => {
     const text = query.get('q');
@@ -96,16 +98,10 @@ const Search: React.FC = () => {
   const podcastsPlaceholderItems = useMemo(() => {
     return range(5).map(dummy => (
       <li key={dummy}>
-        <PodcastItemPlaceholder
-          maxWidth={
-            window.innerWidth > Number(dims.tabletBreak.replace('px', ''))
-              ? 900
-              : undefined
-          }
-        />
+        <PodcastItemPlaceholder maxWidth={isTablet ? 900 : undefined} />
       </li>
     ));
-  }, []);
+  }, [isTablet]);
 
   return (
     <Container

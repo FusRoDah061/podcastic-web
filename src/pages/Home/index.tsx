@@ -26,7 +26,7 @@ import {
   SearchButton,
 } from './styles';
 
-import { dims } from '../../styles/variables';
+import { device } from '../../styles/variables';
 import logoImg from '../../assets/podcastic-white-logo.svg';
 import addIconDesktop from '../../assets/add-green-icon.svg';
 import addIconMobile from '../../assets/add-white-icon.svg';
@@ -41,6 +41,7 @@ import PodcastDTO from '../../dtos/PodcastDTO';
 import api from '../../services/api';
 import range from '../../utils/range';
 import PlayerAwareTitle from '../../components/PlayerAwareTitle';
+import useMatchMedia from '../../hooks/matchMedia';
 
 const containerVariants: Variants = {
   initial: {
@@ -82,6 +83,7 @@ const recentPodcastsVariants: Variants = {
 const Home: React.FC = () => {
   const history = useHistory();
   const intl = useIntl();
+  const isTablet = useMatchMedia(device.tablet);
   const animationControls = useAnimation();
   const [showRecentPodcasts, setShowRecentPodcasts] = useState(false);
   const [searchText, setSearchText] = useState('');
@@ -158,26 +160,18 @@ const Home: React.FC = () => {
   const recentPodcastsPlaceholderItems = useMemo(() => {
     return range(10).map(dummy => (
       <li key={dummy}>
-        <PodcastItemPlaceholder
-          displayInfo={
-            window.innerWidth > Number(dims.tabletBreak.replace('px', ''))
-          }
-        />
+        <PodcastItemPlaceholder displayInfo={isTablet} />
       </li>
     ));
-  }, []);
+  }, [isTablet]);
 
   const allPodcastsPlaceholderItems = useMemo(() => {
     return range(10).map(dummy => (
       <li key={dummy}>
-        <PodcastItemPlaceholder
-          displayInfo={
-            window.innerWidth > Number(dims.tabletBreak.replace('px', ''))
-          }
-        />
+        <PodcastItemPlaceholder displayInfo={isTablet} />
       </li>
     ));
-  }, []);
+  }, [isTablet]);
 
   return (
     <Container
@@ -221,10 +215,7 @@ const Home: React.FC = () => {
 
           <AddPodcastButton to="/new">
             <picture>
-              <source
-                media={`(min-width: ${dims.tabletBreak})`}
-                srcSet={addIconDesktop}
-              />
+              <source media={device.tablet} srcSet={addIconDesktop} />
               <img
                 src={addIconMobile}
                 alt={intl.formatMessage({

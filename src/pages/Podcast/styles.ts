@@ -6,7 +6,7 @@ import { EpisodesListStyled } from '../../components/EpisodesList/styles';
 import { ImageOrLetterStyled } from '../../components/ImageOrLetter/styles';
 import { RandomEpisodeStyled } from '../../components/RandomEpisode/styles';
 import { SpinnerStyled } from '../../components/Spinner/styles';
-import { colors, dims } from '../../styles/variables';
+import { colors, device } from '../../styles/variables';
 
 interface RandomEpisodePopupContainerProps {
   visible: boolean;
@@ -25,7 +25,7 @@ export const HeaderContainer = styled.header`
     ${colors.greenLight} 55%
   );
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     padding: 3rem;
     background: ${colors.white};
     height: auto;
@@ -35,7 +35,7 @@ export const HeaderContainer = styled.header`
 export const LogoLink = styled(Link)`
   display: none;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: block;
     background: none;
     border: 0;
@@ -57,7 +57,7 @@ export const GoBackLink = styled(Link)`
     margin-right: 1.5rem;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: none;
   }
 `;
@@ -77,7 +77,7 @@ export const PageContent = styled.section`
     transform: translate(-50%, -50%);
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     height: calc(100% - 10rem);
     padding: 0rem 3rem;
     align-items: center;
@@ -91,7 +91,7 @@ export const HasPodcastPageContainer = styled.div`
   max-height: 100%;
   width: 100%;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: grid;
     grid-template-columns: 300px auto;
     grid-column-gap: 4rem;
@@ -132,7 +132,7 @@ export const PodcastInfoContent = styled.div`
     }
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     flex-direction: column;
     margin-bottom: 1.5rem;
 
@@ -170,7 +170,7 @@ export const PodcastNameDescription = styled.div`
     overflow: hidden;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     h1 {
       display: block;
       color: ${colors.textDark};
@@ -193,7 +193,7 @@ export const PodcastNameDescription = styled.div`
 export const PodcastLinks = styled.div`
   display: none;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: flex;
     align-items: center;
 
@@ -273,7 +273,7 @@ export const RandomEpisodePopupContainer = styled(motion.div)<RandomEpisodePopup
           display: none;
         `}
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: flex !important;
     position: relative;
     top: unset;
@@ -294,7 +294,7 @@ export const RandomEpisodePopup = styled.div`
   color: ${colors.textDark};
   padding: 0rem 2.5rem;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     width: 100%;
     max-width: 100%;
     box-shadow: none;
@@ -313,7 +313,7 @@ export const RandomEpisodePopupHeader = styled.div`
     font-size: 1.8rem;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: none;
   }
 `;
@@ -326,7 +326,7 @@ export const RandomEpisodePopupBody = styled.div`
     margin-bottom: 2rem;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     & > p {
       display: none;
     }
@@ -349,7 +349,7 @@ export const RandomEpisodePopupEpisode = styled.div`
     }
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     ${RandomEpisodeStyled} {
       button {
         width: 7rem;
@@ -384,7 +384,7 @@ export const RandomEpisodePopupFooter = styled.div`
     }
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: none;
   }
 `;
@@ -395,7 +395,7 @@ export const EpisodesContainer = styled.article`
   margin-top: 1.5rem;
   overflow: hidden;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     margin-top: 0;
   }
 `;
@@ -410,7 +410,7 @@ export const EpisodesContainerHeader = styled.div`
     font-size: 1.6rem;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     align-items: normal;
 
     & > p {
@@ -434,7 +434,7 @@ export const EpisodesFiltersForm = styled.form`
 export const EpisodeSearchInputContainer = styled.div`
   display: none;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -509,7 +509,7 @@ export const EpisodesSortSelectContainer = styled.div`
     pointer-events: none;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     margin-left: 1.2rem;
 
     select {
@@ -534,7 +534,7 @@ export const MobileEpisodeSearchLink = styled(Link)`
     background: ${darken(0.05, colors.white)};
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: none;
   }
 `;
@@ -549,7 +549,7 @@ export const EpisodesListContainer = styled.div`
     height: 100%;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     margin-top: 1.5rem;
 
     ul {
@@ -578,7 +578,7 @@ export const PodcastFetchError = styled.div`
     margin-bottom: 2.5rem;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     text-align: left;
     padding: 0;
     flex-direction: row;

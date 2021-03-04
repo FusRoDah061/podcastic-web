@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { colors, dims } from '../../styles/variables';
+import { colors, device } from '../../styles/variables';
 import { ImageOrLetterStyled } from '../ImageOrLetter/styles';
 
 /* Exposes root container so other can easily override styles */
@@ -40,7 +40,7 @@ export const PodcastItemLink = styled(Link)`
     }
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     color: ${colors.black};
     padding-right: 0.5rem;
   }
@@ -66,7 +66,7 @@ export const PodcastItemInfo = styled.div`
     overflow: hidden;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     p,
     h3 {
       margin: 0;

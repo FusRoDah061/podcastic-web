@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { colors, dims } from '../../styles/variables';
+import { colors, device } from '../../styles/variables';
 
 export const Container = styled(motion.main)`
   display: flex;
@@ -13,7 +13,7 @@ export const Container = styled(motion.main)`
   padding-bottom: 0;
   z-index: 3;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     width: 900px;
     margin: auto;
   }

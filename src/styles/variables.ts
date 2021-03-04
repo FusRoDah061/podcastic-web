@@ -12,7 +12,10 @@ export const colors = {
   success: '#15D740',
 };
 
-export const dims = {
-  mobileBreak: '500px',
-  tabletBreak: '770px',
+export const size = {
+  tablet: '768px',
+};
+
+export const device = {
+  tablet: `(min-width: ${size.tablet})`,
 };

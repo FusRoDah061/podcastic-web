@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { colors, dims } from './variables';
+import { colors, device } from './variables';
 
 export default createGlobalStyle`
   :root {
@@ -44,7 +44,7 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
-  @media (min-width:  ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     :root {
       font-size: 62.5%;
     }

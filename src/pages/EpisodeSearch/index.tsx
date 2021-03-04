@@ -26,8 +26,9 @@ import searchIcon from '../../assets/search-black-icon.svg';
 import EpisodesList from '../../components/EpisodesList';
 import range from '../../utils/range';
 import { EpisodeItemPlaceholder } from '../../components/EpisodeItem';
-import { dims } from '../../styles/variables';
+import { device } from '../../styles/variables';
 import PlayerAwareTitle from '../../components/PlayerAwareTitle';
+import useMatchMedia from '../../hooks/matchMedia';
 
 interface RouteParams {
   podcastId: string;
@@ -57,6 +58,7 @@ const EpisodeSearch: React.FC = () => {
   const intl = useIntl();
   const history = useHistory();
   const query = useQuery();
+  const isTablet = useMatchMedia(device.tablet);
   const { podcastId } = useParams<RouteParams>();
   const [podcast, setPodcast] = useState<PodcastDTO>();
   const [paramSearchText] = useState(() => {
@@ -112,16 +114,10 @@ const EpisodeSearch: React.FC = () => {
   const episodesPlaceholderItems = useMemo(() => {
     return range(10).map(dummy => (
       <li key={dummy}>
-        <EpisodeItemPlaceholder
-          maxWidth={
-            window.innerWidth > Number(dims.tabletBreak.replace('px', ''))
-              ? 900
-              : undefined
-          }
-        />
+        <EpisodeItemPlaceholder maxWidth={isTablet ? 900 : undefined} />
       </li>
     ));
-  }, []);
+  }, [isTablet]);
 
   return (
     <Container

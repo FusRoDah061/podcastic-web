@@ -2,7 +2,7 @@ import React from 'react';
 import { useTransition } from 'react-spring';
 import useMatchMedia from '../../hooks/matchMedia';
 import { ToastMessage } from '../../hooks/toast';
-import { dims } from '../../styles/variables';
+import { device } from '../../styles/variables';
 import { Container } from './styles';
 import Toast from './Toast';
 
@@ -11,11 +11,11 @@ interface ToastContainer {
 }
 
 const ToastContainer: React.FC<ToastContainer> = ({ messages }) => {
-  const isDesktop = useMatchMedia(`(min-width: ${dims.tabletBreak})`);
+  const isTablet = useMatchMedia(device.tablet);
   const messagesWithTransitions = useTransition(
     messages,
     message => message.id,
-    isDesktop
+    isTablet
       ? {
           from: { right: '-120%' },
           enter: { right: '0%' },

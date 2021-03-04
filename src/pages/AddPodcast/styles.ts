@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { colors, dims } from '../../styles/variables';
+import { colors, device } from '../../styles/variables';
 import { SpinnerStyled } from '../../components/Spinner/styles';
 
 export const Container = styled(motion.main)`
@@ -14,7 +14,7 @@ export const Container = styled(motion.main)`
   padding: 1.8rem 2rem;
   z-index: 3;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     width: 900px;
     margin: auto;
   }
@@ -88,7 +88,7 @@ export const PageContent = styled.div`
       text-align: center;
     }
 
-    @media (min-width: ${dims.tabletBreak}) {
+    @media ${device.tablet} {
       label {
         width: auto;
         flex: 0;
@@ -130,7 +130,7 @@ export const AddPodcastConfirmButton = styled.button`
     margin-right: 0.9rem;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     border-width: 0.2rem;
   }
 `;

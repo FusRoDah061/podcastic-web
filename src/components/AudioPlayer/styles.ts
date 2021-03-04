@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import styled, { css } from 'styled-components';
-import { colors, dims } from '../../styles/variables';
+import { colors, device } from '../../styles/variables';
 import { AudioProgressBarStyled } from './AudioProgressBar/styles';
 
 interface AudioPlayerProps {
@@ -92,7 +92,7 @@ export const AudioPlayerContent = styled(motion.div)`
   padding: 1.5rem 2rem;
   background: ${colors.white};
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     flex-direction: row;
   }
 `;
@@ -105,7 +105,7 @@ export const PlayerControls = styled(motion.div)`
   align-items: center;
   margin-bottom: 1.5rem;
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     grid-template-columns: 4rem 1fr;
     width: auto;
     margin-bottom: 0;
@@ -237,7 +237,7 @@ export const MinimizeButton = styled(motion.button)`
     height: 40%;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     display: none;
   }
 `;
@@ -251,7 +251,7 @@ export const AudioInfoContainer = styled(motion.div)`
     margin-bottom: 0.7rem;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     p {
       font-size: 1.6rem;
     }
@@ -274,7 +274,7 @@ export const AudioProgressInfo = styled(motion.div)`
     display: none;
   }
 
-  @media (min-width: ${dims.tabletBreak}) {
+  @media ${device.tablet} {
     flex-direction: row;
     justify-content: center;
 
