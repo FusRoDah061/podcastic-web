@@ -119,7 +119,6 @@ const Podcast: React.FC = () => {
         setIsLoading(false);
       } catch (err) {
         if (err.request.parsedResponse) {
-          console.log(err.request.parsedResponse);
           setPodcastError(err.request.parsedResponse.message);
         }
 
