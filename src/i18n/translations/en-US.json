@@ -52,6 +52,7 @@
   "podcast.weCantReachFeed": "We can't reach this podcast feed since {date}",
   "podcast.errorFetchingPodcast": "Error fetching podcast:",
   "podcast.ohNo": "Oh no!",
+  "podcast.errorRandomEpisode": "There was an error choosing a random episode.",
 
   "episodeSearch.title": "Search episode - Podcastic",
   "episodeSearch.searchHereForAnEpisode": "Search here for an episode",

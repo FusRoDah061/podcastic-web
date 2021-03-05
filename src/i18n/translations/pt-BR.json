@@ -52,6 +52,7 @@
   "podcast.weCantReachFeed": "Não conseguimos acessar o feed desse podcast desde o dia {date}",
   "podcast.errorFetchingPodcast": "Erro ao carregar o podcast:",
   "podcast.ohNo": "Ah não!",
+  "podcast.errorRandomEpisode": "Ocorreu um erro ao buscar um episódio aleatório.",
 
   "episodeSearch.title": "Buscar episódio - Podcastic",
   "episodeSearch.searchHereForAnEpisode": "Buscar um episódio",

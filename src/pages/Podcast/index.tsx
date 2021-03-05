@@ -53,6 +53,7 @@ import rssIcon from '../../assets/rss_icon_gray.svg';
 import externalLinkIcon from '../../assets/external_link_icon_gray.svg';
 import warningIcon from '../../assets/warning_icon_red.svg';
 import sadFace from '../../assets/error-face-image.svg';
+import { useToast } from '../../hooks/toast';
 
 interface RouteParams {
   podcastId: string;
@@ -100,6 +101,7 @@ const Podcast: React.FC = () => {
   const [isLoadingRandom, setIsLoadingRandom] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [podcastError, setPodcastError] = useState('');
+  const { addToast } = useToast();
 
   useEffect(() => {
     async function fetchPodcast() {
@@ -132,14 +134,24 @@ const Podcast: React.FC = () => {
   const getRandomEpisode = useCallback(async () => {
     setIsLoadingRandom(true);
 
-    const response = await api.getRandomEpisode(podcastId);
+    try {
+      const response = await api.getRandomEpisode(podcastId);
 
-    setIsLoadingRandom(false);
+      setIsLoadingRandom(false);
 
-    if (response.status === 200) {
-      setRandomEpisode(response.data);
+      if (response.status === 200) {
+        setRandomEpisode(response.data);
+      }
+    } catch (err) {
+      addToast({
+        type: 'error',
+        description: intl.formatMessage({
+          id: 'podcast.errorRandomEpisode',
+          defaultMessage: 'There was an error choosing a random episode.',
+        }),
+      });
     }
-  }, [podcastId]);
+  }, [podcastId, addToast, intl]);
 
   const handleShowRandomEpisode = useCallback(async () => {
     getRandomEpisode();
