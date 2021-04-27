@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { colors } from '../../../styles/variables';
+import { colors, device } from '../../../styles/variables';
 
 export const AudioProgressBarStyled = styled(motion.div)`
   position: relative;
@@ -16,28 +16,51 @@ export const AudioProgressBarStyled = styled(motion.div)`
     height: 0.4rem;
     background: ${colors.textPlaceholder};
     outline: none;
+    cursor: pointer;
   }
 
   input::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 1.8rem;
-    height: 1.8rem;
     border-radius: 50%;
     background: ${colors.greenDark};
     cursor: pointer;
     transition: 0.2s;
     z-index: 15;
+    width: 1.8rem;
+    height: 1.8rem;
   }
 
   input::-moz-range-thumb {
-    width: 1.8rem;
-    height: 1.8rem;
     border-radius: 50%;
     background: ${colors.greenDark};
     cursor: pointer;
     transition: 0.2s;
     z-index: 15;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  @media ${device.tablet} {
+    input::-webkit-slider-thumb {
+      width: 4px;
+      height: 4px;
+    }
+
+    input::-moz-range-thumb {
+      width: 4px;
+      height: 4px;
+    }
+
+    input::-webkit-slider-thumb:hover {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+
+    input::-moz-range-thumb:hover {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
   }
 `;
 
