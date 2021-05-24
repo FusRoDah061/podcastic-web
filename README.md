@@ -1,6 +1,29 @@
-Estrutura:
-- Usuários podem adicionar novos feeds no frontend
-- Periodicamente o backend vai monitorar esses feeds e criar um cache proprio com todos os itens disponíveis no feeds
-- Frontend vai consumir desse cache
-- Quando um feed é adicionado pela primeira vez, ele será cacheado na hora
-- Próximos caches serão feitos para itens novos dos feeds
+#
+
+<p align="center">
+  <img alt="banner" src="./.github/banner.png">
+</p>
+
+<p align="center">
+  <img alt="banner" src="./.github/screenshots_mobile.png">
+</p>
+
+<p align="center">
+  <img alt="banner" src="./.github/screenshot_desktop_1.png">
+</p>
+
+<p align="center">
+  <img alt="banner" src="./.github/screenshot_desktop_2.png">
+</p>
+
+## Development
+
+Prerequisite: [backend API](https://github.com/FusRoDah061/podcastic-backend)
+
+- Clone the repository
+- Install dependencies with `yarn` command
+- Start the app with `yarn start`
+
+## Deployment
+
+Pushing to the `master` branch will trigger a new release at [Vercel](https://vercel.com/)
