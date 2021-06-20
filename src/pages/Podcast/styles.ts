@@ -239,16 +239,22 @@ export const RandomEpisodeButton = styled.button`
   justify-content: center;
   width: 100%;
   height: 4.2rem;
-  background: ${colors.greenLight};
-  border: 2px solid ${colors.greenDark};
+  background: ${props => props.theme.themeColor ?? colors.greenLight};
+  border: 2px solid
+    ${props =>
+      props.theme.themeColor
+        ? darken(0.05, props.theme.themeColor)
+        : colors.greenDark};
   border-radius: 1rem;
   transition: background 0.2s;
   font-size: 1.5rem;
   font-family: Nunito;
   font-weight: bold;
+  color: ${props => props.theme.textColor ?? colors.textLight};
 
   &:hover {
-    background: ${darken(0.03, colors.greenLight)};
+    background: ${props =>
+      darken(0.03, props.theme.themeColor ?? colors.greenLight)};
   }
 `;
 
@@ -373,7 +379,7 @@ export const RandomEpisodePopupFooter = styled.div`
   button {
     padding: 1.1rem 2rem;
     background: ${colors.white};
-    border: 2px solid ${colors.greenDark};
+    border: 2px solid ${props => props.theme.themeColor ?? colors.greenDark};
     color: ${colors.textDark};
     border-radius: 1rem;
     transition: background 0.2s;
@@ -439,7 +445,7 @@ export const EpisodeSearchInputContainer = styled.div`
     flex-direction: row;
     align-items: center;
     border-radius: 1rem;
-    border: 2px solid ${colors.greenDark};
+    border: 2px solid ${props => props.theme.themeColor ?? colors.greenDark};
     padding-left: 1.5rem;
     width: 50%;
     max-width: 500px;
@@ -481,7 +487,7 @@ export const EpisodesSortSelectContainer = styled.div`
     padding: 1rem 1.5rem;
     padding-right: 3rem;
     color: ${colors.textDark};
-    border: 2px solid ${colors.greenDark};
+    border: 2px solid ${props => props.theme.themeColor ?? colors.greenDark};
     border-radius: 1rem;
 
     -webkit-appearance: none;
@@ -525,7 +531,7 @@ export const MobileEpisodeSearchLink = styled(Link)`
   width: 4.2rem;
   height: 4.2rem;
   background: ${colors.white};
-  border: 2px solid ${colors.greenDark};
+  border: 2px solid ${props => props.theme.themeColor ?? colors.greenDark};
   border-radius: 1rem;
   transition: background 0.2s;
   margin-left: 1.2rem;

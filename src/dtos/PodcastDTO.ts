@@ -10,4 +10,6 @@ export default interface PodcastDTO {
   episodes: Array<EpisodeDTO>;
   isServiceAvailable: boolean;
   lastSuccessfulHealthcheckAt: string;
+  textColor?: string;
+  themeColor?: string;
 }

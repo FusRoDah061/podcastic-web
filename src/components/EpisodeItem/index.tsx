@@ -16,8 +16,8 @@ import formatDateAsTimeAgo from '../../utils/formatDateAsTimeAgo';
 import { colors } from '../../styles/variables';
 import random from '../../utils/random';
 
-import playIcon from '../../assets/play-green-icon.svg';
-import pauseIcon from '../../assets/pause-green-icon.svg';
+import playIcon from '../../assets/play-black-icon.svg';
+import pauseIcon from '../../assets/pause-black-icon.svg';
 import warningIcon from '../../assets/warning_icon_yellow.svg';
 
 interface EpisodeItemProps {

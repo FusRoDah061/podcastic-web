@@ -25,7 +25,7 @@ export const RandomEpisodeStyled = styled.div`
     font-size: 0;
     background: ${colors.white};
     border-radius: 50%;
-    border: 2px solid ${colors.greenDark};
+    border: 2px solid ${props => props.theme.themeColor ?? colors.greenDark};
     transition: background 0.2s;
     margin: 1.7rem 0;
 

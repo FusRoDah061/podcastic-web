@@ -5,8 +5,8 @@ import EpisodeDTO from '../../dtos/EpisodeDTO';
 import { RandomEpisodeStyled, EpisodeInfo } from './styles';
 import { useAudioPlayer } from '../../hooks/audioPlayer';
 
-import playIcon from '../../assets/play-green-icon.svg';
-import pauseIcon from '../../assets/pause-green-icon.svg';
+import playIcon from '../../assets/play-black-icon.svg';
+import pauseIcon from '../../assets/pause-black-icon.svg';
 import formatDate from '../../utils/formatDate';
 import formatDateAsTimeAgo from '../../utils/formatDateAsTimeAgo';
 
