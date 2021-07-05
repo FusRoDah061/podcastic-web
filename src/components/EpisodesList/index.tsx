@@ -16,7 +16,7 @@ const EpisodesList: React.FC<EpisodesListProps> = ({ podcast }) => {
     (episode: EpisodeDTO, isPlaying: boolean) => {
       if (!isPlaying) {
         player.play({
-          id: episode._id,
+          id: episode.id,
           displayName: episode.title,
           author: podcast.name,
           artworkUrl: episode.image || podcast.imageUrl,
@@ -35,7 +35,7 @@ const EpisodesList: React.FC<EpisodesListProps> = ({ podcast }) => {
     <EpisodesListStyled>
       <ul>
         {podcast.episodes.map(episode => (
-          <li key={episode._id}>
+          <li key={episode.id}>
             <EpisodeItem episode={episode} onPlay={handlePlayEpisode} />
           </li>
         ))}

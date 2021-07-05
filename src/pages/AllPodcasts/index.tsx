@@ -102,7 +102,7 @@ const AllPodcasts: React.FC = () => {
 
           {!isLoading &&
             podcasts.map(podcast => (
-              <li key={podcast._id}>
+              <li key={podcast.id}>
                 <PodcastItem podcast={podcast} />
               </li>
             ))}

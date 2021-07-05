@@ -1,5 +1,5 @@
 export default interface EpisodeDTO {
-  _id: string;
+  id: string;
   title: string;
   description: string;
   date: Date;

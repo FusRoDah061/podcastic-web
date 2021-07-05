@@ -19,7 +19,7 @@ interface PodcastItemPlaceholderProps extends IContentLoaderProps {
 const PodcastItem: React.FC<PodcastItemProps> = ({ podcast }) => {
   return (
     <PodcastItemStyled>
-      <PodcastItemLink to={`/podcast/${podcast._id}`}>
+      <PodcastItemLink to={`/podcast/${podcast.id}`}>
         <ImageOrLetter
           src={podcast.imageUrl}
           alt={podcast.name}

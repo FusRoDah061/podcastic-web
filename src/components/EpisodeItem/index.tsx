@@ -33,8 +33,8 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
   const intl = useIntl();
   const player = useAudioPlayer();
   const isPlaying = useMemo(() => {
-    return player.isPlaying(episode._id);
-  }, [player, episode._id]);
+    return player.isPlaying(episode.id);
+  }, [player, episode.id]);
 
   const dates = useMemo(() => {
     const parsedDate = parseISO(episode.date.toString());

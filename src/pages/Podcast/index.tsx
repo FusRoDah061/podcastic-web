@@ -186,7 +186,7 @@ const Podcast: React.FC = () => {
     (episode: EpisodeDTO, isPlaying: boolean) => {
       if (!isPlaying && podcast) {
         player.play({
-          id: episode._id,
+          id: episode.id,
           displayName: episode.title,
           author: podcast?.name,
           artworkUrl: episode.image || podcast.imageUrl,

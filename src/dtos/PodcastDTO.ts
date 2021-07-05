@@ -1,7 +1,7 @@
 import EpisodeDTO from './EpisodeDTO';
 
 export default interface PodcastDTO {
-  _id: string;
+  id: string;
   name: string;
   description: string;
   imageUrl: string;
