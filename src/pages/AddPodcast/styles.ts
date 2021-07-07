@@ -81,7 +81,7 @@ export const PageContent = styled.div`
       }
     }
 
-    span {
+    & > span {
       width: 100%;
       margin-bottom: 1.8rem;
       color: ${colors.error};
@@ -99,7 +99,7 @@ export const PageContent = styled.div`
         }
       }
 
-      span {
+      & > span {
         text-align: left;
         width: 40rem;
       }
