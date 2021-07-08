@@ -5,7 +5,7 @@ import { getLocale } from '../utils/localeUtils';
 
 type ApiResponse<T> = Promise<AxiosResponse<T>>;
 
-interface GetPodcastParams {
+interface GetEpisodesParams {
   podcastId: string;
   sort?: string;
   episodeToSearch?: string;
@@ -50,12 +50,15 @@ export default {
   searchPodcasts: (name: string): ApiResponse<PodcastDTO[]> =>
     api.get<PodcastDTO[]>('/podcasts/search', { params: { q: name } }),
 
-  getPodcast: ({
+  getPodcast: (podcastId: string): ApiResponse<PodcastDTO> =>
+    api.get(`/podcasts/${podcastId}`),
+
+  getEpisodes: ({
     podcastId,
-    episodeToSearch,
     sort,
-  }: GetPodcastParams): ApiResponse<PodcastDTO> =>
-    api.get(`/podcasts/${podcastId}`, {
+    episodeToSearch,
+  }: GetEpisodesParams): ApiResponse<EpisodeDTO[]> =>
+    api.get(`/podcasts/${podcastId}/episodes`, {
       params: {
         sort,
         q: episodeToSearch,

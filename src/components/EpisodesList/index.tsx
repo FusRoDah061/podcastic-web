@@ -7,9 +7,10 @@ import { EpisodesListStyled } from './styles';
 
 interface EpisodesListProps {
   podcast: PodcastDTO;
+  episodes: EpisodeDTO[];
 }
 
-const EpisodesList: React.FC<EpisodesListProps> = ({ podcast }) => {
+const EpisodesList: React.FC<EpisodesListProps> = ({ podcast, episodes }) => {
   const player = useAudioPlayer();
 
   const handlePlayEpisode = useCallback(
@@ -34,7 +35,7 @@ const EpisodesList: React.FC<EpisodesListProps> = ({ podcast }) => {
   return (
     <EpisodesListStyled>
       <ul>
-        {podcast.episodes.map(episode => (
+        {episodes.map(episode => (
           <li key={episode.id}>
             <EpisodeItem episode={episode} onPlay={handlePlayEpisode} />
           </li>

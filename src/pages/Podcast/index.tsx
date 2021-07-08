@@ -101,6 +101,7 @@ const Podcast: React.FC = () => {
   const player = useAudioPlayer();
   const { podcastId } = useParams<RouteParams>();
   const [podcast, setPodcast] = useState<PodcastDTO>();
+  const [episodes, setEpisodes] = useState<EpisodeDTO[]>();
   const [showRandomEpisode, setShowRandomEpisode] = useState(false);
   const [randomEpisode, setRandomEpisode] = useState<EpisodeDTO>();
   const [sort, setSort] = useState('newest');
@@ -112,30 +113,42 @@ const Podcast: React.FC = () => {
 
   useEffect(() => {
     async function fetchPodcast() {
-      setIsLoading(true);
-
       try {
-        const response = await api.getPodcast({
+        const response = await api.getPodcast(podcastId);
+
+        if (response.status === 200) {
+          setPodcast(response.data);
+        }
+      } catch (err) {
+        if (err.request.parsedResponse) {
+          setPodcastError(err.request.parsedResponse.message);
+        }
+      }
+    }
+
+    async function fetchEpisodes() {
+      try {
+        const response = await api.getEpisodes({
           podcastId,
           sort,
           episodeToSearch,
         });
 
         if (response.status === 200) {
-          setPodcast(response.data);
+          setEpisodes(response.data);
         }
-
-        setIsLoading(false);
       } catch (err) {
         if (err.request.parsedResponse) {
           setPodcastError(err.request.parsedResponse.message);
         }
-
-        setIsLoading(false);
       }
     }
 
-    fetchPodcast();
+    setIsLoading(true);
+
+    Promise.all([fetchPodcast(), fetchEpisodes()]).finally(() => {
+      setIsLoading(false);
+    });
   }, [podcastId, sort, episodeToSearch]);
 
   const getRandomEpisode = useCallback(async () => {
@@ -241,7 +254,7 @@ const Podcast: React.FC = () => {
         </HeaderContainer>
 
         <PageContent>
-          {podcast && (
+          {podcast && episodes && (
             <HasPodcastPageContainer>
               <PodcastInfo>
                 <PodcastInfoContent>
@@ -488,7 +501,7 @@ const Podcast: React.FC = () => {
                 </EpisodesContainerHeader>
 
                 <EpisodesListContainer>
-                  <EpisodesList podcast={podcast} />
+                  <EpisodesList podcast={podcast} episodes={episodes} />
                 </EpisodesListContainer>
               </EpisodesContainer>
             </HasPodcastPageContainer>

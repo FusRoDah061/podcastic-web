@@ -29,6 +29,7 @@ import { EpisodeItemPlaceholder } from '../../components/EpisodeItem';
 import { device } from '../../styles/variables';
 import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 import useMatchMedia from '../../hooks/matchMedia';
+import EpisodeDTO from '../../dtos/EpisodeDTO';
 
 interface RouteParams {
   podcastId: string;
@@ -60,6 +61,7 @@ const EpisodeSearch: React.FC = () => {
   const query = useQuery();
   const isTablet = useMatchMedia(device.tablet);
   const { podcastId } = useParams<RouteParams>();
+  const [episodes, setEpisodes] = useState<EpisodeDTO[]>();
   const [podcast, setPodcast] = useState<PodcastDTO>();
   const [paramSearchText] = useState(() => {
     const text = query.get('q');
@@ -72,21 +74,25 @@ const EpisodeSearch: React.FC = () => {
     async nameToSearch => {
       if (!nameToSearch) return;
 
-      setIsLoading(true);
-
-      const response = await api.getPodcast({
+      const response = await api.getEpisodes({
         podcastId,
         episodeToSearch: nameToSearch,
       });
 
       if (response.status === 200) {
-        setPodcast(response.data);
+        setEpisodes(response.data);
       }
-
-      setIsLoading(false);
     },
     [podcastId],
   );
+
+  const fetchPodcast = useCallback(async () => {
+    const response = await api.getPodcast(podcastId);
+
+    if (response.status === 200) {
+      setPodcast(response.data);
+    }
+  }, [podcastId]);
 
   const handleSearchEpisodes = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -97,8 +103,14 @@ const EpisodeSearch: React.FC = () => {
   );
 
   useEffect(() => {
-    searchEpisodes(paramSearchText);
-  }, [searchEpisodes, paramSearchText]);
+    setIsLoading(true);
+
+    Promise.all([searchEpisodes(paramSearchText), fetchPodcast()]).finally(
+      () => {
+        setIsLoading(false);
+      },
+    );
+  }, [searchEpisodes, paramSearchText, fetchPodcast]);
 
   const handleSearchTextChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -195,11 +207,14 @@ const EpisodeSearch: React.FC = () => {
             {isLoading ? (
               <ul>{episodesPlaceholderItems}</ul>
             ) : (
+              episodes &&
               podcast &&
-              podcast.episodes.length > 0 && <EpisodesList podcast={podcast} />
+              episodes.length > 0 && (
+                <EpisodesList episodes={episodes} podcast={podcast} />
+              )
             )}
 
-            {(!podcast || podcast.episodes.length <= 0) && (
+            {(!episodes || episodes.length <= 0) && (
               <ul>
                 <li>
                   <p>
