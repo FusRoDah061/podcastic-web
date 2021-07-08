@@ -20,8 +20,8 @@ const EpisodesList: React.FC<EpisodesListProps> = ({ podcast }) => {
           displayName: episode.title,
           author: podcast.name,
           artworkUrl: episode.image || podcast.imageUrl,
-          mediaUrl: episode.file.url,
-          mediaType: episode.file.mediaType,
+          mediaUrl: episode.url,
+          mediaType: episode.mediaType,
           duration: episode.duration,
         });
       } else {
