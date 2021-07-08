@@ -507,7 +507,7 @@ const Podcast: React.FC = () => {
             </HasPodcastPageContainer>
           )}
 
-          {!podcast && !podcastError && (
+          {(!podcast || !episodes) && !podcastError && (
             <Spinner
               color={theme.themeColor ?? colors.greenDark}
               size={50}
