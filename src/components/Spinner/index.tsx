@@ -17,8 +17,7 @@ const Spinner: React.FC<SpinnerProps> = ({
       <SpinnerRing
         style={{
           borderWidth: thickness,
-          borderColor: color,
-          borderRightColor: 'transparent',
+          borderColor: `${color} transparent ${color} ${color}`,
         }}
       />
     </SpinnerStyled>
