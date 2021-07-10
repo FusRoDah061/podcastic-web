@@ -25,6 +25,17 @@ export const EpisodeItemStyled = styled.div`
     &:hover {
       background: ${darken(0.05, colors.white)};
     }
+
+    svg {
+      path {
+        stroke: ${props => props.theme.themeColor};
+        fill: ${props => props.theme.themeColor};
+      }
+
+      rect {
+        fill: ${props => props.theme.themeColor};
+      }
+    }
   }
 `;
 

@@ -10,6 +10,7 @@ import { Variants } from 'framer-motion';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { parseISO } from 'date-fns';
 import { ThemeProvider } from 'styled-components';
+import SVG from 'react-inlinesvg';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import api from '../../services/api';
 import {
@@ -51,6 +52,7 @@ import Spinner from '../../components/Spinner';
 import formatDate from '../../utils/formatDate';
 import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 import { colors } from '../../styles/variables';
+import { useToast } from '../../hooks/toast';
 
 import chevronLeftWhiteIcon from '../../assets/chevron-left-white-icon.svg';
 import chevronDownBlackIcon from '../../assets/chevron-down-black-icon.svg';
@@ -60,7 +62,6 @@ import rssIcon from '../../assets/rss_icon_gray.svg';
 import externalLinkIcon from '../../assets/external_link_icon_gray.svg';
 import warningIcon from '../../assets/warning_icon_red.svg';
 import sadFace from '../../assets/error-face-image.svg';
-import { useToast } from '../../hooks/toast';
 
 interface RouteParams {
   podcastId: string;
@@ -237,9 +238,9 @@ const Podcast: React.FC = () => {
           </LogoLink>
 
           <GoBackLink to="/">
-            <img
+            <SVG
               src={chevronLeftWhiteIcon}
-              alt={intl.formatMessage({
+              title={intl.formatMessage({
                 id: 'generic.goBack',
                 defaultMessage: 'Go back',
               })}

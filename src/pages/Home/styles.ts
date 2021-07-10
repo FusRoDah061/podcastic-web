@@ -88,17 +88,11 @@ export const AddPodcastButton = styled(Link)`
   border: none;
   text-decoration: none;
 
-  picture {
+  svg {
     display: inline-block;
     width: 3rem;
     height: 3rem;
     margin-right: 1.6rem;
-
-    img {
-      width: 100%;
-      height: 100%;
-      display: inline-block;
-    }
   }
 
   @media ${device.tablet} {
@@ -117,9 +111,13 @@ export const AddPodcastButton = styled(Link)`
       background: ${darken(0.05, colors.white)};
     }
 
-    picture {
+    svg {
       width: 1.7rem;
       height: 1.7rem;
+
+      rect {
+        fill: ${colors.greenDark};
+      }
     }
   }
 `;

@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import SVG from 'react-inlinesvg';
 import { parseISO } from 'date-fns';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
 import { RandomEpisodeStyled, EpisodeInfo } from './styles';
@@ -52,9 +53,9 @@ const RandomEpisode: React.FC<RandomEpisodeProps> = ({ episode, onPlay }) => {
               })
         }
       >
-        <img
+        <SVG
           src={isPlaying ? pauseIcon : playIcon}
-          alt={
+          title={
             isPlaying
               ? intl.formatMessage({
                   id: 'generic.pauseEpisode',

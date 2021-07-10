@@ -9,6 +9,7 @@ import { useIntl } from 'react-intl';
 import { useAnimation, Variants } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import SVG from 'react-inlinesvg';
 import {
   Container,
   Header,
@@ -25,15 +26,7 @@ import {
   ViewAllPodcastsLink,
   SearchButton,
 } from './styles';
-
 import { device } from '../../styles/variables';
-import logoImg from '../../assets/podcastic-white-logo.svg';
-import addIconDesktop from '../../assets/add-green-icon.svg';
-import addIconMobile from '../../assets/add-white-icon.svg';
-import searchIcon from '../../assets/arrow-right-white-icon.svg';
-import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
-import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
-import arrowDownGrey from '../../assets/arrow-down-grey.svg';
 import PodcastItem, {
   PodcastItemPlaceholder,
 } from '../../components/PodcastItem';
@@ -42,6 +35,13 @@ import api from '../../services/api';
 import range from '../../utils/range';
 import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 import useMatchMedia from '../../hooks/matchMedia';
+
+import logoImg from '../../assets/podcastic-white-logo.svg';
+import addIcon from '../../assets/add-white-icon.svg';
+import searchIcon from '../../assets/arrow-right-white-icon.svg';
+import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
+import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
+import arrowDownGrey from '../../assets/arrow-down-grey.svg';
 
 const containerVariants: Variants = {
   initial: {
@@ -214,16 +214,13 @@ const Home: React.FC = () => {
           </div>
 
           <AddPodcastButton to="/new">
-            <picture>
-              <source media={device.tablet} srcSet={addIconDesktop} />
-              <img
-                src={addIconMobile}
-                alt={intl.formatMessage({
-                  id: 'home.addPodcast',
-                  defaultMessage: 'Add podcast',
-                })}
-              />
-            </picture>
+            <SVG
+              src={addIcon}
+              title={intl.formatMessage({
+                id: 'home.addPodcast',
+                defaultMessage: 'Add podcast',
+              })}
+            />
             <FormattedMessage
               id="home.addPodcast"
               defaultMessage="Add podcast"

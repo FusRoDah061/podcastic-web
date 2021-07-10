@@ -19,11 +19,13 @@ export const Container = styled(motion.main)`
 export const HeaderContainer = styled.header`
   height: 14rem;
   padding: 2rem 1.7rem;
-  background: linear-gradient(
+  background: ${props =>
+    props.theme.themeColor ??
+    `linear-gradient(
     180deg,
     ${colors.greenDark} 0%,
     ${colors.greenLight} 55%
-  );
+  );`};
 
   @media ${device.tablet} {
     padding: 3rem;
@@ -50,11 +52,15 @@ export const GoBackLink = styled(Link)`
   font-size: 1.8rem;
   border: none;
   background: transparent;
-  color: ${colors.textLight};
+  color: ${props => props.theme.textColor ?? colors.textLight};
   text-decoration: none;
 
-  img {
+  svg {
     margin-right: 1.5rem;
+
+    path {
+      stroke: ${props => props.theme.textColor ?? colors.white};
+    }
   }
 
   @media ${device.tablet} {

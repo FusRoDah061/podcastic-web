@@ -33,9 +33,18 @@ export const RandomEpisodeStyled = styled.div`
       background: ${darken(0.05, colors.white)};
     }
 
-    img {
+    svg {
       width: 3rem;
       height: 3rem;
+
+      path {
+        stroke: ${props => props.theme.themeColor};
+        fill: ${props => props.theme.themeColor};
+      }
+
+      rect {
+        fill: ${props => props.theme.themeColor};
+      }
     }
   }
 `;

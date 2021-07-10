@@ -3,6 +3,7 @@ import { parseISO } from 'date-fns';
 import ContentLoader, { IContentLoaderProps } from 'react-content-loader';
 import { darken } from 'polished';
 import { FormattedMessage, useIntl } from 'react-intl';
+import SVG from 'react-inlinesvg';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
 import {
   EpisodeItemStyled,
@@ -65,9 +66,9 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
               })
         }
       >
-        <img
+        <SVG
           src={isPlaying ? pauseIcon : playIcon}
-          alt={
+          title={
             isPlaying
               ? intl.formatMessage({
                   id: 'generic.pauseEpisode',
