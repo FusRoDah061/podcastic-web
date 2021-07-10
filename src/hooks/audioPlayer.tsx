@@ -1,6 +1,8 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 import AudioPlayer from '../components/AudioPlayer';
 import { AudioDTO } from '../dtos/AudioDTO';
+import { PodcastTheme } from '../styles/globals';
 
 interface AudioPlayerContextData {
   play(audio: AudioDTO): void;
@@ -17,12 +19,14 @@ const AudioPlayerContext = createContext<AudioPlayerContextData>(
 const AudioPlayerProvider: React.FC = ({ children }) => {
   const [audioPlaying, setAudioPlaying] = useState<AudioDTO>();
   const [isPaused, setIsPaused] = useState(true);
+  const [theme, setTheme] = useState<PodcastTheme>();
 
   const play = useCallback(
     (audio: AudioDTO) => {
       if (!audioPlaying || audio.id !== audioPlaying.id) {
         setAudioPlaying(audio);
         setIsPaused(false);
+        setTheme(audio.theme);
 
         if (navigator.mediaSession) {
           const metadata: MediaMetadataInit = {
@@ -94,15 +98,17 @@ const AudioPlayerProvider: React.FC = ({ children }) => {
     >
       {children}
 
-      <AudioPlayer
-        isOpen={!!audioPlaying}
-        audio={audioPlaying}
-        isPaused={isPaused}
-        onPlay={handleOnPlay}
-        onPause={handleOnPause}
-        onEnd={handleOnEnd}
-        onDismiss={handleOnDismiss}
-      />
+      <ThemeProvider theme={theme ?? {}}>
+        <AudioPlayer
+          isOpen={!!audioPlaying}
+          audio={audioPlaying}
+          isPaused={isPaused}
+          onPlay={handleOnPlay}
+          onPause={handleOnPause}
+          onEnd={handleOnEnd}
+          onDismiss={handleOnDismiss}
+        />
+      </ThemeProvider>
     </AudioPlayerContext.Provider>
   );
 };

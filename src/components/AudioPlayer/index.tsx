@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { AnimatePresence, Variants } from 'framer-motion';
 import { FormattedMessage, useIntl } from 'react-intl';
+import SVG from 'react-inlinesvg';
 import {
   AudioPlayerStyled,
   AudioPlayerContent,
@@ -241,9 +242,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     defaultMessage: 'Rewind 15 seconds',
                   })}
                 >
-                  <img
+                  <SVG
                     src={rewindIcon}
-                    alt={intl.formatMessage({
+                    title={intl.formatMessage({
                       id: 'audioPlayer.rewind15Seconds',
                       defaultMessage: 'Rewind 15 seconds',
                     })}
@@ -266,9 +267,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                         })
                   }
                 >
-                  <img
+                  <SVG
                     src={isPlaying ? pauseIcon : playIcon}
-                    alt={
+                    title={
                       isPlaying
                         ? intl.formatMessage({
                             id: 'audioPlayer.pause',
@@ -291,9 +292,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     defaultMessage: 'Advance 15 seconds',
                   })}
                 >
-                  <img
+                  <SVG
                     src={forwardIcon}
-                    alt={intl.formatMessage({
+                    title={intl.formatMessage({
                       id: 'audioPlayer.advance15Seconds',
                       defaultMessage: 'Advance 15 seconds',
                     })}

@@ -23,7 +23,7 @@ export const AudioProgressBarStyled = styled(motion.div)`
     -webkit-appearance: none;
     appearance: none;
     border-radius: 50%;
-    background: ${colors.greenDark};
+    background: ${props => props.theme.themeColor ?? colors.greenDark};
     cursor: pointer;
     transition: 0.2s;
     z-index: 15;
@@ -33,7 +33,7 @@ export const AudioProgressBarStyled = styled(motion.div)`
 
   input::-moz-range-thumb {
     border-radius: 50%;
-    background: ${colors.greenDark};
+    background: ${props => props.theme.themeColor ?? colors.greenDark};
     cursor: pointer;
     transition: 0.2s;
     z-index: 15;
@@ -67,7 +67,7 @@ export const AudioProgressBarStyled = styled(motion.div)`
 export const AudioProgressBarBackground = styled.div`
   position: absolute;
   height: 0.4rem;
-  background: ${colors.greenDark};
+  background: ${props => props.theme.themeColor ?? colors.greenDark};
   pointer-events: none;
   z-index: 10;
 `;

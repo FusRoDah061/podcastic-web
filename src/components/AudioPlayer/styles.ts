@@ -43,7 +43,7 @@ export const AudioPlayerStyled = styled(motion.div)<AudioPlayerProps>`
             ${PlayPauseButton} {
               border-width: 3px;
 
-              img {
+              svg {
                 width: 1.2rem;
                 height: 1.2rem;
               }
@@ -148,7 +148,7 @@ export const RewindButton = styled(motion.button)`
   width: 4rem;
   height: 4rem;
   background: ${colors.white};
-  color: ${colors.greenDark};
+  color: ${props => props.theme.themeColor ?? colors.greenDark};
   border-radius: 50%;
   border: 0;
   transition: background 0.2s;
@@ -159,7 +159,7 @@ export const RewindButton = styled(motion.button)`
     background: ${darken(0.05, colors.white)};
   }
 
-  img {
+  svg {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -167,6 +167,14 @@ export const RewindButton = styled(motion.button)`
     left: 0;
     right: 0;
     bottom: 0;
+
+    path {
+      stroke: ${props => props.theme.themeColor};
+    }
+
+    path:last-child {
+      fill: ${props => props.theme.themeColor};
+    }
   }
 `;
 
@@ -180,11 +188,22 @@ export const PlayPauseButton = styled(motion.button)`
   background: ${colors.white};
   margin: 0rem 1rem;
   border-radius: 50%;
-  border: 3px solid ${colors.greenDark};
+  border: 3px solid ${props => props.theme.themeColor ?? colors.greenDark};
   transition: background 0.2s;
 
   &:hover {
     background: ${darken(0.05, colors.white)};
+  }
+
+  svg {
+    path {
+      stroke: ${props => props.theme.themeColor};
+      fill: ${props => props.theme.themeColor};
+    }
+
+    rect {
+      fill: ${props => props.theme.themeColor};
+    }
   }
 `;
 
@@ -193,7 +212,7 @@ export const ForwardButton = styled(motion.button)`
   width: 4rem;
   height: 4rem;
   background: ${colors.white};
-  color: ${colors.greenDark};
+  color: ${props => props.theme.themeColor ?? colors.greenDark};
   border-radius: 50%;
   border: 0;
   transition: background 0.2s;
@@ -204,7 +223,7 @@ export const ForwardButton = styled(motion.button)`
     background: ${darken(0.05, colors.white)};
   }
 
-  img {
+  svg {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -212,6 +231,14 @@ export const ForwardButton = styled(motion.button)`
     left: 0;
     right: 0;
     bottom: 0;
+
+    path {
+      stroke: ${props => props.theme.themeColor};
+    }
+
+    path:last-child {
+      fill: ${props => props.theme.themeColor};
+    }
   }
 `;
 

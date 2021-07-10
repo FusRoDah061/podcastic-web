@@ -1,6 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 import { colors, device } from './variables';
 
+export interface PodcastTheme {
+  textColor?: string;
+  themeColor?: string;
+}
+
 export default createGlobalStyle`
   :root {
     font-size: 60%;

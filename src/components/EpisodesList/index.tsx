@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useTheme } from 'styled-components';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
 import PodcastDTO from '../../dtos/PodcastDTO';
 import { useAudioPlayer } from '../../hooks/audioPlayer';
@@ -12,6 +13,7 @@ interface EpisodesListProps {
 
 const EpisodesList: React.FC<EpisodesListProps> = ({ podcast, episodes }) => {
   const player = useAudioPlayer();
+  const theme = useTheme();
 
   const handlePlayEpisode = useCallback(
     (episode: EpisodeDTO, isPlaying: boolean) => {
@@ -24,12 +26,13 @@ const EpisodesList: React.FC<EpisodesListProps> = ({ podcast, episodes }) => {
           mediaUrl: episode.url,
           mediaType: episode.mediaType,
           duration: episode.duration,
+          theme,
         });
       } else {
         player.pause();
       }
     },
-    [player, podcast],
+    [player, podcast, theme],
   );
 
   return (

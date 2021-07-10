@@ -1,3 +1,5 @@
+import { PodcastTheme } from '../styles/globals';
+
 export interface AudioDTO {
   id: string;
   displayName: string;
@@ -6,4 +8,5 @@ export interface AudioDTO {
   mediaUrl: string;
   mediaType: string;
   duration: string;
+  theme?: PodcastTheme;
 }
