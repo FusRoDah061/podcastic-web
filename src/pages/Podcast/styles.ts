@@ -162,12 +162,13 @@ export const PodcastInfoContent = styled.div`
 export const PodcastNameDescription = styled.div`
   h1 {
     display: none;
+    color: ${props => props.theme.textColor ?? colors.textLight};
   }
 
   p {
     max-height: 7rem;
     padding-top: 0.6rem;
-    color: ${colors.textLight};
+    color: ${props => props.theme.textColor ?? colors.textLight};
     margin-left: 1.4rem;
     font-size: 1.3rem;
     line-height: 1.6rem;
