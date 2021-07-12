@@ -29,6 +29,7 @@ import range from '../../utils/range';
 import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 import useMatchMedia from '../../hooks/matchMedia';
 import { device } from '../../styles/variables';
+import Pagination from '../../components/Pagination';
 
 const containerVariants: Variants = {
   initial: {
@@ -50,38 +51,50 @@ const containerVariants: Variants = {
   },
 };
 
+const PAGE_SIZE = 15;
+
 const Search: React.FC = () => {
   const intl = useIntl();
   const query = useQuery();
   const isTablet = useMatchMedia(device.tablet);
   const [podcasts, setPodcasts] = useState<PodcastDTO[]>([]);
-  const [paramSearchText] = useState(() => {
+  const [paramSearchText, setParamSearchText] = useState(() => {
     const text = query.get('q');
     return text || '';
   });
-  const [searchText, setSearchText] = useState(paramSearchText);
+  const [inputSearchText, setInputSearchText] = useState(paramSearchText);
   const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState<number>();
 
-  const searchPodcasts = useCallback(async nameToSearch => {
-    if (!nameToSearch) return;
+  const searchPodcasts = useCallback(
+    async nameToSearch => {
+      if (!nameToSearch) return;
 
-    setIsLoading(true);
+      setIsLoading(true);
 
-    const response = await api.searchPodcasts(nameToSearch);
+      const response = await api.searchPodcasts(nameToSearch, {
+        page,
+        pageSize: PAGE_SIZE,
+      });
 
-    setIsLoading(false);
+      setIsLoading(false);
 
-    if (response.status === 200) {
-      setPodcasts(response.data);
-    }
-  }, []);
+      if (response.status === 200) {
+        setPodcasts(response.data.data);
+        setPage(response.data.page);
+        setTotalPages(response.data.totalPages);
+      }
+    },
+    [page],
+  );
 
   const handleSearchPodcasts = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      searchPodcasts(searchText);
+      setParamSearchText(inputSearchText);
     },
-    [searchPodcasts, searchText],
+    [inputSearchText],
   );
 
   useEffect(() => {
@@ -90,13 +103,17 @@ const Search: React.FC = () => {
 
   const handleSearchTextChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchText(e.target.value);
+      setInputSearchText(e.target.value);
     },
     [],
   );
 
+  const handlePageChange = useCallback((newPage: number) => {
+    setPage(newPage);
+  }, []);
+
   const podcastsPlaceholderItems = useMemo(() => {
-    return range(5).map(dummy => (
+    return range(PAGE_SIZE - 1).map(dummy => (
       <li key={dummy}>
         <PodcastItemPlaceholder maxWidth={isTablet ? 900 : undefined} />
       </li>
@@ -138,7 +155,7 @@ const Search: React.FC = () => {
 
             <input
               type="text"
-              value={searchText}
+              value={inputSearchText}
               placeholder={intl.formatMessage({
                 id: 'search.searchHereForAPodcast',
                 defaultMessage: 'Search here for a podcast',
@@ -173,6 +190,12 @@ const Search: React.FC = () => {
               defaultMessage="Search results"
             />
           </h2>
+
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
 
           <PodcastsList>
             <ul>

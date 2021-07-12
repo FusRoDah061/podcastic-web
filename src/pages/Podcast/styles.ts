@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { EpisodesListStyled } from '../../components/EpisodesList/styles';
 import { ImageOrLetterStyled } from '../../components/ImageOrLetter/styles';
+import {
+  CurrentPage,
+  PaginationStyled,
+} from '../../components/Pagination/styles';
 import { RandomEpisodeStyled } from '../../components/RandomEpisode/styles';
 import { SpinnerStyled } from '../../components/Spinner/styles';
 import { colors, device } from '../../styles/variables';
@@ -96,6 +100,17 @@ export const HasPodcastPageContainer = styled.div`
   margin-top: -8rem;
   max-height: 100%;
   width: 100%;
+
+  ${PaginationStyled} {
+    margin: auto;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+
+    ${CurrentPage} {
+      background: ${props => props.theme.themeColor ?? colors.greenDark};
+      color: ${props => props.theme.textColor ?? colors.textLight};
+    }
+  }
 
   @media ${device.tablet} {
     display: grid;

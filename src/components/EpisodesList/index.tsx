@@ -11,7 +11,11 @@ interface EpisodesListProps {
   episodes: EpisodeDTO[];
 }
 
-const EpisodesList: React.FC<EpisodesListProps> = ({ podcast, episodes }) => {
+const EpisodesList: React.FC<EpisodesListProps> = ({
+  podcast,
+  episodes,
+  children,
+}) => {
   const player = useAudioPlayer();
   const theme = useTheme();
 
@@ -44,6 +48,8 @@ const EpisodesList: React.FC<EpisodesListProps> = ({ podcast, episodes }) => {
           </li>
         ))}
       </ul>
+
+      {children}
     </EpisodesListStyled>
   );
 };

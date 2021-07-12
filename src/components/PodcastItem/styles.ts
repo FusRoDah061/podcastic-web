@@ -73,3 +73,9 @@ export const PodcastItemInfo = styled.div`
     }
   }
 `;
+
+export const PodcastItemPlaceholderContainer = styled.div`
+  svg {
+    display: block;
+  }
+`;

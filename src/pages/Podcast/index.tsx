@@ -62,6 +62,7 @@ import rssIcon from '../../assets/rss_icon_gray.svg';
 import externalLinkIcon from '../../assets/external_link_icon_gray.svg';
 import warningIcon from '../../assets/warning_icon_red.svg';
 import sadFace from '../../assets/error-face-image.svg';
+import Pagination from '../../components/Pagination';
 
 interface RouteParams {
   podcastId: string;
@@ -87,6 +88,8 @@ const containerVariants: Variants = {
   },
 };
 
+const PAGE_SIZE = 50;
+
 /*
 I declare this variable here to imporve performance when there are too many episodes loaded.
 If kept on state, each time the user types a letter in the episode search input, the whole
@@ -110,6 +113,9 @@ const Podcast: React.FC = () => {
   const [isLoadingRandom, setIsLoadingRandom] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [podcastError, setPodcastError] = useState('');
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState<number>();
+
   const { addToast } = useToast();
 
   useEffect(() => {
@@ -129,14 +135,19 @@ const Podcast: React.FC = () => {
 
     async function fetchEpisodes() {
       try {
-        const response = await api.getEpisodes({
-          podcastId,
-          sort,
-          episodeToSearch,
-        });
+        const response = await api.getEpisodes(
+          {
+            podcastId,
+            sort,
+            episodeToSearch,
+          },
+          { page, pageSize: PAGE_SIZE },
+        );
 
         if (response.status === 200) {
-          setEpisodes(response.data);
+          setEpisodes(response.data.data);
+          setPage(response.data.page);
+          setTotalPages(response.data.totalPages);
         }
       } catch (err) {
         if (err.request.parsedResponse) {
@@ -150,7 +161,7 @@ const Podcast: React.FC = () => {
     Promise.all([fetchPodcast(), fetchEpisodes()]).finally(() => {
       setIsLoading(false);
     });
-  }, [podcastId, sort, episodeToSearch]);
+  }, [podcastId, sort, episodeToSearch, page]);
 
   const getRandomEpisode = useCallback(async () => {
     setIsLoadingRandom(true);
@@ -214,6 +225,10 @@ const Podcast: React.FC = () => {
     },
     [player, podcast],
   );
+
+  const handlePageChange = useCallback((newPage: number) => {
+    setPage(newPage);
+  }, []);
 
   const theme = useMemo(() => {
     return {
@@ -500,6 +515,12 @@ const Podcast: React.FC = () => {
                     </MobileEpisodeSearchLink>
                   </EpisodesFiltersForm>
                 </EpisodesContainerHeader>
+
+                <Pagination
+                  page={page}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
 
                 <EpisodesListContainer>
                   <EpisodesList podcast={podcast} episodes={episodes} />

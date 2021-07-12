@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import styled from 'styled-components';
+import { PaginationStyled } from '../../components/Pagination/styles';
 import { colors, device } from '../../styles/variables';
 
 export const Container = styled(motion.main)`
@@ -122,5 +123,10 @@ export const EpisodesListContainer = styled.div`
     li + li {
       margin-top: 1.5rem;
     }
+  }
+
+  ${PaginationStyled} {
+    margin: auto;
+    margin-top: 2rem;
   }
 `;

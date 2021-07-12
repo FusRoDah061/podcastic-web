@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { darken, transparentize } from 'polished';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { PaginationStyled } from '../../components/Pagination/styles';
 import { colors, device } from '../../styles/variables';
 
 export const Container = styled(motion.main)`
@@ -95,7 +96,11 @@ export const PageContent = styled.article`
   h2 {
     color: ${colors.textDark};
     font-size: 1.6rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  ${PaginationStyled} {
+    margin-bottom: 2rem;
   }
 
   @media ${device.tablet} {

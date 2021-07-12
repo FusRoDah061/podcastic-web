@@ -42,6 +42,7 @@ import searchIcon from '../../assets/arrow-right-white-icon.svg';
 import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
 import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
 import arrowDownGrey from '../../assets/arrow-down-grey.svg';
+import Pagination from '../../components/Pagination';
 
 const containerVariants: Variants = {
   initial: {
@@ -80,6 +81,8 @@ const recentPodcastsVariants: Variants = {
   },
 };
 
+const PAGE_SIZE = 20;
+
 const Home: React.FC = () => {
   const history = useHistory();
   const intl = useIntl();
@@ -91,16 +94,28 @@ const Home: React.FC = () => {
   const [recentPodcasts, setRecentPodcasts] = useState<PodcastDTO[]>([]);
   const [isRecentLoading, setIsRecentLoading] = useState(false);
   const [isAllLoading, setIsAllLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState<number>();
 
   useEffect(() => {
     async function fetchPodcasts() {
-      const response = await api.getAllPodcasts();
+      const response = await api.getAllPodcasts({ page, pageSize: PAGE_SIZE });
 
       if (response.status === 200) {
-        setPodcasts(response.data);
+        setPodcasts(response.data.data);
+        setPage(response.data.page);
+        setTotalPages(response.data.totalPages);
       }
     }
 
+    setIsAllLoading(true);
+
+    fetchPodcasts().finally(() => {
+      setIsAllLoading(false);
+    });
+  }, [page]);
+
+  useEffect(() => {
     async function fetchRecentPodcasts() {
       const response = await api.getRecentPodcasts();
 
@@ -110,23 +125,10 @@ const Home: React.FC = () => {
     }
 
     setIsRecentLoading(true);
-    setIsAllLoading(true);
 
-    fetchPodcasts()
-      .then(() => {
-        setIsAllLoading(false);
-      })
-      .catch(() => {
-        setIsAllLoading(false);
-      });
-
-    fetchRecentPodcasts()
-      .then(() => {
-        setIsRecentLoading(false);
-      })
-      .catch(() => {
-        setIsRecentLoading(false);
-      });
+    fetchRecentPodcasts().finally(() => {
+      setIsRecentLoading(false);
+    });
   }, []);
 
   const handleSearchTextChange = useCallback(
@@ -172,6 +174,10 @@ const Home: React.FC = () => {
       </li>
     ));
   }, [isTablet]);
+
+  const handlePageChange = useCallback((newPage: number) => {
+    setPage(newPage);
+  }, []);
 
   return (
     <Container
@@ -319,6 +325,12 @@ const Home: React.FC = () => {
               </ViewAllPodcastsLink>
             </ul>
           </PodcastGridContainer>
+
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </AllPodcastsContainer>
       </PodcastsContainer>
 

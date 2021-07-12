@@ -5,6 +5,21 @@ import { getLocale } from '../utils/localeUtils';
 
 type ApiResponse<T> = Promise<AxiosResponse<T>>;
 
+export interface PaginatedResponse<T> {
+  page: number;
+  pageSize: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  totalPages: number;
+  totalResults: number;
+  data: T[];
+}
+
+export interface PaginationInfo {
+  page?: number;
+  pageSize?: number;
+}
+
 interface GetEpisodesParams {
   podcastId: string;
   sort?: string;
@@ -41,27 +56,38 @@ export default {
   addPodcast: (feedUrl: string): ApiResponse<void> =>
     api.post<void>('/podcasts', { feedUrl }),
 
-  getAllPodcasts: (): ApiResponse<PodcastDTO[]> =>
-    api.get<PodcastDTO[]>('/podcasts'),
+  getAllPodcasts: (
+    pagination: PaginationInfo,
+  ): ApiResponse<PaginatedResponse<PodcastDTO>> =>
+    api.get<PaginatedResponse<PodcastDTO>>('/podcasts', {
+      params: {
+        ...pagination,
+      },
+    }),
 
   getRecentPodcasts: (): ApiResponse<PodcastDTO[]> =>
     api.get<PodcastDTO[]>('/podcasts/recent'),
 
-  searchPodcasts: (name: string): ApiResponse<PodcastDTO[]> =>
-    api.get<PodcastDTO[]>('/podcasts/search', { params: { q: name } }),
+  searchPodcasts: (
+    name: string,
+    pagination: PaginationInfo,
+  ): ApiResponse<PaginatedResponse<PodcastDTO>> =>
+    api.get<PaginatedResponse<PodcastDTO>>('/podcasts/search', {
+      params: { q: name, ...pagination },
+    }),
 
   getPodcast: (podcastId: string): ApiResponse<PodcastDTO> =>
     api.get(`/podcasts/${podcastId}`),
 
-  getEpisodes: ({
-    podcastId,
-    sort,
-    episodeToSearch,
-  }: GetEpisodesParams): ApiResponse<EpisodeDTO[]> =>
-    api.get(`/podcasts/${podcastId}/episodes`, {
+  getEpisodes: (
+    { podcastId, sort, episodeToSearch }: GetEpisodesParams,
+    pagination: PaginationInfo,
+  ): ApiResponse<PaginatedResponse<EpisodeDTO>> =>
+    api.get<PaginatedResponse<EpisodeDTO>>(`/podcasts/${podcastId}/episodes`, {
       params: {
         sort,
         q: episodeToSearch,
+        ...pagination,
       },
     }),
 

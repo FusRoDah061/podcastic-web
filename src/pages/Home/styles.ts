@@ -4,6 +4,12 @@ import { darken } from 'polished';
 import { Link } from 'react-router-dom';
 import { colors, device, size } from '../../styles/variables';
 import { PodcastItemInfo } from '../../components/PodcastItem/styles';
+import {
+  CurrentPage,
+  Ellipsis,
+  PageButton,
+  PaginationStyled,
+} from '../../components/Pagination/styles';
 
 export const Container = styled(motion.main)`
   display: flex;
@@ -183,10 +189,6 @@ export const PodcastsContainer = styled.section`
     h2 {
       font-size: 1.8rem;
     }
-
-    button {
-      display: none !important;
-    }
   }
 `;
 
@@ -238,6 +240,10 @@ export const RecentlyAddedPodcastsContainer = styled.aside`
 
     h2 {
       margin-bottom: 2.4rem;
+    }
+
+    button {
+      display: none !important;
     }
   }
 `;
@@ -345,6 +351,10 @@ export const AllPodcastsContainer = styled.article`
   position: relative;
   margin-top: 4.2rem;
 
+  ${PaginationStyled} {
+    display: none;
+  }
+
   @media ${device.tablet} {
     margin-left: 1.5rem;
     margin-top: 0;
@@ -352,6 +362,25 @@ export const AllPodcastsContainer = styled.article`
 
     h2 {
       margin-bottom: 2.4rem;
+    }
+
+    ${PaginationStyled} {
+      display: flex;
+
+      ${CurrentPage} {
+        color: ${colors.greenDark};
+        background: ${colors.textLight};
+      }
+
+      ${Ellipsis}, ${PageButton} {
+        color: ${colors.textLight};
+      }
+
+      ${PageButton} {
+        svg path {
+          stroke: ${colors.textLight};
+        }
+      }
     }
   }
 `;
@@ -542,6 +571,7 @@ export const AllRecentListContainer = styled.div`
   position: relative;
   overflow: auto;
   padding: 0.8rem 0;
+  margin-bottom: 3rem;
 
   ul {
     display: grid;

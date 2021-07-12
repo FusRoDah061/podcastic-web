@@ -30,6 +30,7 @@ import { device } from '../../styles/variables';
 import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 import useMatchMedia from '../../hooks/matchMedia';
 import EpisodeDTO from '../../dtos/EpisodeDTO';
+import Pagination from '../../components/Pagination';
 
 interface RouteParams {
   podcastId: string;
@@ -55,6 +56,8 @@ const containerVariants: Variants = {
   },
 };
 
+const PAGE_SIZE = 15;
+
 const EpisodeSearch: React.FC = () => {
   const intl = useIntl();
   const history = useHistory();
@@ -69,21 +72,26 @@ const EpisodeSearch: React.FC = () => {
   });
   const [searchText, setSearchText] = useState(paramSearchText);
   const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState<number>();
 
   const searchEpisodes = useCallback(
     async nameToSearch => {
-      if (!nameToSearch) return;
-
-      const response = await api.getEpisodes({
-        podcastId,
-        episodeToSearch: nameToSearch,
-      });
+      const response = await api.getEpisodes(
+        {
+          podcastId,
+          episodeToSearch: nameToSearch,
+        },
+        { page, pageSize: PAGE_SIZE },
+      );
 
       if (response.status === 200) {
-        setEpisodes(response.data);
+        setEpisodes(response.data.data);
+        setPage(response.data.page);
+        setTotalPages(response.data.totalPages);
       }
     },
-    [podcastId],
+    [podcastId, page],
   );
 
   const fetchPodcast = useCallback(async () => {
@@ -123,8 +131,12 @@ const EpisodeSearch: React.FC = () => {
     history.goBack();
   }, [history]);
 
+  const handlePageChange = useCallback((newPage: number) => {
+    setPage(newPage);
+  }, []);
+
   const episodesPlaceholderItems = useMemo(() => {
-    return range(10).map(dummy => (
+    return range(PAGE_SIZE - 1).map(dummy => (
       <li key={dummy}>
         <EpisodeItemPlaceholder maxWidth={isTablet ? 900 : undefined} />
       </li>
@@ -204,17 +216,7 @@ const EpisodeSearch: React.FC = () => {
           </h2>
 
           <EpisodesListContainer>
-            {isLoading ? (
-              <ul>{episodesPlaceholderItems}</ul>
-            ) : (
-              episodes &&
-              podcast &&
-              episodes.length > 0 && (
-                <EpisodesList episodes={episodes} podcast={podcast} />
-              )
-            )}
-
-            {(!episodes || episodes.length <= 0) && (
+            {(!episodes || episodes.length <= 0) && !isLoading && (
               <ul>
                 <li>
                   <p>
@@ -226,6 +228,21 @@ const EpisodeSearch: React.FC = () => {
                 </li>
               </ul>
             )}
+
+            <ul>
+              {isLoading
+                ? episodesPlaceholderItems
+                : episodes &&
+                  podcast &&
+                  episodes.length > 0 && (
+                    <EpisodesList episodes={episodes} podcast={podcast} />
+                  )}
+              <Pagination
+                page={page}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </ul>
           </EpisodesListContainer>
         </PageContent>
       </PageContentContainer>

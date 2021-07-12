@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { colors, device } from '../../styles/variables';
+import { PaginationStyled } from '../../components/Pagination/styles';
 
 export const Container = styled(motion.main)`
   display: flex;
@@ -13,6 +14,10 @@ export const Container = styled(motion.main)`
   padding-bottom: 0;
   z-index: 3;
 
+  ${PaginationStyled} {
+    margin-bottom: 1.5rem;
+  }
+
   @media ${device.tablet} {
     width: 900px;
     margin: auto;
@@ -23,7 +28,7 @@ export const AllPodcastsHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 2.6rem;
+  margin-bottom: 2.3rem;
 `;
 
 export const GoBackLink = styled(Link)`

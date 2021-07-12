@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Variants } from 'framer-motion';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useCallback } from 'react';
 import {
   Container,
   AllPodcastsHeader,
@@ -16,6 +17,7 @@ import PodcastDTO from '../../dtos/PodcastDTO';
 import api from '../../services/api';
 import range from '../../utils/range';
 import PlayerAwareTitle from '../../components/PlayerAwareTitle';
+import Pagination from '../../components/Pagination';
 
 const containerVariants: Variants = {
   initial: {
@@ -37,29 +39,39 @@ const containerVariants: Variants = {
   },
 };
 
+const PAGE_SIZE = 15;
+
 const AllPodcasts: React.FC = () => {
   const intl = useIntl();
   const [podcasts, setPodcasts] = useState<PodcastDTO[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState<number>();
 
   useEffect(() => {
     async function fetchPodcasts() {
       setIsLoading(true);
 
-      const response = await api.getAllPodcasts();
+      const response = await api.getAllPodcasts({ page, pageSize: PAGE_SIZE });
 
       if (response.status === 200) {
-        setPodcasts(response.data);
+        setPodcasts(response.data.data);
+        setPage(response.data.page);
+        setTotalPages(response.data.totalPages);
       }
 
       setIsLoading(false);
     }
 
     fetchPodcasts();
+  }, [page]);
+
+  const handlePageChange = useCallback((newPage: number) => {
+    setPage(newPage);
   }, []);
 
   const podcastsPlaceholderItems = useMemo(() => {
-    return range(10).map(dummy => (
+    return range(PAGE_SIZE - 1).map(dummy => (
       <li key={dummy}>
         <PodcastItemPlaceholder />
       </li>
@@ -95,6 +107,12 @@ const AllPodcasts: React.FC = () => {
           />
         </GoBackLink>
       </AllPodcastsHeader>
+
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
 
       <PageContent>
         <ul>
