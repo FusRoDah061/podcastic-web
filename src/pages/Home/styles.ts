@@ -366,6 +366,7 @@ export const AllPodcastsContainer = styled.article`
 
     ${PaginationStyled} {
       display: flex;
+      margin-top: 1.5rem;
 
       ${CurrentPage} {
         color: ${colors.greenDark};
@@ -478,7 +479,7 @@ export const PodcastGridContainer = styled.div`
 
   @media ${device.tablet} {
     overflow: auto;
-    height: calc(100% - 4.8rem);
+    height: calc(100% - 8rem);
     flex: 1;
     padding: 0;
     scrollbar-color: ${colors.white} transparent;
