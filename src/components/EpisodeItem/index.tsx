@@ -97,7 +97,7 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({ episode, onPlay }) => {
       <EpisodeContent>
         <p title={episode.title}>{episode.title}</p>
         <EpisodeInfo>
-          <p>{episode.duration}</p>
+          <p>{episode.duration || '00:00:00'}</p>
           <span />
           <p title={dates.formattedDate}>{dates.formattedDateAsTimeAgo}</p>
           {!episode.existsOnFeed && (
