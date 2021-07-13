@@ -118,6 +118,13 @@ const Podcast: React.FC = () => {
 
   const { addToast } = useToast();
 
+  const theme = useMemo(() => {
+    return {
+      textColor: podcast?.textColor,
+      themeColor: podcast?.themeColor,
+    };
+  }, [podcast]);
+
   useEffect(() => {
     async function fetchPodcast() {
       try {
@@ -218,24 +225,18 @@ const Podcast: React.FC = () => {
           mediaUrl: episode.url,
           mediaType: episode.mediaType,
           duration: episode.duration,
+          theme,
         });
       } else {
         player.pause();
       }
     },
-    [player, podcast],
+    [player, podcast, theme],
   );
 
   const handlePageChange = useCallback((newPage: number) => {
     setPage(newPage);
   }, []);
-
-  const theme = useMemo(() => {
-    return {
-      textColor: podcast?.textColor,
-      themeColor: podcast?.themeColor,
-    };
-  }, [podcast]);
 
   return (
     <ThemeProvider theme={theme}>
