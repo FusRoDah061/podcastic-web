@@ -25,14 +25,18 @@ const Pagination: React.FC<PaginationProps> = ({
     lastPage,
     currentPage,
   } = useMemo(() => {
+    const currentPageTmp = page > totalPages ? totalPages : page;
+
+    if (currentPageTmp !== page) onPageChange(currentPageTmp);
+
     return {
-      nextPage: page === totalPages ? null : page + 1,
-      previousPage: page === 1 ? null : page - 1,
+      nextPage: currentPageTmp === totalPages ? null : currentPageTmp + 1,
+      previousPage: currentPageTmp === 1 ? null : currentPageTmp - 1,
       firstPage: 1,
       lastPage: totalPages,
-      currentPage: page,
+      currentPage: currentPageTmp,
     };
-  }, [page, totalPages]);
+  }, [page, totalPages, onPageChange]);
 
   const handleOnClick = useCallback(
     (newPage: number) => {

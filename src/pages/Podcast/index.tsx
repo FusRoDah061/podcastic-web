@@ -125,22 +125,10 @@ const Podcast: React.FC = () => {
     };
   }, [podcast]);
 
-  useEffect(() => {
-    async function fetchPodcast() {
-      try {
-        const response = await api.getPodcast(podcastId);
+  const fetchEpisodes = useCallback(
+    async (showLoading = true) => {
+      if (showLoading) setIsLoading(true);
 
-        if (response.status === 200) {
-          setPodcast(response.data);
-        }
-      } catch (err) {
-        if (err.request.parsedResponse) {
-          setPodcastError(err.request.parsedResponse.message);
-        }
-      }
-    }
-
-    async function fetchEpisodes() {
       try {
         const response = await api.getEpisodes(
           {
@@ -160,15 +148,34 @@ const Podcast: React.FC = () => {
         if (err.request.parsedResponse) {
           setPodcastError(err.request.parsedResponse.message);
         }
+      } finally {
+        if (showLoading) setIsLoading(false);
+      }
+    },
+    [podcastId, sort, episodeToSearch, page],
+  );
+
+  useEffect(() => {
+    async function fetchPodcast() {
+      try {
+        const response = await api.getPodcast(podcastId);
+
+        if (response.status === 200) {
+          setPodcast(response.data);
+        }
+      } catch (err) {
+        if (err.request.parsedResponse) {
+          setPodcastError(err.request.parsedResponse.message);
+        }
       }
     }
 
     setIsLoading(true);
 
-    Promise.all([fetchPodcast(), fetchEpisodes()]).finally(() => {
+    Promise.all([fetchPodcast(), fetchEpisodes(false)]).finally(() => {
       setIsLoading(false);
     });
-  }, [podcastId, sort, episodeToSearch, page]);
+  }, [podcastId, fetchEpisodes]);
 
   const getRandomEpisode = useCallback(async () => {
     setIsLoadingRandom(true);

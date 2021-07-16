@@ -20,7 +20,10 @@ const RandomEpisode: React.FC<RandomEpisodeProps> = ({ episode, onPlay }) => {
   const intl = useIntl();
   const player = useAudioPlayer();
   const isPlaying = useMemo(() => {
-    return player.isPlaying(episode.id);
+    const t = player.isPlaying(episode.id);
+    console.log('isPlaying: ', t);
+    console.log('episode: ', episode);
+    return t;
   }, [player, episode.id]);
 
   const dates = useMemo(() => {
