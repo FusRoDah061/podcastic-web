@@ -76,7 +76,9 @@ const EpisodeSearch: React.FC = () => {
   const [totalPages, setTotalPages] = useState<number>();
 
   const searchEpisodes = useCallback(
-    async nameToSearch => {
+    async (nameToSearch: string, showLoading = true) => {
+      if (showLoading) setIsLoading(true);
+
       const response = await api.getEpisodes(
         {
           podcastId,
@@ -90,6 +92,8 @@ const EpisodeSearch: React.FC = () => {
         setPage(response.data.page);
         setTotalPages(response.data.totalPages);
       }
+
+      if (showLoading) setIsLoading(false);
     },
     [podcastId, page],
   );
@@ -113,11 +117,12 @@ const EpisodeSearch: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    Promise.all([searchEpisodes(paramSearchText), fetchPodcast()]).finally(
-      () => {
-        setIsLoading(false);
-      },
-    );
+    Promise.all([
+      searchEpisodes(paramSearchText, false),
+      fetchPodcast(),
+    ]).finally(() => {
+      setIsLoading(false);
+    });
   }, [searchEpisodes, paramSearchText, fetchPodcast]);
 
   const handleSearchTextChange = useCallback(
