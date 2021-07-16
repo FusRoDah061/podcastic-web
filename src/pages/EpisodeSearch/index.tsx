@@ -9,7 +9,6 @@ import React, {
 import { useHistory, useParams } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
 import PodcastDTO from '../../dtos/PodcastDTO';
-import useQuery from '../../hooks/query';
 import api from '../../services/api';
 import {
   Container,
@@ -61,30 +60,26 @@ const PAGE_SIZE = 15;
 const EpisodeSearch: React.FC = () => {
   const intl = useIntl();
   const history = useHistory();
-  const query = useQuery();
   const isTablet = useMatchMedia(device.tablet);
   const { podcastId } = useParams<RouteParams>();
   const [episodes, setEpisodes] = useState<EpisodeDTO[]>();
   const [podcast, setPodcast] = useState<PodcastDTO>();
-  const [paramSearchText] = useState(() => {
-    const text = query.get('q');
-    return text || '';
-  });
-  const [searchText, setSearchText] = useState(paramSearchText);
+  const [searchText, setSearchText] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState<number>();
+  const [didSearch, setDidSearch] = useState(false);
 
   const searchEpisodes = useCallback(
-    async (nameToSearch: string, showLoading = true) => {
-      if (showLoading) setIsLoading(true);
+    async (pageNumber: number) => {
+      setIsLoading(true);
 
       const response = await api.getEpisodes(
         {
           podcastId,
-          episodeToSearch: nameToSearch,
+          episodeToSearch: searchText,
         },
-        { page, pageSize: PAGE_SIZE },
+        { page: pageNumber ?? page, pageSize: PAGE_SIZE },
       );
 
       if (response.status === 200) {
@@ -93,9 +88,9 @@ const EpisodeSearch: React.FC = () => {
         setTotalPages(response.data.totalPages);
       }
 
-      if (showLoading) setIsLoading(false);
+      setIsLoading(false);
     },
-    [podcastId, page],
+    [podcastId, page, searchText],
   );
 
   const fetchPodcast = useCallback(async () => {
@@ -109,21 +104,15 @@ const EpisodeSearch: React.FC = () => {
   const handleSearchEpisodes = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      searchEpisodes(searchText);
+      searchEpisodes(1);
+      setDidSearch(true);
     },
-    [searchEpisodes, searchText],
+    [searchEpisodes],
   );
 
   useEffect(() => {
-    setIsLoading(true);
-
-    Promise.all([
-      searchEpisodes(paramSearchText, false),
-      fetchPodcast(),
-    ]).finally(() => {
-      setIsLoading(false);
-    });
-  }, [searchEpisodes, paramSearchText, fetchPodcast]);
+    fetchPodcast();
+  }, [fetchPodcast]);
 
   const handleSearchTextChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -136,9 +125,13 @@ const EpisodeSearch: React.FC = () => {
     history.goBack();
   }, [history]);
 
-  const handlePageChange = useCallback((newPage: number) => {
-    setPage(newPage);
-  }, []);
+  const handlePageChange = useCallback(
+    (newPage: number) => {
+      searchEpisodes(newPage);
+      setPage(newPage);
+    },
+    [searchEpisodes],
+  );
 
   const episodesPlaceholderItems = useMemo(() => {
     return range(PAGE_SIZE - 1).map(dummy => (
@@ -147,6 +140,11 @@ const EpisodeSearch: React.FC = () => {
       </li>
     ));
   }, [isTablet]);
+
+  const showNoEpisodesFound =
+    (!episodes || episodes.length <= 0) && !isLoading && didSearch;
+  const showDidntSearchYet =
+    (!episodes || episodes.length <= 0) && !isLoading && !didSearch;
 
   return (
     <Container
@@ -213,15 +211,30 @@ const EpisodeSearch: React.FC = () => {
 
       <PageContentContainer>
         <PageContent>
-          <h2>
-            <FormattedMessage
-              id="generic.searchResults"
-              defaultMessage="Search results"
-            />
-          </h2>
+          {didSearch && (
+            <h2>
+              <FormattedMessage
+                id="generic.searchResults"
+                defaultMessage="Search results"
+              />
+            </h2>
+          )}
 
           <EpisodesListContainer>
-            {(!episodes || episodes.length <= 0) && !isLoading && (
+            {showDidntSearchYet && (
+              <ul>
+                <li>
+                  <p>
+                    <FormattedMessage
+                      id="episodeSearch.searchForAnEpisode"
+                      defaultMessage="Search for an episode above"
+                    />
+                  </p>
+                </li>
+              </ul>
+            )}
+
+            {showNoEpisodesFound && (
               <ul>
                 <li>
                   <p>
@@ -242,11 +255,14 @@ const EpisodeSearch: React.FC = () => {
                   episodes.length > 0 && (
                     <EpisodesList episodes={episodes} podcast={podcast} />
                   )}
-              <Pagination
-                page={page}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-              />
+
+              {didSearch && (
+                <Pagination
+                  page={page}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
+              )}
             </ul>
           </EpisodesListContainer>
         </PageContent>
