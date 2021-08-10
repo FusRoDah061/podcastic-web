@@ -1,19 +1,21 @@
-import React, { FormEvent, useCallback, useState } from 'react';
+import React from 'react';
 import { Variants } from 'framer-motion';
-import { useHistory } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
 import {
   Container,
   AddPodcastPopupHeader,
   GoBackLink,
   PageContent,
-  AddPodcastConfirmButton,
+  FlattenTabsContainer,
 } from './styles';
 
 import chevronLeftBlackIcon from '../../assets/chevron-left-black-icon.svg';
-import api from '../../services/api';
-import Spinner from '../../components/Spinner';
 import PlayerAwareTitle from '../../components/PlayerAwareTitle';
+import AddFeedTab from './AddFeedTab';
+import SearchTab from './SearchTab';
+import Tabs, { Tab } from '../../components/Tabs';
+import useMatchMedia from '../../hooks/matchMedia';
+import { device } from '../../styles/variables';
 
 const containerVariants: Variants = {
   initial: {
@@ -37,35 +39,7 @@ const containerVariants: Variants = {
 
 const AddPodcast: React.FC = () => {
   const intl = useIntl();
-  const history = useHistory();
-  const [feedUrl, setFeedUrl] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-
-  const handleAddPodcast = useCallback(
-    async (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-
-      if (feedUrl && !isLoading) {
-        setIsLoading(true);
-
-        try {
-          await api.addPodcast(feedUrl);
-
-          history.goBack();
-        } catch (err) {
-          if (err.request.parsedResponse) {
-            setError(err.request.parsedResponse.message);
-          }
-
-          setIsLoading(false);
-        }
-
-        setIsLoading(false);
-      }
-    },
-    [feedUrl, history, isLoading],
-  );
+  const isTablet = useMatchMedia(device.tablet);
 
   return (
     <Container
@@ -98,33 +72,32 @@ const AddPodcast: React.FC = () => {
       </AddPodcastPopupHeader>
 
       <PageContent>
-        <form onSubmit={handleAddPodcast}>
-          <label htmlFor="js-feed-address">
-            <FormattedMessage
-              id="addPodcast.feedAddress"
-              defaultMessage="Feed address:"
-            />
-
-            <input
-              id="js-feed-address"
-              type="text"
-              placeholder={intl.formatMessage({
-                id: 'addPodcast.feedAddressPlaceholder',
-                defaultMessage: 'https://cool-podcast.com/feed/',
+        {isTablet ? (
+          <FlattenTabsContainer>
+            <AddFeedTab />
+            <SearchTab />
+          </FlattenTabsContainer>
+        ) : (
+          <Tabs>
+            <Tab
+              label={intl.formatMessage({
+                id: 'generic.feed',
+                defaultMessage: 'Feed',
               })}
-              onChange={e => {
-                setFeedUrl(e.target.value);
-              }}
-            />
-          </label>
+            >
+              <AddFeedTab />
+            </Tab>
 
-          {error && <span>{error}</span>}
-
-          <AddPodcastConfirmButton type="submit">
-            {isLoading && <Spinner />}
-            <FormattedMessage id="addPodcast.add" defaultMessage="Add" />
-          </AddPodcastConfirmButton>
-        </form>
+            <Tab
+              label={intl.formatMessage({
+                id: 'generic.search',
+                defaultMessage: 'Search',
+              })}
+            >
+              <SearchTab />
+            </Tab>
+          </Tabs>
+        )}
       </PageContent>
     </Container>
   );

@@ -6,6 +6,7 @@
   "generic.playEpisode": "Play episode",
   "generic.warning": "Warning",
   "generic.goBackToHome": "Go back to home page",
+  "generic.feed": "Feed",
 
   "home.title": "Podcastic - Your favorite podcasts, simple and easy.",
   "home.podcasticLogo": "Podcastic logo",
@@ -24,9 +25,17 @@
 
   "addPodcast.title": "Add new podcast - Podcastic",
   "addPodcast.newPodcastFeed": "New podcast feed",
-  "addPodcast.feedAddress": "Feed address:",
-  "addPodcast.feedAddressPlaceholder": "https://cool-podcast.com/feed/",
-  "addPodcast.add": "Add",
+
+  "AddFeedTab.feedAddress": "RSS Feed address:",
+  "AddFeedTab.feedAddressDetail": "This is the address where new episodes are published. You usually find this at the publisher official page.",
+  "AddFeedTab.feedAddressPlaceholder": "https://cool-podcast.com/feed/",
+  "AddFeedTab.add": "Add",
+
+  "searchTab.searchPodcast": "Search podcast:",
+  "searchTab.searchPodcastDetail": "Search for any non-iTunes exclusive podcasts.",
+  "searchTab.searchPodcastPlaceholder": "Podcast name",
+  "searchTab.searchPodcastAria": "Search podcast",
+  "searchTab.addPodcast": "Add podcast",
 
   "allPodcasts.title": "All podcasts - Podcastic",
   "allPodcasts.allPodcasts": "All podcasts",
@@ -46,7 +55,6 @@
   "podcast.longest": "Longest",
   "podcast.shortest": "Shortest",
   "podcast.officialWebsite": "Official website",
-  "podcast.feed": "Feed",
   "podcast.officialWebsiteLink": "Official website link",
   "podcast.feedLink": "Feed link",
   "podcast.weCantReachFeed": "We can't reach this podcast feed since {date}",

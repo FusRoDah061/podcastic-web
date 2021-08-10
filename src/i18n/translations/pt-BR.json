@@ -6,6 +6,7 @@
   "generic.playEpisode": "Reproduzir episódio",
   "generic.warning": "Atenção",
   "generic.goBackToHome": "Voltar para a página inicial",
+  "generic.feed": "Feed",
 
   "home.title": "Podcastic - Seus podcasts favoritos, rápido e fácil.",
   "home.podcasticLogo": "Logotipo do Podcastic",
@@ -24,9 +25,17 @@
 
   "addPodcast.title": "Adicionar novo podcast - Podcastic",
   "addPodcast.newPodcastFeed": "Adicionar feed de podcast",
-  "addPodcast.feedAddress": "Endereço do feed:",
-  "addPodcast.feedAddressPlaceholder": "https://podcast-legal.com/feed/",
-  "addPodcast.add": "Adicionar",
+
+  "AddFeedTab.feedAddress": "Endereço do feed RSS:",
+  "AddFeedTab.feedAddressDetail": "Este é o endereço onde novos episódios são publicados. Normalmente você pode encontrá-lo no site oficial do produtor.",
+  "AddFeedTab.feedAddressPlaceholder": "https://podcast-legal.com/feed/",
+  "AddFeedTab.add": "Adicionar",
+
+  "searchTab.searchPodcast": "Buscar podcast:",
+  "searchTab.searchPodcastDetail": "Busque por qualquer podcast não exclusivo do iTunes.",
+  "searchTab.searchPodcastPlaceholder": "Nome do podcast",
+  "searchTab.searchPodcastAria": "Buscar podcast",
+  "searchTab.addPodcast": "Adicionar podcast",
 
   "allPodcasts.title": "Todos os podcasts - Podcastic",
   "allPodcasts.allPodcasts": "Todos os podcasts",
@@ -46,7 +55,6 @@
   "podcast.longest": "Mais longos",
   "podcast.shortest": "Mais curtos",
   "podcast.officialWebsite": "Site oficial",
-  "podcast.feed": "Feed",
   "podcast.officialWebsiteLink": "Endereço do site oficial",
   "podcast.feedLink": "Endereço do feed",
   "podcast.weCantReachFeed": "Não conseguimos acessar o feed desse podcast desde o dia {date}",

@@ -1,9 +1,13 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { colors, device } from '../../styles/variables';
-import { SpinnerStyled } from '../../components/Spinner/styles';
+import {
+  TabsStyled,
+  TabsContentStyled,
+  TabsNavigationStyled,
+} from '../../components/Tabs/styles';
+import { SearchTabStyled } from './SearchTab/styles';
 
 export const Container = styled(motion.main)`
   display: flex;
@@ -11,7 +15,6 @@ export const Container = styled(motion.main)`
   height: 100%;
   flex-direction: column;
   background: ${colors.white};
-  padding: 1.8rem 2rem;
   z-index: 3;
 
   @media ${device.tablet} {
@@ -24,6 +27,12 @@ export const AddPodcastPopupHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 1.8rem 2rem 0rem 2rem;
+
+  @media ${device.tablet} {
+    padding: 0;
+    padding-top: 1.8rem;
+  }
 `;
 
 export const GoBackLink = styled(Link)`
@@ -46,91 +55,36 @@ export const GoBackLink = styled(Link)`
 `;
 
 export const PageContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
+  padding-top: 2.6rem;
+  height: 100%;
 
-  form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    color: ${colors.textDark};
+  ${TabsStyled} {
+    display: grid;
+    height: 100%;
+    grid-template-rows: 1fr 5.2rem;
 
-    label {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 100%;
-      flex: 1;
-      text-align: start;
-      font-size: 1.8rem;
-      margin-bottom: 1.2rem;
-
-      input {
-        display: block;
-        width: 100%;
-        margin-top: 1.2rem;
-        border: 2px solid ${colors.greenDark};
-        border-radius: 1rem;
-        padding: 1.4rem 1.8rem;
-        font-size: 1.6rem;
-        color: ${colors.textDark};
-      }
+    ${TabsContentStyled} {
+      overflow: auto;
+      margin-bottom: 4rem;
     }
 
-    & > span {
-      width: 100%;
-      margin-bottom: 1.8rem;
-      color: ${colors.error};
-      text-align: center;
-    }
-
-    @media ${device.tablet} {
-      label {
-        width: auto;
-        flex: 0;
-
-        input {
-          border-width: 0.2rem;
-          width: 40rem;
-        }
-      }
-
-      & > span {
-        text-align: left;
-        width: 40rem;
-      }
+    ${TabsNavigationStyled} {
+      position: fixed;
+      bottom: 0;
     }
   }
 `;
 
-export const AddPodcastConfirmButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  color: ${colors.textLight};
-  background: ${colors.greenLight};
-  font-family: Nunito;
-  font-weight: bold;
-  font-size: 1.6rem;
-  padding: 0.9rem 2rem;
-  border-radius: 1rem;
-  border: 2px solid ${colors.greenDark};
-  transition: 0.2s;
+export const FlattenTabsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 425px 425px;
+  column-gap: 50px;
 
-  &:hover {
-    background: ${darken(0.05, colors.greenLight)};
+  label input[type='text'] {
+    width: 100%;
   }
 
-  ${SpinnerStyled} {
-    margin-right: 0.9rem;
-  }
-
-  @media ${device.tablet} {
-    border-width: 0.2rem;
+  ${SearchTabStyled} {
+    padding: 0;
   }
 `;

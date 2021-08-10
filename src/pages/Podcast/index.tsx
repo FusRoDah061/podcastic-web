@@ -328,7 +328,7 @@ const Podcast: React.FC = () => {
                           />
 
                           <FormattedMessage
-                            id="podcast.feed"
+                            id="generic.feed"
                             defaultMessage="Feed"
                           />
                         </a>
