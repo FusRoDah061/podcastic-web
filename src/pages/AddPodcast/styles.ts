@@ -73,6 +73,10 @@ export const PageContent = styled.div`
       bottom: 0;
     }
   }
+
+  @media ${device.tablet} {
+    padding-top: 4rem;
+  }
 `;
 
 export const FlattenTabsContainer = styled.div`
