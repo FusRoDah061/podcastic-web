@@ -110,9 +110,17 @@ const Home: React.FC = () => {
 
     setIsAllLoading(true);
 
-    fetchPodcasts().finally(() => {
-      setIsAllLoading(false);
-    });
+    if (page <= 1) {
+      setTimeout(() => {
+        fetchPodcasts().finally(() => {
+          setIsAllLoading(false);
+        });
+      }, 300);
+    } else {
+      fetchPodcasts().finally(() => {
+        setIsAllLoading(false);
+      });
+    }
   }, [page]);
 
   useEffect(() => {
@@ -126,9 +134,11 @@ const Home: React.FC = () => {
 
     setIsRecentLoading(true);
 
-    fetchRecentPodcasts().finally(() => {
-      setIsRecentLoading(false);
-    });
+    setTimeout(() => {
+      fetchRecentPodcasts().finally(() => {
+        setIsRecentLoading(false);
+      });
+    }, 300);
   }, []);
 
   const handleSearchTextChange = useCallback(
@@ -160,7 +170,7 @@ const Home: React.FC = () => {
   }, [showRecentPodcasts, animationControls]);
 
   const recentPodcastsPlaceholderItems = useMemo(() => {
-    return range(10).map(dummy => (
+    return range(4).map(dummy => (
       <li key={dummy}>
         <PodcastItemPlaceholder displayInfo={isTablet} />
       </li>
@@ -168,7 +178,7 @@ const Home: React.FC = () => {
   }, [isTablet]);
 
   const allPodcastsPlaceholderItems = useMemo(() => {
-    return range(10).map(dummy => (
+    return range(3).map(dummy => (
       <li key={dummy}>
         <PodcastItemPlaceholder displayInfo={isTablet} />
       </li>
@@ -334,41 +344,43 @@ const Home: React.FC = () => {
         </AllPodcastsContainer>
       </PodcastsContainer>
 
-      <AllRecentPodcastsContainer
-        variants={recentPodcastsVariants}
-        initial="hide"
-        animate={animationControls}
-      >
-        <button type="button" onClick={toggleAllRecentePodcasts}>
-          <img
-            src={arrowDownGrey}
-            alt={intl.formatMessage({
-              id: 'home.dismiss',
-              defaultMessage: 'Dismiss',
-            })}
-          />
-        </button>
+      {!isTablet && (
+        <AllRecentPodcastsContainer
+          variants={recentPodcastsVariants}
+          initial="hide"
+          animate={animationControls}
+        >
+          <button type="button" onClick={toggleAllRecentePodcasts}>
+            <img
+              src={arrowDownGrey}
+              alt={intl.formatMessage({
+                id: 'home.dismiss',
+                defaultMessage: 'Dismiss',
+              })}
+            />
+          </button>
 
-        <h2>
-          <FormattedMessage
-            id="home.recentylAddedPodcasts"
-            defaultMessage="Recently added podcasts"
-          />
-        </h2>
+          <h2>
+            <FormattedMessage
+              id="home.recentylAddedPodcasts"
+              defaultMessage="Recently added podcasts"
+            />
+          </h2>
 
-        <AllRecentListContainer>
-          <ul>
-            {isRecentLoading && recentPodcastsPlaceholderItems}
+          <AllRecentListContainer>
+            <ul>
+              {isRecentLoading && recentPodcastsPlaceholderItems}
 
-            {!isRecentLoading &&
-              recentPodcasts.map(podcast => (
-                <li key={podcast.id}>
-                  <PodcastItem podcast={podcast} />
-                </li>
-              ))}
-          </ul>
-        </AllRecentListContainer>
-      </AllRecentPodcastsContainer>
+              {!isRecentLoading &&
+                recentPodcasts.map(podcast => (
+                  <li key={podcast.id}>
+                    <PodcastItem podcast={podcast} />
+                  </li>
+                ))}
+            </ul>
+          </AllRecentListContainer>
+        </AllRecentPodcastsContainer>
+      )}
     </Container>
   );
 };
