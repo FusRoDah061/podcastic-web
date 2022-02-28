@@ -25,6 +25,9 @@ import {
   AllRecentListContainer,
   ViewAllPodcastsLink,
   SearchButton,
+  HeaderNav,
+  SignInLink,
+  SignUpLink,
 } from './styles';
 import { device } from '../../styles/variables';
 import PodcastItem, {
@@ -35,6 +38,7 @@ import api from '../../services/api';
 import range from '../../utils/range';
 import PlayerAwareTitle from '../../components/PlayerAwareTitle';
 import useMatchMedia from '../../hooks/matchMedia';
+import Pagination from '../../components/Pagination';
 
 import logoImg from '../../assets/podcastic-white-logo.svg';
 import addIcon from '../../assets/add-white-icon.svg';
@@ -42,7 +46,7 @@ import searchIcon from '../../assets/arrow-right-white-icon.svg';
 import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
 import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
 import arrowDownGrey from '../../assets/arrow-down-grey.svg';
-import Pagination from '../../components/Pagination';
+import userIcon from '../../assets/user-icon-green.svg';
 
 const containerVariants: Variants = {
   initial: {
@@ -229,19 +233,36 @@ const Home: React.FC = () => {
             </h1>
           </div>
 
-          <AddPodcastButton to="/new">
-            <SVG
-              src={addIcon}
-              title={intl.formatMessage({
-                id: 'home.addPodcast',
-                defaultMessage: 'Add podcast',
-              })}
-            />
-            <FormattedMessage
-              id="home.addPodcast"
-              defaultMessage="Add podcast"
-            />
-          </AddPodcastButton>
+          <HeaderNav>
+            <SignUpLink to="/signup">
+              <FormattedMessage id="signup.title" defaultMessage="Sign up" />
+            </SignUpLink>
+
+            <SignInLink to="/signin">
+              <SVG
+                src={userIcon}
+                title={intl.formatMessage({
+                  id: 'signin.title',
+                  defaultMessage: 'Sign in',
+                })}
+              />
+              <FormattedMessage id="signin.title" defaultMessage="Sign in" />
+            </SignInLink>
+
+            <AddPodcastButton to="/new">
+              <SVG
+                src={addIcon}
+                title={intl.formatMessage({
+                  id: 'home.addPodcast',
+                  defaultMessage: 'Add podcast',
+                })}
+              />
+              <FormattedMessage
+                id="home.addPodcast"
+                defaultMessage="Add podcast"
+              />
+            </AddPodcastButton>
+          </HeaderNav>
         </HeaderTop>
 
         <SearchContainer onSubmit={handleSearch}>

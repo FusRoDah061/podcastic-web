@@ -85,6 +85,51 @@ export const HeaderTop = styled.div`
   }
 `;
 
+export const HeaderNav = styled.nav`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const SignUpLink = styled(Link)`
+  font-family: Nunito;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: ${colors.textLight};
+  margin-right: 3.2rem;
+`;
+
+export const SignInLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  @media ${device.tablet} {
+    margin-right: 1.6rem;
+    background: ${colors.white};
+    color: ${colors.textDark};
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 1.6rem;
+    padding: 0.9rem;
+    padding-right: 2rem;
+    padding-left: 1.6rem;
+    border-radius: 1rem;
+    border: 0.2rem solid ${colors.greenDark};
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.05, colors.white)};
+    }
+
+    svg {
+      height: 1.7rem;
+      margin-right: 1rem;
+    }
+  }
+`;
+
 export const AddPodcastButton = styled(Link)`
   display: flex;
   align-items: center;
@@ -98,7 +143,7 @@ export const AddPodcastButton = styled(Link)`
     display: inline-block;
     width: 3rem;
     height: 3rem;
-    margin-right: 1.6rem;
+    margin-right: 1.2rem;
   }
 
   @media ${device.tablet} {
@@ -109,6 +154,7 @@ export const AddPodcastButton = styled(Link)`
     font-size: 1.6rem;
     padding: 0.9rem;
     padding-right: 2rem;
+    padding-left: 1.6rem;
     border-radius: 1rem;
     border: 0.2rem solid ${colors.greenDark};
     transition: background 0.2s;
