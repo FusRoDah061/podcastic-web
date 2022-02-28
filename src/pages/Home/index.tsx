@@ -47,6 +47,7 @@ import chevronRightBlackIcon from '../../assets/chevron-right-black-icon.svg';
 import chevronRightWhiteIcon from '../../assets/chevron-right-white-icon.svg';
 import arrowDownGrey from '../../assets/arrow-down-grey.svg';
 import userIcon from '../../assets/user-icon-green.svg';
+import userIconWhite from '../../assets/user-icon-white.svg';
 
 const containerVariants: Variants = {
   initial: {
@@ -240,7 +241,7 @@ const Home: React.FC = () => {
 
             <SignInLink to="/signin">
               <SVG
-                src={userIcon}
+                src={isTablet ? userIcon : userIconWhite}
                 title={intl.formatMessage({
                   id: 'signin.title',
                   defaultMessage: 'Sign in',

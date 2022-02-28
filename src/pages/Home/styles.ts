@@ -92,11 +92,16 @@ export const HeaderNav = styled.nav`
 `;
 
 export const SignUpLink = styled(Link)`
+  display: none;
   font-family: Nunito;
   font-weight: bold;
   font-size: 1.6rem;
   color: ${colors.textLight};
   margin-right: 3.2rem;
+
+  @media ${device.tablet} {
+    display: block;
+  }
 `;
 
 export const SignInLink = styled(Link)`
@@ -104,6 +109,14 @@ export const SignInLink = styled(Link)`
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  font-size: 0;
+
+  svg {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 2.9rem;
+  }
 
   @media ${device.tablet} {
     margin-right: 1.6rem;
