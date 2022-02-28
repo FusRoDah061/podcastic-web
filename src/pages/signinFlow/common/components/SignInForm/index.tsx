@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 import { FormContainer, FormHeader, FormBody } from './styles';
 
 import logoImg from '../../../../../assets/podcastic-signin-logo.svg';
@@ -8,7 +9,9 @@ const SignInForm: React.FC = ({ children }) => {
   return (
     <FormContainer>
       <FormHeader>
-        <img src={logoImg} alt="Podcastic" />
+        <Link to="/">
+          <img src={logoImg} alt="Podcastic" />
+        </Link>
         <h1>
           <FormattedMessage
             id="generic.slogan1"

@@ -7,20 +7,29 @@ import { colors, device } from '../../../styles/variables';
 export const Container = styled(motion.div)`
   position: relative;
   height: 100%;
-  background: linear-gradient(
-    180deg,
-    ${colors.greenDark} 15%,
-    ${colors.greenLight} 100%
-  );
+  background: ${colors.white};
+
+  @media ${device.tablet} {
+    background: linear-gradient(
+      180deg,
+      ${colors.greenDark} 15%,
+      ${colors.greenLight} 100%
+    );
+  }
 `;
 
 export const BackgroundImage = styled.img`
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  margin: auto;
+  display: none;
+
+  @media ${device.tablet} {
+    position: absolute;
+    display: block;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    margin: auto;
+  }
 `;
 
 export const FormTitle = styled.h1`
