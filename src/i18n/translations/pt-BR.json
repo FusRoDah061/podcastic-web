@@ -7,6 +7,14 @@
   "generic.warning": "Atenção",
   "generic.goBackToHome": "Voltar para a página inicial",
   "generic.feed": "Feed",
+  "generic.slogan": "Seus podcasts favoritos, rápido e fácil.",
+
+  "signin.title": "Entrar",
+  "signin.email": "E-mail",
+  "signin.password": "Senha",
+  "signin.forgotPasswordQuestion": "Esqueceu sua senha?",
+  "signin.signin": "Entrar",
+  "signin.createAccount": "Criar conta",
 
   "home.title": "Podcastic - Seus podcasts favoritos, rápido e fácil.",
   "home.podcasticLogo": "Logotipo do Podcastic",

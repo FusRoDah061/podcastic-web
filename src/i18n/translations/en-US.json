@@ -7,6 +7,14 @@
   "generic.warning": "Warning",
   "generic.goBackToHome": "Go back to home page",
   "generic.feed": "Feed",
+  "generic.slogan": "Your favorite podcasts, quick and easy.",
+
+  "signin.title": "Sign-in",
+  "signin.email": "E-mail",
+  "signin.password": "Password",
+  "signin.forgotPasswordQuestion": "Forgot your password?",
+  "signin.signin": "Sign-in",
+  "signin.createAccount": "Create account",
 
   "home.title": "Podcastic - Your favorite podcasts, simple and easy.",
   "home.podcasticLogo": "Podcastic logo",
