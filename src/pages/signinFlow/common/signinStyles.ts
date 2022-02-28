@@ -45,6 +45,12 @@ export const FormTextInput = styled.input.attrs({ type: 'text' })`
   color: ${colors.textDark};
 `;
 
+export const FormTextMuted = styled.p`
+  font-size: 1.6rem;
+  color: ${colors.textMuted};
+  margin-bottom: 3.2rem;
+`;
+
 export const FormMutedLink = styled(Link)`
   font-size: 1.8rem;
   color: ${colors.textMuted};

@@ -57,13 +57,13 @@ const SignUp: React.FC = () => {
         <FormTextInput />
 
         <FormLabel>
-          <FormattedMessage id="signin.email" defaultMessage="E-mail" />
+          <FormattedMessage id="generic.email" defaultMessage="E-mail" />
         </FormLabel>
 
         <FormTextInput />
 
         <FormLabel>
-          <FormattedMessage id="signin.password" defaultMessage="Password" />
+          <FormattedMessage id="generic.password" defaultMessage="Password" />
         </FormLabel>
 
         <FormPasswordInput />

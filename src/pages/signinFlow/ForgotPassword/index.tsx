@@ -6,13 +6,12 @@ import {
   Container,
   FormLabel,
   FormLink,
-  FormMutedLink,
   FormSubmitButton,
   FormTextInput,
+  FormTextMuted,
   FormTitle,
 } from '../common/signinStyles';
 import SignInForm from '../common/components/SignInForm';
-import FormPasswordInput from '../common/components/FormPasswordInput';
 
 import backgroundImg from '../../../assets/pre-signin-background.svg';
 
@@ -36,7 +35,7 @@ const containerVariants: Variants = {
   },
 };
 
-const SignIn: React.FC = () => {
+const ForgotPassword: React.FC = () => {
   return (
     <Container
       variants={containerVariants}
@@ -48,7 +47,10 @@ const SignIn: React.FC = () => {
 
       <SignInForm>
         <FormTitle>
-          <FormattedMessage id="signin.title" defaultMessage="Sign-in" />
+          <FormattedMessage
+            id="forgotPassword.title"
+            defaultMessage="Recover password"
+          />
         </FormTitle>
 
         <FormLabel>
@@ -57,32 +59,26 @@ const SignIn: React.FC = () => {
 
         <FormTextInput />
 
-        <FormLabel>
-          <FormattedMessage id="generic.password" defaultMessage="Password" />
-        </FormLabel>
-
-        <FormPasswordInput />
-
-        <FormMutedLink to="#">
+        <FormTextMuted>
           <FormattedMessage
-            id="signin.forgotPasswordQuestion"
-            defaultMessage="Forgot your password?"
+            id="forgotPassword.instructions"
+            defaultMessage="We will send instructions on recoverying your password to the e-mail address above."
           />
-        </FormMutedLink>
+        </FormTextMuted>
 
         <FormSubmitButton>
-          <FormattedMessage id="signin.signin" defaultMessage="Sign-in" />
+          <FormattedMessage
+            id="forgotPassword.continue"
+            defaultMessage="Continue"
+          />
         </FormSubmitButton>
 
         <FormLink to="#">
-          <FormattedMessage
-            id="signin.createAccount"
-            defaultMessage="Create account"
-          />
+          <FormattedMessage id="signin.title" defaultMessage="Sign in" />
         </FormLink>
       </SignInForm>
     </Container>
   );
 };
 
-export default SignIn;
+export default ForgotPassword;

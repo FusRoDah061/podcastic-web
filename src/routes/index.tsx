@@ -10,6 +10,7 @@ import EpisodeSearch from '../pages/EpisodeSearch';
 import SignIn from '../pages/signinFlow/SignIn';
 import Route from './Route';
 import SignUp from '../pages/signinFlow/SignUp';
+import ForgotPassword from '../pages/signinFlow/ForgotPassword';
 
 const Routes: React.FC = () => {
   const location = useLocation();
@@ -19,6 +20,12 @@ const Routes: React.FC = () => {
       <Switch location={location} key={location.key}>
         <Route exact path="/signin" component={SignIn} isPrivate />
         <Route exact path="/signup" component={SignUp} isPrivate />
+        <Route
+          exact
+          path="/forgot-password"
+          component={ForgotPassword}
+          isPrivate
+        />
 
         <Route exact path="/" component={Home} isPrivate />
         <Route path="/new" component={AddPodcast} isPrivate />

@@ -8,18 +8,22 @@
   "generic.goBackToHome": "Go back to home page",
   "generic.feed": "Feed",
   "generic.slogan": "Your favorite podcasts, quick and easy.",
+  "generic.email": "E-mail",
+  "generic.password": "Password",
 
-  "signin.title": "Sign-in",
-  "signin.email": "E-mail",
-  "signin.password": "Password",
+  "signin.title": "Sign in",
   "signin.forgotPasswordQuestion": "Forgot your password?",
-  "signin.signin": "Sign-in",
+  "signin.signin": "Sign in",
   "signin.createAccount": "Create account",
 
-  "signup.title": "Sign-up",
+  "signup.title": "Sign up",
   "signup.name": "Name",
   "signup.createAccount": "Create account",
   "signup.alreadyHaveAccount": "Already have an account",
+
+  "forgotPassword.title": "Recover password",
+  "forgotPassword.continue": "Continue",
+  "forgotPassword.instructions": "We will send instructions on recoverying your password to the e-mail address above.",
 
   "home.title": "Podcastic - Your favorite podcasts, simple and easy.",
   "home.podcasticLogo": "Podcastic logo",
