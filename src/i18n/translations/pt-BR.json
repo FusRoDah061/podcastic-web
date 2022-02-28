@@ -16,6 +16,11 @@
   "signin.signin": "Entrar",
   "signin.createAccount": "Criar conta",
 
+  "signup.title": "Cadastrar-se",
+  "signup.name": "Nome",
+  "signup.createAccount": "Criar conta",
+  "signup.alreadyHaveAccount": "Já tenho uma conta",
+
   "home.title": "Podcastic - Seus podcasts favoritos, rápido e fácil.",
   "home.podcasticLogo": "Logotipo do Podcastic",
   "home.slogan1": "Seus podcasts favoritos, ",

@@ -31,21 +31,12 @@ export const FormTitle = styled.h1`
   margin-bottom: 1.6rem;
 `;
 
-export const FormLabel = styled.p`
+export const FormLabel = styled.label`
   color: ${colors.textDark};
   margin-bottom: 0.8rem;
 `;
 
 export const FormTextInput = styled.input.attrs({ type: 'text' })`
-  border: 2px solid ${colors.greenDark};
-  border-radius: 1rem;
-  font-size: 1.6rem;
-  padding: 1.2rem 1.4rem;
-  margin-bottom: 1.6rem;
-  color: ${colors.textDark};
-`;
-
-export const FormPasswordInput = styled.input.attrs({ type: 'password' })`
   border: 2px solid ${colors.greenDark};
   border-radius: 1rem;
   font-size: 1.6rem;

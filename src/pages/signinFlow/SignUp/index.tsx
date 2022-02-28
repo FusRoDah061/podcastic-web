@@ -6,7 +6,6 @@ import {
   Container,
   FormLabel,
   FormLink,
-  FormMutedLink,
   FormSubmitButton,
   FormTextInput,
   FormTitle,
@@ -36,7 +35,7 @@ const containerVariants: Variants = {
   },
 };
 
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
   return (
     <Container
       variants={containerVariants}
@@ -48,8 +47,14 @@ const SignIn: React.FC = () => {
 
       <SignInForm>
         <FormTitle>
-          <FormattedMessage id="signin.title" defaultMessage="Sign-in" />
+          <FormattedMessage id="signup.title" defaultMessage="Sign-up" />
         </FormTitle>
+
+        <FormLabel>
+          <FormattedMessage id="signup.name" defaultMessage="Name" />
+        </FormLabel>
+
+        <FormTextInput />
 
         <FormLabel>
           <FormattedMessage id="signin.email" defaultMessage="E-mail" />
@@ -63,21 +68,17 @@ const SignIn: React.FC = () => {
 
         <FormPasswordInput />
 
-        <FormMutedLink to="#">
-          <FormattedMessage
-            id="signin.forgotPasswordQuestion"
-            defaultMessage="Forgot your password?"
-          />
-        </FormMutedLink>
-
         <FormSubmitButton>
-          <FormattedMessage id="signin.signin" defaultMessage="Sign-in" />
+          <FormattedMessage
+            id="signup.createAccount"
+            defaultMessage="Create account"
+          />
         </FormSubmitButton>
 
         <FormLink to="#">
           <FormattedMessage
-            id="signin.createAccount"
-            defaultMessage="Create account"
+            id="signup.alreadyHaveAccount"
+            defaultMessage="Already have an account"
           />
         </FormLink>
       </SignInForm>
@@ -85,4 +86,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
