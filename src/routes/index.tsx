@@ -10,6 +10,7 @@ import EpisodeSearch from '../pages/EpisodeSearch';
 import SignIn from '../pages/signinFlow/SignIn';
 import SignUp from '../pages/signinFlow/SignUp';
 import ForgotPassword from '../pages/signinFlow/ForgotPassword';
+import ResetPassword from '../pages/signinFlow/ResetPassword';
 
 const Routes: React.FC = () => {
   const location = useLocation();
@@ -17,14 +18,10 @@ const Routes: React.FC = () => {
   return (
     <AnimatePresence exitBeforeEnter>
       <Switch location={location} key={location.key}>
-        <Route exact path="/signin" component={SignIn} />
-        <Route exact path="/signup" component={SignUp} />
-        <Route
-          exact
-          path="/forgot-password"
-          component={ForgotPassword}
-          isPrivate
-        />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/forgot-password" component={ForgotPassword} />
+        <Route path="/reset-password" component={ResetPassword} />
         <Route exact path="/" component={Home} />
         <Route path="/new" component={AddPodcast} />
         <Route path="/all" component={AllPodcasts} />

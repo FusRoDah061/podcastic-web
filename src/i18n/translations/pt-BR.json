@@ -14,6 +14,7 @@
   "generic.slogan4": "fácil.",
   "generic.email": "E-mail",
   "generic.password": "Senha",
+  "generic.continue": "Continuar",
 
   "signin.title": "Entrar",
   "signin.forgotPasswordQuestion": "Esqueceu sua senha?",
@@ -26,8 +27,10 @@
   "signup.alreadyHaveAccount": "Já tenho uma conta",
 
   "forgotPassword.title": "Recuperar senha",
-  "forgotPassword.continue": "Continuar",
   "forgotPassword.instructions": "Vamos enviar instruções de como redefinir sua senha no endereço acima.",
+
+  "resetPassword.title": "Criar nova senha",
+  "resetPassword.newPassword": "Nova senha",
 
   "home.title": "Podcastic - Seus podcasts favoritos, rápido e fácil.",
   "home.podcasticLogo": "Logotipo do Podcastic",

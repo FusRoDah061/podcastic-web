@@ -7,11 +7,10 @@ import {
   FormLabel,
   FormLink,
   FormSubmitButton,
-  FormTextInput,
-  FormTextMuted,
   FormTitle,
 } from '../common/signinStyles';
 import SignInForm from '../common/components/SignInForm';
+import FormPasswordInput from '../common/components/FormPasswordInput';
 
 import backgroundImg from '../../../assets/pre-signin-background.svg';
 
@@ -35,7 +34,7 @@ const containerVariants: Variants = {
   },
 };
 
-const ForgotPassword: React.FC = () => {
+const ResetPassword: React.FC = () => {
   return (
     <Container
       variants={containerVariants}
@@ -48,23 +47,19 @@ const ForgotPassword: React.FC = () => {
       <SignInForm>
         <FormTitle>
           <FormattedMessage
-            id="forgotPassword.title"
-            defaultMessage="Recover password"
+            id="resetPassword.title"
+            defaultMessage="Create new password"
           />
         </FormTitle>
 
         <FormLabel>
-          <FormattedMessage id="generic.email" defaultMessage="E-mail" />
+          <FormattedMessage
+            id="resetPassword.newPassword"
+            defaultMessage="New password"
+          />
         </FormLabel>
 
-        <FormTextInput />
-
-        <FormTextMuted>
-          <FormattedMessage
-            id="forgotPassword.instructions"
-            defaultMessage="We will send instructions on recoverying your password to the e-mail address above."
-          />
-        </FormTextMuted>
+        <FormPasswordInput />
 
         <FormSubmitButton>
           <FormattedMessage id="generic.continue" defaultMessage="Continue" />
@@ -78,4 +73,4 @@ const ForgotPassword: React.FC = () => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;
