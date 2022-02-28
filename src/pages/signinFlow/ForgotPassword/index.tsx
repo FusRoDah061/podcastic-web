@@ -17,17 +17,17 @@ import backgroundImg from '../../../assets/pre-signin-background.svg';
 
 const containerVariants: Variants = {
   initial: {
-    x: '100vw',
+    y: '100vw',
   },
   animate: {
-    x: 0,
+    y: 0,
     transition: {
       duration: 0.2,
       ease: 'easeOut',
     },
   },
   exit: {
-    x: '100vw',
+    y: '100vw',
     transition: {
       duration: 0.2,
       ease: 'easeIn',
@@ -73,7 +73,7 @@ const ForgotPassword: React.FC = () => {
           />
         </FormSubmitButton>
 
-        <FormLink to="#">
+        <FormLink to="/signin">
           <FormattedMessage id="signin.title" defaultMessage="Sign in" />
         </FormLink>
       </SignInForm>

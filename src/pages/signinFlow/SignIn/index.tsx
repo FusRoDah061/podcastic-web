@@ -18,17 +18,17 @@ import backgroundImg from '../../../assets/pre-signin-background.svg';
 
 const containerVariants: Variants = {
   initial: {
-    x: '100vw',
+    y: '-100vw',
   },
   animate: {
-    x: 0,
+    y: 0,
     transition: {
       duration: 0.2,
       ease: 'easeOut',
     },
   },
   exit: {
-    x: '100vw',
+    y: '-100vw',
     transition: {
       duration: 0.2,
       ease: 'easeIn',
@@ -63,7 +63,7 @@ const SignIn: React.FC = () => {
 
         <FormPasswordInput />
 
-        <FormMutedLink to="#">
+        <FormMutedLink to="/forgot-password">
           <FormattedMessage
             id="signin.forgotPasswordQuestion"
             defaultMessage="Forgot your password?"
@@ -74,7 +74,7 @@ const SignIn: React.FC = () => {
           <FormattedMessage id="signin.signin" defaultMessage="Sign-in" />
         </FormSubmitButton>
 
-        <FormLink to="#">
+        <FormLink to="/signup">
           <FormattedMessage
             id="signin.createAccount"
             defaultMessage="Create account"
