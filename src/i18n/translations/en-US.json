@@ -8,6 +8,10 @@
   "generic.goBackToHome": "Go back to home page",
   "generic.feed": "Feed",
   "generic.slogan": "Your favorite podcasts, quick and easy.",
+  "generic.slogan1": "Your favorite podcasts, ",
+  "generic.slogan2": "quick",
+  "generic.slogan3": "and",
+  "generic.slogan4": "easy.",
   "generic.email": "E-mail",
   "generic.password": "Password",
 
@@ -27,10 +31,6 @@
 
   "home.title": "Podcastic - Your favorite podcasts, simple and easy.",
   "home.podcasticLogo": "Podcastic logo",
-  "home.slogan1": "Your favorite podcasts, ",
-  "home.slogan2": "quick",
-  "home.slogan3": "and",
-  "home.slogan4": "easy.",
   "home.addPodcast": "Add podcast",
   "home.searchForAPodcast": "Search for a podcast",
   "home.recentlyAdded": "Recently added",

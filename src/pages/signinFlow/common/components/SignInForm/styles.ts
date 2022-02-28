@@ -15,6 +15,16 @@ export const FormContainer = styled.main`
 
 export const FormHeader = styled.div`
   padding: 3.6rem 4.6rem;
+  color: ${colors.textDark};
+
+  h1 {
+    font-size: 2.1rem;
+    font-family: Nunito;
+
+    strong {
+      font-weight: bold;
+    }
+  }
 `;
 
 export const FormBody = styled.div`

@@ -216,15 +216,15 @@ const Home: React.FC = () => {
             />
             <h1>
               <FormattedMessage
-                id="home.slogan1"
+                id="generic.slogan1"
                 defaultMessage="Your favorite podcasts, "
               />{' '}
               <strong>
-                <FormattedMessage id="home.slogan2" defaultMessage="quick" />
+                <FormattedMessage id="generic.slogan2" defaultMessage="quick" />
               </strong>{' '}
-              <FormattedMessage id="home.slogan3" defaultMessage="and" />{' '}
+              <FormattedMessage id="generic.slogan3" defaultMessage="and" />{' '}
               <strong>
-                <FormattedMessage id="home.slogan4" defaultMessage="easy." />
+                <FormattedMessage id="generic.slogan4" defaultMessage="easy." />
               </strong>
             </h1>
           </div>
